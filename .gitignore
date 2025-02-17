@@ -1,0 +1,11 @@
+# Ignore Visual Studio files
+.vs/
+.vscode/
+bin/
+obj/
+
+# Ignore files related to macOS
+.DS_Store
+
+# Ignore Windows thumbnail cache files
+Thumbs.db
