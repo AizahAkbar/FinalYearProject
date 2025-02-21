@@ -5,14 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using FinalYearProject.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ReviewsContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ReviewsContext") ?? throw new InvalidOperationException("Connection string 'ReviewsContext' not found.")));
+builder.Services.AddDbContext<BakesContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BakesContext") ?? throw new InvalidOperationException("Connection string 'BakesContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddDbContext<BakesContext>(options =>
-    options.UseMySQL(builder.Configuration.GetConnectionString("BakesContext") ?? throw new InvalidOperationException("Connection string 'BakesContext' not found.")));
 
 var app = builder.Build();
 

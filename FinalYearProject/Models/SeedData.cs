@@ -26,32 +26,28 @@ public static class SeedData
                     Name = "Cosmic Brownies",
                     Category = "Brownies",
                     Description = "Fudgy, gooey brownie centre topped with a layer of chocolate ganache and rainbow chocolate sprinkles",
-                    Price = 7.5,
-                    Rating = 4.0
+                    Price = 7.5
                 },
                 new Bake
                 {
                     Name = "Chocolate Chip Cookies",
                     Category = "Cookies",
                     Description = "Crispy golden cookies loaded with rich chocolate chips, perfect for any occasion",
-                    Price = 4.0,
-                    Rating = 4.5
+                    Price = 4.0
                 },
                 new Bake
                 {
                     Name = "Lemon Cheesecake",
                     Category = "Cheesecake",
                     Description = "Creamy cheesecake with a tangy lemon flavor on a buttery graham cracker crust",
-                    Price = 9.0,
-                    Rating = 4.8
+                    Price = 9.0
                 },
                 new Bake
                 {
                     Name = "Apple Pie",
                     Category = "Pies",
                     Description = "Homemade pie filled with spiced apples and wrapped in a flaky, buttery crust",
-                    Price = 6.0,
-                    Rating = 4.3
+                    Price = 6.0
                 }
             );
             context.SaveChanges();
