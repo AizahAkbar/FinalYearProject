@@ -1,25 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using FinalYearProject.Data;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalYearProject.Models
 {
     public class Review
     {
-        private ReviewsContext context;
         public int Id { get; set; }
 
         public int BakeId { get; set; }
+
+        public string User { get; set; }
+
+        public string Description { get; set; }
+
+        public int Rating { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        // virtual is for the entity framework to link the Review table to the Bake table 
+        // default in case not initialised and so will be set as default instead of null
+        //default of type Bake
+        // ! is null-forgiving operator
+        // BakeId is from above and set as a foreign key from the Bake table 
         [ForeignKey("BakeId")]
-        public virtual Bake Bake { get; set; }
-
-        public int UserId { get; set; }
-
-        public double Rating { get; set; }
-
-        public string? Comment { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTime ReviewDate { get; set; }
+        public virtual Bake Bake { get; set; } = default!;
     }
 }

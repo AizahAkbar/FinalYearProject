@@ -2,11 +2,7 @@
   "dependencies": {
     "mssql1": {
       "type": "mssql.local",
-      "connectionId": "ConnectionStrings:BakesContext"
-    },
-    "mssql2": {
-      "type": "mssql.local",
-      "connectionId": "ConnectionStrings:ReviewsContext"
+      "connectionId": "ConnectionStrings:FypContext"
     }
   }
 }

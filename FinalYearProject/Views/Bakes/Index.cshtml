@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FinalYearProject.Models.Bake>
+﻿@model IEnumerable<FinalYearProject.ViewModels.BakeFrontEnd>
 
 @{
     ViewData["Title"] = "Index";
@@ -24,9 +24,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -45,14 +42,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
+            @* <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            </td> *@
         </tr>
 }
     </tbody>

@@ -7,13 +7,14 @@ using FinalYearProject.Models;
 
 namespace FinalYearProject.Data
 {
-    public class ReviewsContext : DbContext
+    public class FypContext : DbContext
     {
-        public ReviewsContext (DbContextOptions<ReviewsContext> options)
+        public FypContext (DbContextOptions<FypContext> options)
             : base(options)
         {
         }
 
+        public DbSet<FinalYearProject.Models.Bake> Bake { get; set; } = default!;
         public DbSet<FinalYearProject.Models.Review> Review { get; set; } = default!;
     }
 }
