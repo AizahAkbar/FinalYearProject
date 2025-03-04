@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -7,7 +7,6 @@ html {
     font-size: 16px;
   }
 }
-
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -19,8 +18,44 @@ html {
 
 body {
   margin-bottom: 60px;
+  font-family: "Roboto", sans-serif;
+  background: #F5E7DB;
 }
 
-.navbar {
-    background: #E4BF9F;
+.top-bar {
+  background: #E4BF9F;
+  height: 25px;
+  width: 100%;
 }
+
+.navbar-bottom {
+  background: #E4BF9F;
+}
+
+.navbar-top {
+  background: #F5E7DB;
+}
+
+.navbar-nav-bottom {
+  flex-direction: row;
+}
+.navbar-nav .nav-link-bottom {
+  padding-right: 10px;
+  padding-left: 10px;
+  color: black;
+  font-family: "Chewy", serif;
+  font-size: 20px;
+}
+
+.navbar-brand {
+  font-family: "Chewy", serif;
+}
+
+.navbar-toggler {
+  border: 1px solid black;
+}
+.navbar-toggler-icon {
+  background: black;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;EACI;;;AAGJ;EACI;IACI;;;AAIR;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAIA;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAIR;EACI;;;AAGJ;EACI;;AAEA;EACI%22%7D */
