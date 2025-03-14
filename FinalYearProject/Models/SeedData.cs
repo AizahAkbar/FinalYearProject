@@ -22,28 +22,28 @@ public static class SeedData
                     new Bake
                     {
                         Name = "Cosmic Brownies",
-                        Category = "Brownies",
+                        CategoryId = 1,
                         Description = "Fudgy, gooey brownie centre topped with a layer of chocolate ganache and rainbow chocolate sprinkles",
                         Price = 7.5
                     },
                     new Bake
                     {
                         Name = "Chocolate Chip Cookies",
-                        Category = "Cookies",
+                        CategoryId = 2,
                         Description = "Crispy golden cookies loaded with rich chocolate chips, perfect for any occasion",
                         Price = 4.0
                     },
                     new Bake
                     {
                         Name = "Lemon Cheesecake",
-                        Category = "Cheesecake",
+                        CategoryId = 3,
                         Description = "Creamy cheesecake with a tangy lemon flavor on a buttery graham cracker crust",
                         Price = 9.0
                     },
                     new Bake
                     {
                         Name = "Apple Pie",
-                        Category = "Pies",
+                        CategoryId = 4,
                         Description = "Homemade pie filled with spiced apples and wrapped in a flaky, buttery crust",
                         Price = 6.0
                     }
@@ -86,7 +86,28 @@ public static class SeedData
                     }
                 );
             }
-            context.SaveChanges();
+            if (!context.BakeCategory.Any())
+            {
+                context.BakeCategory.AddRange(
+                    new BakeCategory
+                    {
+                        Category = "Brownies"
+                    },
+                    new BakeCategory
+                    {
+                        Category = "Cookies"
+                    },
+                    new BakeCategory
+                    {
+                        Category = "Cheesecakes"
+                    },
+                    new BakeCategory
+                    {
+                        Category = "Pies"
+                    }
+                );
+            }
+                context.SaveChanges();
         }
     }
 }

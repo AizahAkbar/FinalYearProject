@@ -1,4 +1,6 @@
-﻿namespace FinalYearProject.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FinalYearProject.Models
 {
     public class Bake
     {
@@ -8,8 +10,11 @@
 
             public double Price { get; set; }
 
-            public string Category { get; set; }
+            public int CategoryId { get; set; }
 
             public string Description { get; set; }
+
+            [ForeignKey("CategoryId")]
+            public virtual BakeCategory BakeCategory { get; set; } = default!;
     }
 }

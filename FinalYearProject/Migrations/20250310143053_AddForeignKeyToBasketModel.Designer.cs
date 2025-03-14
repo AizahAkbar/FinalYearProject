@@ -4,6 +4,7 @@ using FinalYearProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalYearProject.Migrations
 {
     [DbContext(typeof(FypContext))]
-    partial class BakesContextModelSnapshot : ModelSnapshot
+    [Migration("20250310143053_AddForeignKeyToBasketModel")]
+    partial class AddForeignKeyToBasketModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,12 +66,12 @@ namespace FinalYearProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("BakeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("BakeId");
 
                     b.ToTable("Basket");
                 });
@@ -149,7 +152,7 @@ namespace FinalYearProject.Migrations
                 {
                     b.HasOne("FinalYearProject.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("BakeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
