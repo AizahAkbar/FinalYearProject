@@ -25,5 +25,19 @@ namespace FinalYearProject.Data
         {
             return _context.Bake.ToList();
         }
+
+        public Bake GetBakeById(int id)
+        {
+            return _context.Bake.Find(id);
+        }
+
+        public string GetCategoryById(int id)
+        {
+            return _context.BakeCategory.Find(id);
+        }
+        //public Bake GetAllBakesByCategory(string category)
+        //{
+        //    return _context.Bake.;
+        //}
     }
 }

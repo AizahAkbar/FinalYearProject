@@ -41,6 +41,7 @@ namespace FinalYearProject.Services
             // Map the Bake objects to BakeFrontEnd objects
             var bakeFrontEnds = bakes.Select(bake => new BakeFrontEnd
             {
+                Id = bake.Id,
                 Name = bake.Name,
                 Price = bake.Price,
                 Category = bake.Category,
@@ -48,6 +49,20 @@ namespace FinalYearProject.Services
             });
 
             return bakeFrontEnds;
+        }
+
+        public BakeFrontEnd GetBakeById(int id)
+        {
+            var bake = _bakeRepository.GetBakeById(id);
+            var bakeFrontEnd = new BakeFrontEnd
+            {
+                Id = bake.Id,
+                Name = bake.Name,
+                Price = bake.Price,
+                Category = bake.Category,
+                Description = bake.Description
+            };
+            return bakeFrontEnd;
         }
 
     }

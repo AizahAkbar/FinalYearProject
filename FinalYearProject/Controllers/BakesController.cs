@@ -28,22 +28,10 @@ namespace FinalYearProject.Controllers
         }
 
         //// GET: Bakes/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var bake = await _context.Bake
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (bake == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(bake);
-        //}
+        public async Task<IActionResult> Details(int id)
+        {
+            return View(_service.GetBakeById(id));
+        }
 
         // GET: Bakes/Create
         public IActionResult Create()

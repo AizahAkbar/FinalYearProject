@@ -8,5 +8,7 @@ namespace FinalYearProject.Data
         void AddBake(Bake bake);
 
         IEnumerable<Bake> GetAllBakes();
+
+        Bake GetBakeById(int id);
     }
 }
