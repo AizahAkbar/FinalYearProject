@@ -66,11 +66,11 @@ app.MapControllerRoute(
     defaults: new { controller = "Order", action = "Payment" }
 );
 
-app.MapControllerRoute(
-    name: "searchPage",
-    pattern: "search",
-    defaults: new { controller = "Search", action = "Index" }
-);
+//app.MapControllerRoute(
+//    name: "searchPage",
+//    pattern: "search",
+//    defaults: new { controller = "Search", action = "Index" }
+//);
 
 app.MapControllerRoute(
     name: "default",

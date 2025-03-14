@@ -1,12 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FinalYearProject.Services;
+using FinalYearProject.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FinalYearProject.Controllers
 {
     public class SearchController : Controller
     {
-        public IActionResult Index()
+
+        private readonly IBakeService _service;
+        public SearchController(IBakeService service)
         {
-            return View("SearchPage");
+            _service = service;
+        }
+        public async Task<IActionResult> Index()
+        {
+            return View(_service.GetAllBakes());
+        }
+
+        public async Task<IActionResult> FilterByCategory()
+        {
+            return View(_service.GetAllBakes());
+        }
+
+        public async Task<IActionResult> SortByPrice()
+        {
+            return View(_service.GetAllBakes());
         }
     }
 }
