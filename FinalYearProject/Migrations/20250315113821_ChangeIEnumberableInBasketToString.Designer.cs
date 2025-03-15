@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalYearProject.Migrations
 {
     [DbContext(typeof(FypContext))]
-    [Migration("20250310143053_AddForeignKeyToBasketModel")]
-    partial class AddForeignKeyToBasketModel
+    [Migration("20250315113821_ChangeIEnumberableInBasketToString")]
+    partial class ChangeIEnumberableInBasketToString
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,6 @@ namespace FinalYearProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BasketId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -53,8 +50,6 @@ namespace FinalYearProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BasketId");
-
                     b.ToTable("Bake");
                 });
 
@@ -66,12 +61,16 @@ namespace FinalYearProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BakeId")
+                    b.Property<string>("Bakes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BakeId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Basket");
                 });
@@ -141,18 +140,11 @@ namespace FinalYearProject.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("FinalYearProject.Models.Bake", b =>
-                {
-                    b.HasOne("FinalYearProject.Models.Basket", null)
-                        .WithMany("Bakes")
-                        .HasForeignKey("BasketId");
-                });
-
             modelBuilder.Entity("FinalYearProject.Models.Basket", b =>
                 {
                     b.HasOne("FinalYearProject.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("BakeId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -168,11 +160,6 @@ namespace FinalYearProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Bake");
-                });
-
-            modelBuilder.Entity("FinalYearProject.Models.Basket", b =>
-                {
-                    b.Navigation("Bakes");
                 });
 #pragma warning restore 612, 618
         }

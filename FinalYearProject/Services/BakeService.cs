@@ -23,7 +23,7 @@ namespace FinalYearProject.Services
             {
                 Name = bakefrontend.Name,
                 Price = bakefrontend.Price,
-                Category = bakefrontend.Category,
+                //Category = bakefrontend.Category,
                 Description = bakefrontend.Description
             };
 
@@ -44,7 +44,7 @@ namespace FinalYearProject.Services
                 Id = bake.Id,
                 Name = bake.Name,
                 Price = bake.Price,
-                Category = bake.Category,
+                //Category = bake.Category,
                 Description = bake.Description
             });
 
@@ -59,7 +59,7 @@ namespace FinalYearProject.Services
                 Id = bake.Id,
                 Name = bake.Name,
                 Price = bake.Price,
-                Category = bake.Category,
+                //Category = bake.Category,
                 Description = bake.Description
             };
             return bakeFrontEnd;

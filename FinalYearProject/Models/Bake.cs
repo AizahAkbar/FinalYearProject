@@ -10,11 +10,8 @@ namespace FinalYearProject.Models
 
             public double Price { get; set; }
 
-            public int CategoryId { get; set; }
+            public string Category { get; set; }
 
             public string Description { get; set; }
-
-            [ForeignKey("CategoryId")]
-            public virtual BakeCategory BakeCategory { get; set; } = default!;
     }
 }

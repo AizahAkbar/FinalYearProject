@@ -30,9 +30,6 @@ namespace FinalYearProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BasketId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -50,8 +47,6 @@ namespace FinalYearProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BasketId");
-
                     b.ToTable("Bake");
                 });
 
@@ -62,6 +57,10 @@ namespace FinalYearProject.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Bakes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -138,13 +137,6 @@ namespace FinalYearProject.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("FinalYearProject.Models.Bake", b =>
-                {
-                    b.HasOne("FinalYearProject.Models.Basket", null)
-                        .WithMany("Bakes")
-                        .HasForeignKey("BasketId");
-                });
-
             modelBuilder.Entity("FinalYearProject.Models.Basket", b =>
                 {
                     b.HasOne("FinalYearProject.Models.User", "User")
@@ -165,11 +157,6 @@ namespace FinalYearProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Bake");
-                });
-
-            modelBuilder.Entity("FinalYearProject.Models.Basket", b =>
-                {
-                    b.Navigation("Bakes");
                 });
 #pragma warning restore 612, 618
         }
