@@ -1,6 +1,9 @@
 ﻿using FinalYearProject.Models;
+<<<<<<< Updated upstream
+=======
 using FinalYearProject.ViewModels;
 using System.Text.Json;
+>>>>>>> Stashed changes
 
 namespace FinalYearProject.Services
 {
@@ -12,6 +15,8 @@ namespace FinalYearProject.Services
         //    basket.Bakes.Append(bake);
         //    //call basket repo
         //}
+<<<<<<< Updated upstream
+=======
 
         public void test1Update(BasketFrontEnd basket)
         {
@@ -34,5 +39,6 @@ namespace FinalYearProject.Services
                 UserId = basket.UserId
             };
         }
+>>>>>>> Stashed changes
     }
 }

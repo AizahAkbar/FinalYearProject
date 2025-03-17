@@ -86,28 +86,44 @@ public static class SeedData
                     }
                 );
             }
-            //if (!context.BakeCategory.Any())
-            //{
-            //    context.BakeCategory.AddRange(
-            //        new BakeCategory
-            //        {
-            //            Category = "Brownies"
-            //        },
-            //        new BakeCategory
-            //        {
-            //            Category = "Cookies"
-            //        },
-            //        new BakeCategory
-            //        {
-            //            Category = "Cheesecakes"
-            //        },
-            //        new BakeCategory
-            //        {
-            //            Category = "Pies"
-            //        }
-            //    );
-            //}
-                context.SaveChanges();
+            if (!context.User.Any())
+            {
+                context.User.AddRange(
+                    new User
+                    {
+                        FirstName = "Aizah",
+                        LastName = "Akbar",
+                        Email = "aizahakbar@gmail.com",
+                        Password = "password123",
+                        Role = "Admin"
+                    },
+                    new User
+                    {
+                        FirstName = "Wajeeha",
+                        LastName = "Ikram",
+                        Email = "wajeehaikram@gmail.com",
+                        Password = "pass123!",
+                        Role = "User"
+                    },
+                    new User
+                    {
+                        FirstName = "Sara",
+                        LastName = "Adam",
+                        Email = "saraadam@gmail.com",
+                        Password = "sara123!",
+                        Role = "User"
+                    },
+                    new User
+                    {
+                        FirstName = "Qynaath",
+                        LastName = "Kokab",
+                        Email = "qynaathkokab@gmail.com",
+                        Password = "qynaath123!",
+                        Role = "User"
+                    }
+                );
+            }
+            context.SaveChanges();
         }
     }
 }
