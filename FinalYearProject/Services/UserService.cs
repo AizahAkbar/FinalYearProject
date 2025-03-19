@@ -1,5 +1,6 @@
 ﻿using FinalYearProject.Data;
 using FinalYearProject.ViewModels;
+using FinalYearProject.Models;
 
 namespace FinalYearProject.Services
 {
@@ -20,6 +21,9 @@ namespace FinalYearProject.Services
             }
 
             var user = await _userRepository.GetUserByEmail(email);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password)){
+                return null;
+            }
             if (user == null)
             {
                 return null;
@@ -28,16 +32,43 @@ namespace FinalYearProject.Services
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email
+                Email = user.Email,
+                Role = user.Role
             };
 
-            bool validPassword = BCrypt.Net.BCrypt.Verify(password, user.Password);
-            return validPassword ? userFrontEnd : null;
+            return userFrontEnd;
         }
 
         public string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password, BCrypt.Net.BCrypt.GenerateSalt());
+        }
+
+        public async Task<RegisterFrontEnd> Register(RegisterFrontEnd registerFrontEnd)
+        {
+            // Check if user already exists
+            var existingUser = await _userRepository.Login(registerFrontEnd.Email, registerFrontEnd.Password);
+            if (existingUser != null)
+            {
+                return null; // User already exists
+            }
+
+            // Create new user with hashed password
+            var user = new User
+            {
+                FirstName = registerFrontEnd.FirstName,
+                LastName = registerFrontEnd.LastName,
+                Email = registerFrontEnd.Email,
+                Password = HashPassword(registerFrontEnd.Password),
+                Role = registerFrontEnd.Role // Default role for new users
+            };
+
+            var createdUser = await _userRepository.Register(user);
+            
+            registerFrontEnd.Id = createdUser.Id;
+            registerFrontEnd.Role = createdUser.Role;
+            
+            return registerFrontEnd;
         }
     }
 }

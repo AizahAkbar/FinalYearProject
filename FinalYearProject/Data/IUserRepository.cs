@@ -6,5 +6,6 @@ namespace FinalYearProject.Data
     {
         Task<User> Login(string email, string password);
         Task<User> GetUserByEmail(string email);
+        Task<User> Register(User user);
     }
 }

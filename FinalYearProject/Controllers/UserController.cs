@@ -20,19 +20,19 @@ namespace FinalYearProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(UserFrontEnd userFrontEnd)
+        public async Task<IActionResult> Login(LoginFrontEnd loginFrontEnd)
         {
             if (!ModelState.IsValid)
             {
-                return View(userFrontEnd);
+                return View(loginFrontEnd);
             }
 
-            var user = await _userService.Login(userFrontEnd.Email, userFrontEnd.Password);
+            var user = await _userService.Login(loginFrontEnd.Email, loginFrontEnd.Password);
             
             if (user == null)
             {
                 ModelState.AddModelError("", "Invalid email or password");
-                return View(userFrontEnd);
+                return View(loginFrontEnd);
             }
 
             // Set up session
@@ -48,6 +48,36 @@ namespace FinalYearProject.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterFrontEnd registerFrontEnd)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registerFrontEnd);
+            }
+
+            var user = await _userService.Register(registerFrontEnd);
+            
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Email already exists");
+                return View(registerFrontEnd);
+            }
+
+            // Automatically log in the user after registration
+            HttpContext.Session.SetInt32("UserId", user.Id);
+            HttpContext.Session.SetString("UserRole", user.Role);
+            HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
+
+            return RedirectToAction("Index", "Bakes");
         }
     }
 }

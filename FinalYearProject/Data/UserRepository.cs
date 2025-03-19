@@ -23,5 +23,12 @@ namespace FinalYearProject.Data
             return await _context.User
                 .FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task<User> Register(User user)
+        {
+            _context.User.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
     }
 }

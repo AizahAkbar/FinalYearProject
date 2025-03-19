@@ -1,4 +1,4 @@
-﻿@model FinalYearProject.ViewModels.UserFrontEnd
+﻿@model FinalYearProject.ViewModels.LoginFrontEnd
 @{
     ViewData["Title"] = "Login";
 }
@@ -20,6 +20,9 @@
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a asp-controller="User" asp-action="Register" class="btn btn-secondary">Register</a>
+        </div>
     </form>
 </div>
