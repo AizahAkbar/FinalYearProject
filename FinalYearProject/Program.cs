@@ -4,6 +4,10 @@ using FinalYearProject.Models;
 using Microsoft.Extensions.DependencyInjection;
 using FinalYearProject.Data;
 using FinalYearProject.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.AI;
+using OpenAI;
+using OpenAI.Chat;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FypContext>(options =>
