@@ -3,59 +3,52 @@ using FinalYearProject.Models;
 using FinalYearProject.Data;
 using Microsoft.Extensions.Configuration;
 using OpenAI;
+using Microsoft.Extensions.AI;
+using FinalYearProject.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FinalYearProject.Services
 {
-    public class ChatService : IChatService
+    public class ChatService : IChatService 
     {
-        private readonly OpenAIClient _openAIClient;
+        private readonly IChatClient _openAIClient;
         private readonly string _deploymentName;
-        private readonly FypContext _context;
+        private List<Microsoft.Extensions.AI.ChatMessage> chatHistory;
 
-        public ChatService(IConfiguration configuration, FypContext context)
+        public ChatService(IConfiguration configuration)
         {
             var endpoint = configuration["AzureOpenAI:Endpoint"];
-            var key = configuration["AzureOpenAI:Key"];
+            var key = "";
             _deploymentName = configuration["AzureOpenAI:DeploymentName"];
-            _openAIClient = new OpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
-            _context = context;
+            _openAIClient = new OpenAIClient(key).AsChatClient("gpt-4o");
+
+            chatHistory = new List<Microsoft.Extensions.AI.ChatMessage>
+            {
+                new Microsoft.Extensions.AI.ChatMessage(ChatRole.System, "You are a helpful bakery assistant who helps customers with questions about our bakery products, orders, and services.")
+            };
         }
 
-        public async Task<ChatMessage> SendMessageAsync(string userId, string message)
+        public async Task<Models.ChatMessage> SendMessageAsync(string userId, string message)
         {
-            var chatCompletionsOptions = new ChatCompletionsOptions()
-            {
-                Messages =
-                {
-                    new ChatMessage(ChatRole.System, "You are a helpful bakery assistant who helps customers with questions about our bakery products, orders, and services."),
-                    new ChatMessage(ChatRole.User, message)
-                },
-                MaxTokens = 800
-            };
+            chatHistory.Add(new Microsoft.Extensions.AI.ChatMessage(ChatRole.User, message));
 
-            var response = await _openAIClient.GetChatCompletionsAsync(_deploymentName, chatCompletionsOptions);
-            var responseMessage = response.Value.Choices[0].Message.Content;
+            var response = await _openAIClient.GetResponseAsync(chatHistory);
 
-            var chatMessage = new ChatMessage
+            var chatMessage = new Models.ChatMessage
             {
                 UserId = userId,
                 Role = "assistant",
-                Content = responseMessage,
+                Content = response.Text,
                 Timestamp = DateTime.UtcNow
             };
-
-            _context.ChatMessages.Add(chatMessage);
-            await _context.SaveChangesAsync();
 
             return chatMessage;
         }
 
-        public async Task<IEnumerable<ChatMessage>> GetChatHistoryAsync(string userId)
+        public async Task<IEnumerable<Microsoft.Extensions.AI.ChatMessage>> GetChatHistoryAsync(string userId)
         {
-            return await _context.ChatMessages
-                .Where(m => m.UserId == userId)
-                .OrderBy(m => m.Timestamp)
-                .ToListAsync();
+            return chatHistory;
         }
     }
 }

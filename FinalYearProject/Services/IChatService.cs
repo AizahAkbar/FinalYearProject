@@ -6,6 +6,6 @@ namespace FinalYearProject.Services
     public interface IChatService
     {
         Task<ChatMessage> SendMessageAsync(string userId, string message);
-        Task<IEnumerable<ChatMessage>> GetChatHistoryAsync(string userId);
+        Task<IEnumerable<Microsoft.Extensions.AI.ChatMessage>> GetChatHistoryAsync(string userId);
     }
 }

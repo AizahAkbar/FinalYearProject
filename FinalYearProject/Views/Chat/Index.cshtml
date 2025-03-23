@@ -1,7 +1,9 @@
 @{
     ViewData["Title"] = "Chat with Bakery Assistant";
 }
-
+<head>
+    <link rel="stylesheet" href="~/css/chat.css" />
+</head>
 <div class="chat-container">
     <div class="chat-messages" id="chatMessages">
         <!-- Chat messages will be dynamically inserted here -->
@@ -11,81 +13,6 @@
         <button id="sendButton" class="chat-send-button">Send</button>
     </div>
 </div>
-
-@section Styles {
-    <style>
-        .chat-container {
-            max-width: 800px;
-            margin: 20px auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 600px;
-        }
-
-        .chat-messages {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-
-        .message {
-            margin-bottom: 15px;
-            max-width: 80%;
-        }
-
-        .message.user {
-            margin-left: auto;
-        }
-
-        .message-content {
-            padding: 10px 15px;
-            border-radius: 15px;
-            display: inline-block;
-        }
-
-        .user .message-content {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .assistant .message-content {
-            background-color: #e9ecef;
-            color: #212529;
-        }
-
-        .chat-input-container {
-            display: flex;
-            padding: 20px;
-            background-color: white;
-            border-top: 1px solid #ddd;
-        }
-
-        .chat-input {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            margin-right: 10px;
-        }
-
-        .chat-send-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        .chat-send-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-}
 
 @section Scripts {
     <script>

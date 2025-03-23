@@ -31,6 +31,7 @@ builder.Services.AddTransient<IBakeService, BakeService>();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddSingleton<IChatService, ChatService>();
 
 var app = builder.Build();
 
