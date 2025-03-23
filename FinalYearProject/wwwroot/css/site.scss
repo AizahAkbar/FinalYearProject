@@ -5,6 +5,10 @@ $accent-color: #8B4513;
 $text-color: #333;
 $font-primary: 'Roboto', sans-serif;
 $font-accent: 'Chewy', serif;
+$font-button: 'Poppins', sans-serif;
+
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 // Base styles
 html {
@@ -83,11 +87,13 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s ease;
-    
+    font-family: $font-button;
+
     &-outline-secondary {
         border-color: $accent-color;
         color: $accent-color;
-        
+        margin: 0px 5px;
+
         &:hover {
             background-color: $accent-color;
             color: white;

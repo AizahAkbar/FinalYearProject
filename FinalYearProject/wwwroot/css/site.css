@@ -1,4 +1,5 @@
-﻿html {
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+html {
   font-size: 14px;
   position: relative;
   min-height: 100%;
@@ -63,10 +64,12 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
 }
 .btn-outline-secondary {
   border-color: #8B4513;
   color: #8B4513;
+  margin: 0px 5px;
 }
 .btn-outline-secondary:hover {
   background-color: #8B4513;
@@ -123,4 +126,4 @@ body {
   }
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AASA;EACI;EACA;EACA;EACA;;;AAGJ;EACI;IACI;;;AAIR;EACI;EACA,aAnBW;EAoBX,YAvBc;EAwBd,OAtBS;EAuBT;;;AAIJ;EACI,YA/BY;EAgCZ;EACA;;;AAGJ;EACI;EACA;;AAEA;EACI,YAxCU;;AA2Cd;EACI,YA7CQ;;AAgDZ;EACI,aA5CM;EA6CN;EACA;;AAEA;EACI;;;AAMR;EACI;EACA;EACA;;AAGJ;EACI;EACA,OAjEK;EAkEL,aAhEM;EAiEN;EACA;;AAEA;EACI,OAxEG;;;AA8Ef;EACI;EACA;EACA;;AAEA;EACI,cApFO;EAqFP,OArFO;;AAuFP;EACI,kBAxFG;EAyFH;;;AAKZ;EACI;EACA;EACA;;AAEA;EACI,cApGO;EAqGP;;;AAKR;EACI;EACA;EACA;;;AAIJ;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;EACI;;;AAGJ;EACI;;;AAIJ;EACI;IACI;;EAGJ;IACI;IACA%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAUQ;AAGR;EACI;EACA;EACA;EACA;;;AAGJ;EACI;IACI;;;AAIR;EACI;EACA,aAvBW;EAwBX,YA3Bc;EA4Bd,OA1BS;EA2BT;;;AAIJ;EACI,YAnCY;EAoCZ;EACA;;;AAGJ;EACI;EACA;;AAEA;EACI,YA5CU;;AA+Cd;EACI,YAjDQ;;AAoDZ;EACI,aAhDM;EAiDN;EACA;;AAEA;EACI;;;AAMR;EACI;EACA;EACA;;AAGJ;EACI;EACA,OArEK;EAsEL,aApEM;EAqEN;EACA;;AAEA;EACI,OA5EG;;;AAkFf;EACI;EACA;EACA;EACA,aAlFU;;AAoFV;EACI,cAzFO;EA0FP,OA1FO;EA2FP;;AAEA;EACI,kBA9FG;EA+FH;;;AAKZ;EACI;EACA;EACA;;AAEA;EACI,cA1GO;EA2GP;;;AAKR;EACI;EACA;EACA;;;AAIJ;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;EACI;;;AAGJ;EACI;;;AAIJ;EACI;IACI;;EAGJ;IACI;IACA%22%7D */

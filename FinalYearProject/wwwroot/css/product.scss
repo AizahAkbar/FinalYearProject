@@ -1,3 +1,17 @@
+.left-side {
+    float: left;
+}
+
+.right-side {
+    float: right;
+}
+
+.box {
+    background: #E4BF9F;
+    height: 100px;
+    width: 100px;
+}
+
 .product-container {
     display: flex;
     flex-wrap: wrap;
@@ -71,6 +85,29 @@
             }
         }
     }
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.btn-primary {
+    background-color: #8B4513;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #5a4434;
 }
 
 @media (max-width: 768px) {

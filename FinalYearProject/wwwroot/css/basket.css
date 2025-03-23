@@ -67,16 +67,33 @@
 .checkout-button {
   width: 100%;
   padding: 15px;
-  background-color: #4CAF50;
+  background-color: #8B4513;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 .checkout-button:hover {
-  background-color: #45a049;
+  background-color: #5a4434;
+}
+
+.continue-shopping {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #e9cbb2;
+  color: #4a3728;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.continue-shopping:hover {
+    background-color: #d4b498;
+    color: #4a3728;
 }
 
 .empty-basket {
@@ -87,19 +104,4 @@
   font-size: 1.2rem;
   color: #666;
   margin-bottom: 20px;
-}
-
-.continue-shopping {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-.continue-shopping:hover {
-  background-color: #0056b3;
-  text-decoration: none;
-  color: white;
 }
