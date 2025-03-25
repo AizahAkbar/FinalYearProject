@@ -12,5 +12,29 @@
   {
     "outputFile": "wwwroot/css/product.css",
     "inputFile": "wwwroot/css/product.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/basket.css",
+    "inputFile": "wwwroot/css/basket.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/chat.css",
+    "inputFile": "wwwroot/css/chat.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/homepage.css",
+    "inputFile": "wwwroot/css/homepage.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/login.css",
+    "inputFile": "wwwroot/css/login.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/register.css",
+    "inputFile": "wwwroot/css/register.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/search.css",
+    "inputFile": "wwwroot/css/search.scss"
   }
 ]

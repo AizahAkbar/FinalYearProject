@@ -1,4 +1,6 @@
-﻿namespace FinalYearProject.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FinalYearProject.Models
 {
     public class Bake
     {

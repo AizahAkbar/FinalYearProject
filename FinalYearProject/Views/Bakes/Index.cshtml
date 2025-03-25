@@ -1,61 +1,38 @@
 ﻿@model IEnumerable<FinalYearProject.ViewModels.BakeFrontEnd>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "BakesForAll - Delicious Homemade Treats";
 }
 
-<h1>Index</h1>
+<head>
+    <link rel="stylesheet" href="~/css/homepage.css" />
+</head>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="hero-section">
+    <h1>Welcome to BakesForAll</h1>
+    <p>Discover our delicious selection of freshly baked treats, made with love and the finest ingredients</p>
+</div>
 
-<h1>WELCOME</h1>
-@* <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                id
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-            @* <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td> 
-         </tr>
-}
-    </tbody>
-</table> *@
+<section class="featured-section">
+    <h2>Featured Treats</h2>
+    <div class="bakes-grid">
+        @foreach (var item in Model.Take(3))
+        {
+            <div class="bake-card">
+                <div class="bake-card-content">
+                    <h3 class="bake-name">
+                        <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                    </h3>
+                    <p class="bake-price">£@item.Price.ToString("F2")</p>
+                    <p class="bake-category">@Html.DisplayFor(modelItem => item.Category)</p>
+                    <p class="bake-description">@Html.DisplayFor(modelItem => item.Description)</p>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="about-section">
+    <h2>About BakesForAll</h2>
+    <p>We're passionate about creating delightful baked goods that bring joy to your special moments. From classic favorites to unique creations, each item is crafted with care using traditional recipes and premium ingredients.</p>
+</section>

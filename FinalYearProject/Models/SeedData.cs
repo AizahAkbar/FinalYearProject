@@ -36,7 +36,7 @@ public static class SeedData
                     new Bake
                     {
                         Name = "Lemon Cheesecake",
-                        Category = "Cheesecake",
+                        Category = "Cheesecakes",
                         Description = "Creamy cheesecake with a tangy lemon flavor on a buttery graham cracker crust",
                         Price = 9.0
                     },
@@ -83,6 +83,43 @@ public static class SeedData
                         Description = "The ratio of cheesecake to biscuit was perfect, I've had too many cheesecakes with too much biscuit. Loved this!",
                         Rating = 5,
                         CreatedDate = DateTime.Now
+                    }
+                );
+            }
+            if (!context.User.Any())
+            {
+                context.User.AddRange(
+                    new User
+                    {
+                        FirstName = "Aizah",
+                        LastName = "Akbar",
+                        Email = "aizahakbar@gmail.com",
+                        Password = "password123",
+                        Role = "Admin"
+                    },
+                    new User
+                    {
+                        FirstName = "Wajeeha",
+                        LastName = "Ikram",
+                        Email = "wajeehaikram@gmail.com",
+                        Password = "pass123!",
+                        Role = "User"
+                    },
+                    new User
+                    {
+                        FirstName = "Sara",
+                        LastName = "Adam",
+                        Email = "saraadam@gmail.com",
+                        Password = "sara123!",
+                        Role = "User"
+                    },
+                    new User
+                    {
+                        FirstName = "Qynaath",
+                        LastName = "Kokab",
+                        Email = "qynaathkokab@gmail.com",
+                        Password = "qynaath123!",
+                        Role = "User"
                     }
                 );
             }

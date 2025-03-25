@@ -1,7 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Basket";
+﻿@model FinalYearProject.ViewModels.BasketFrontEnd
+@{
+    ViewData["Title"] = "Index";
 }
+<head>
+    <link rel="stylesheet" href="~/css/basket.css" asp-append-version="true" />
+</head>
 
-<div class="text-center">
-    <h1 class="display-4">Your Basket</h1>
+<div class="basket-container">
+    <h1 class="basket-title">Your Basket</h1>
+
+    @if (Model?.Bakes?.Any() == true)
+    {
+        <div class="basket-items">
+            @foreach (var bake in Model.Bakes)
+            {
+                <div class="basket-item">
+                    <div class="item-details">
+                        <h3 class="item-name">@bake.Name</h3>
+                        <p class="item-category">@bake.Category</p>
+                        <p class="item-description">@bake.Description</p>
+                    </div>
+                    <div class="item-price">
+                        £@bake.Price.ToString("F2")
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="basket-summary">
+            <div class="total-amount">
+                <span>Total:</span>
+                <span>£@Model.Bakes.Sum(b => b.Price).ToString("F2")</span>
+            </div>
+            <button class="checkout-button">Proceed to Checkout</button>
+        </div>
+    }
+    else
+    {
+        <div class="empty-basket">
+            <p>Your basket is empty</p>
+            <a asp-controller="Search" asp-action="Index" class="continue-shopping">Continue Shopping</a>
+        </div>
+    }
 </div>

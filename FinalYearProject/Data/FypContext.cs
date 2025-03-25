@@ -16,5 +16,7 @@ namespace FinalYearProject.Data
 
         public DbSet<FinalYearProject.Models.Bake> Bake { get; set; } = default!;
         public DbSet<FinalYearProject.Models.Review> Review { get; set; } = default!;
+        public DbSet<FinalYearProject.Models.Basket> Basket { get; set; } = default!;
+        public DbSet<FinalYearProject.Models.User> User { get; set; } = default!;
     }
 }

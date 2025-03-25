@@ -1,5 +1,21 @@
+// Variables
+$primary-color: #E4BF9F;
+$secondary-color: #F5E7DB;
+$accent-color: #8B4513;
+$text-color: #333;
+$font-primary: 'Roboto', sans-serif;
+$font-accent: 'Chewy', serif;
+$font-button: 'Poppins', sans-serif;
+
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+// Base styles
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
@@ -8,57 +24,136 @@ html {
     }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
 body {
     margin-bottom: 60px;
-    font-family: 'Roboto', sans-serif;
-    background: #F5E7DB;
+    font-family: $font-primary;
+    background: $secondary-color;
+    color: $text-color;
+    line-height: 1.6;
 }
 
+// Navigation
 .top-bar {
-    background: #E4BF9F;
+    background: $primary-color;
     height: 25px;
     width: 100%;
 }
 
-.navbar-bottom {
-    background: #E4BF9F;
-}
-
-.navbar-top {
-    background: #F5E7DB;
+.navbar {
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    
+    &-top {
+        background: $secondary-color;
+    }
+    
+    &-bottom {
+        background: $primary-color;
+    }
+    
+    &-brand {
+        font-family: $font-accent;
+        font-size: 1.8rem;
+        color: $accent-color !important;
+        
+        &:hover {
+            opacity: 0.9;
+        }
+    }
 }
 
 .navbar-nav {
     &-bottom {
         flex-direction: row;
+        justify-content: center;
+        width: 100%;
     }
 
     .nav-link-bottom {
-        padding-right: 10px;
-        padding-left: 10px;
-        color: black;
-        font-family: 'Chewy', serif;
-        font-size: 20px;
+        padding: 0.5rem 1rem;
+        color: $text-color;
+        font-family: $font-accent;
+        font-size: 1.25rem;
+        transition: color 0.3s ease;
+        
+        &:hover {
+            color: $accent-color;
+        }
     }
 }
 
-.navbar-brand {
-    font-family: 'Chewy', serif;
+// Buttons and Forms
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-family: $font-button;
+
+    &-outline-secondary {
+        border-color: $accent-color;
+        color: $accent-color;
+        margin: 0px 5px;
+
+        &:hover {
+            background-color: $accent-color;
+            color: white;
+        }
+    }
 }
 
-.navbar-toggler {
-    border: 1px solid black;
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    
+    &:focus {
+        border-color: $accent-color;
+        box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+    }
+}
 
-    &-icon {
-        background: black;
+// Container and Layout
+.container {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+// Footer
+/*.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: $primary-color;
+    padding: 1rem 0;
+    
+    a {
+        color: $accent-color;
+        text-decoration: none;
+        
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}*/
+
+// Utility Classes
+.shadow-sm {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.rounded {
+    border-radius: 4px;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .navbar-nav-bottom {
+        flex-wrap: wrap;
+    }
+    
+    .nav-link-bottom {
+        padding: 0.5rem;
+        font-size: 1rem;
     }
 }

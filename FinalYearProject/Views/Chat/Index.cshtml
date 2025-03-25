@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "Chat with Bakery Assistant";
+}
+<head>
+    <link rel="stylesheet" href="~/css/chat.css" />
+</head>
+<div class="chat-container">
+    <div class="chat-messages" id="chatMessages">
+        <!-- Chat messages will be dynamically inserted here -->
+    </div>
+    <div class="chat-input-container">
+        <input type="text" id="messageInput" class="chat-input" placeholder="Type your message here..." />
+        <button id="sendButton" class="chat-send-button">Send</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            loadChatHistory();
+
+            $('#messageInput').keypress(function (e) {
+                if (e.which == 13) {
+                    sendMessage();
+                }
+            });
+
+            $('#sendButton').click(function () {
+                sendMessage();
+            });
+
+            function loadChatHistory() {
+                $.get('/Chat/GetChatHistory', function (messages) {
+                    messages.forEach(function (message) {
+                        appendMessage(message);
+                    });
+                    scrollToBottom();
+                });
+            }
+
+            function sendMessage() {
+                var messageInput = $('#messageInput');
+                var message = messageInput.val().trim();
+
+                if (message) {
+                    appendMessage({
+                        role: 'user',
+                        content: message
+                    });
+
+                    $.ajax({
+                        url: '/Chat/SendMessage',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(message),
+                        success: function (response) {
+                            appendMessage(response);
+                            scrollToBottom();
+                        },
+                        error: function () {
+                            alert('Error sending message');
+                        }
+                    });
+
+                    messageInput.val('');
+                }
+            }
+
+            function appendMessage(message) {
+                var messageHtml = `
+                    <div class="message ${message.role}">
+                        <div class="message-content">${message.content}</div>
+                    </div>
+                `;
+                $('#chatMessages').append(messageHtml);
+                scrollToBottom();
+            }
+
+            function scrollToBottom() {
+                var chatMessages = $('#chatMessages');
+                chatMessages.scrollTop(chatMessages[0].scrollHeight);
+            }
+        });
+    </script>
+}

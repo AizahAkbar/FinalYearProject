@@ -7,32 +7,31 @@
     <link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
 </head>
 
-<h1>Details</h1>
+@* <h1>Details</h1> *@
 
-<div>
-    <h4>Bake</h4>
-
-    <div class="brown-container">
-        <div class="left-side">
-           hi
+<div class="product-container">
+    <div class="product-image">
+        <img src="/images/placeholder-bake.svg" alt="@Model.Name" />
+    </div>
+    <div class="product-details">
+        <h1 class="product-title">@Model.Name</h1>
+        <div class="product-price">
+            £@Model.Price.ToString("F2")
         </div>
-		<div class="right-side">
-            <h1>@Model.Name</h1>
-            <div>
-                @Model.Price
-            </div>
-            <div>
-                @Model.Description
-            </div>
-            <div class="quantity-button">
-            </div>
-            <div class="add-to-basket-button">
-                <button class="btn btn-outline-secondary">
-                    <p>Add to Basket</p>
-                </button>
-            </div>
+        <div class="product-description">
+            @Model.Description
+        </div>
+        <div class="product-actions">
+            <input type="number" class="quantity-input" value="1" min="1" max="10" />
+            <button class="btn add-to-cart">
+                Add to Basket
+            </button>
+        </div>
+        <div style="margin-top: 2rem;">
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
         </div>
     </div>
+</div>
 
 
 
@@ -64,7 +63,4 @@
         </dd>
     </dl> *@
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+

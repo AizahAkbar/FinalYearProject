@@ -4,6 +4,10 @@ using FinalYearProject.Models;
 using Microsoft.Extensions.DependencyInjection;
 using FinalYearProject.Data;
 using FinalYearProject.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.AI;
+using OpenAI;
+using OpenAI.Chat;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FypContext>(options =>
@@ -11,12 +15,23 @@ builder.Services.AddDbContext<FypContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
+// builder.Services.AddSession(options =>
+// {
+//     options.IdleTimeout = TimeSpan.FromMinutes(30);
+//     options.Cookie.HttpOnly = true;
+//     options.Cookie.IsEssential = true;
+// });
 
 // Dependency injecting interface and class
 // Singleton - one object to inject 
 // Transient - every call will be a new object (creates service class every time it needs it)
 builder.Services.AddTransient<IBakeRepository, BakeRepository>();
 builder.Services.AddTransient<IBakeService, BakeService>();
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddSingleton<IChatService, ChatService>();
 
 var app = builder.Build();
 
@@ -40,13 +55,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "basket",
-    pattern: "basket",
-    defaults: new { controller = "Basket", action = "Index" }
-);
+//app.MapControllerRoute(
+//    name: "basket",
+//    pattern: "basket",
+//    defaults: new { controller = "Basket", action = "Index" }
+//);
 
 app.MapControllerRoute(
     name: "orderForm",

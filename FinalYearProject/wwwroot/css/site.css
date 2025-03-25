@@ -1,5 +1,9 @@
-﻿html {
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+html {
   font-size: 14px;
+  position: relative;
+  min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
@@ -7,19 +11,12 @@
     font-size: 16px;
   }
 }
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
   margin-bottom: 60px;
   font-family: "Roboto", sans-serif;
   background: #F5E7DB;
+  color: #333;
+  line-height: 1.6;
 }
 
 .top-bar {
@@ -28,34 +25,105 @@ body {
   width: 100%;
 }
 
+.navbar {
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar-top {
+  background: #F5E7DB;
+}
 .navbar-bottom {
   background: #E4BF9F;
 }
-
-.navbar-top {
-  background: #F5E7DB;
+.navbar-brand {
+  font-family: "Chewy", serif;
+  font-size: 1.8rem;
+  color: #8B4513 !important;
+}
+.navbar-brand:hover {
+  opacity: 0.9;
 }
 
 .navbar-nav-bottom {
   flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
 .navbar-nav .nav-link-bottom {
-  padding-right: 10px;
-  padding-left: 10px;
-  color: black;
+  padding: 0.5rem 1rem;
+  color: #333;
   font-family: "Chewy", serif;
-  font-size: 20px;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+.navbar-nav .nav-link-bottom:hover {
+  color: #8B4513;
 }
 
-.navbar-brand {
-  font-family: "Chewy", serif;
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+.btn-outline-secondary {
+  border-color: #8B4513;
+  color: #8B4513;
+  margin: 0px 5px;
+}
+.btn-outline-secondary:hover {
+  background-color: #8B4513;
+  color: white;
 }
 
-.navbar-toggler {
-  border: 1px solid black;
+.form-control {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
 }
-.navbar-toggler-icon {
-  background: black;
+.form-control:focus {
+  border-color: #8B4513;
+  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;EACI;;;AAGJ;EACI;IACI;;;AAIR;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAIA;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAIR;EACI;;;AAGJ;EACI;;AAEA;EACI%22%7D */
+.container {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: $primary-color;
+    padding: 1rem 0;
+
+    a {
+        color: $accent-color;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}*/
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav-bottom {
+    flex-wrap: wrap;
+  }
+  .nav-link-bottom {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAUQ;AAGR;EACI;EACA;EACA;EACA;;;AAGJ;EACI;IACI;;;AAIR;EACI;EACA,aAvBW;EAwBX,YA3Bc;EA4Bd,OA1BS;EA2BT;;;AAIJ;EACI,YAnCY;EAoCZ;EACA;;;AAGJ;EACI;EACA;;AAEA;EACI,YA5CU;;AA+Cd;EACI,YAjDQ;;AAoDZ;EACI,aAhDM;EAiDN;EACA;;AAEA;EACI;;;AAMR;EACI;EACA;EACA;;AAGJ;EACI;EACA,OArEK;EAsEL,aApEM;EAqEN;EACA;;AAEA;EACI,OA5EG;;;AAkFf;EACI;EACA;EACA;EACA,aAlFU;;AAoFV;EACI,cAzFO;EA0FP,OA1FO;EA2FP;;AAEA;EACI,kBA9FG;EA+FH;;;AAKZ;EACI;EACA;EACA;;AAEA;EACI,cA1GO;EA2GP;;;AAKR;EACI;EACA;EACA;;;AAIJ;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;EACI;;;AAGJ;EACI;;;AAIJ;EACI;IACI;;EAGJ;IACI;IACA%22%7D */

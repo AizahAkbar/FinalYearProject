@@ -16,15 +16,5 @@ namespace FinalYearProject.Controllers
         {
             return View(_service.GetAllBakes());
         }
-
-        public async Task<IActionResult> FilterByCategory()
-        {
-            return View(_service.GetAllBakes());
-        }
-
-        public async Task<IActionResult> SortByPrice()
-        {
-            return View(_service.GetAllBakes());
-        }
     }
 }
