@@ -1,6 +1,8 @@
 ﻿using FinalYearProject.Services;
 using FinalYearProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FinalYearProject.Controllers
 {
@@ -35,6 +37,22 @@ namespace FinalYearProject.Controllers
                 return View(loginFrontEnd);
             }
 
+            // Store user ID in session
+            HttpContext.Session.SetInt32("UserId", user.Id);
+
+            // Set up authentication and session
+            var claims = new List<System.Security.Claims.Claim>
+            {
+                new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Role, user.Role),
+                new System.Security.Claims.Claim("FullName", $"{user.FirstName} {user.LastName}")
+            };
+
+            var claimsIdentity = new System.Security.Claims.ClaimsIdentity(claims, "Cookies");
+            var claimsPrincipal = new System.Security.Claims.ClaimsPrincipal(claimsIdentity);
+
+            await HttpContext.SignInAsync("Cookies", claimsPrincipal);
+
             // Set up session
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserRole", user.Role);
@@ -44,8 +62,9 @@ namespace FinalYearProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            await HttpContext.SignOutAsync("Cookies");
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
@@ -73,6 +92,19 @@ namespace FinalYearProject.Controllers
             }
 
             // Automatically log in the user after registration
+            var claims = new List<System.Security.Claims.Claim>
+            {
+                new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Role, user.Role),
+                new System.Security.Claims.Claim("FullName", $"{user.FirstName} {user.LastName}")
+            };
+
+            var claimsIdentity = new System.Security.Claims.ClaimsIdentity(claims, "Cookies");
+            var claimsPrincipal = new System.Security.Claims.ClaimsPrincipal(claimsIdentity);
+
+            await HttpContext.SignInAsync("Cookies", claimsPrincipal);
+
+            // Set up session
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserRole", user.Role);
             HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");

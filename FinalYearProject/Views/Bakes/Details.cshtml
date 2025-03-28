@@ -5,6 +5,7 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
+    <script src="~/js/basket.js" asp-append-version="true"></script>
 </head>
 
 @* <h1>Details</h1> *@
@@ -22,10 +23,13 @@
             @Model.Description
         </div>
         <div class="product-actions">
-            <input type="number" class="quantity-input" value="1" min="1" max="10" />
-            <button class="btn add-to-cart">
-                Add to Basket
-            </button>
+            <div class="basket-form">
+                <input type="hidden" id="bakeId" value="@Model.Id" />
+                <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                <button type="button" class="btn add-to-cart">
+                    Add to Basket
+                </button>
+            </div>
         </div>
         <div style="margin-top: 2rem;">
             <a asp-action="Index" class="btn btn-primary">Back to List</a>

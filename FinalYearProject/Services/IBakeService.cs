@@ -7,5 +7,6 @@ namespace FinalYearProject.Services
         void AddBake(BakeFrontEnd bake);
         IEnumerable<BakeFrontEnd> GetAllBakes();
         BakeFrontEnd GetBakeById(int id);
+        IEnumerable<BakeFrontEnd> GetBakesByCategory(string category);
     }
 }

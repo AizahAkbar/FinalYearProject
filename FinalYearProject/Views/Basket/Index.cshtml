@@ -23,6 +23,7 @@
                     <div class="item-price">
                         £@bake.Price.ToString("F2")
                     </div>
+                    <button asp-controller="Basket" asp-action="DeleteFromBasket" class="btn btn-secondary delete-button" data-bake-id="@bake.Id">Delete</button>
                 </div>
             }
         </div>
