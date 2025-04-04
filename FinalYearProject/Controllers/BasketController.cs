@@ -28,7 +28,7 @@ namespace FinalYearProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToBasket(int bakeId)
+        public async Task<IActionResult> AddToBasket(int bakeId, int quantity)
         {
             var userIdStr = HttpContext.Session.GetInt32("UserId");
             if (!userIdStr.HasValue)
@@ -36,19 +36,35 @@ namespace FinalYearProject.Controllers
                 return Json(new { success = false, message = "User not logged in" });
             }
 
-            var result = await _basketService.AddToBasket(userIdStr.Value, bakeId);
+            var result = await _basketService.AddToBasket(userIdStr.Value, bakeId, quantity);
             if (result == null)
             {
                 return Json(new { success = false, message = "Failed to add item to basket" });
             }
 
-            return Json(new { success = true, message = "Item added to basket", basket = result });
+            return View("Views/Bakes/Details.cshtml", result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteFromBasket()
+        public async Task<IActionResult> UpdateToBasket(int bakeId, int quantity)
         {
-            int bakeId = 1;
+            var userIdStr = HttpContext.Session.GetInt32("UserId");
+            if (!userIdStr.HasValue)
+            {
+                return Json(new { success = false, message = "User not logged in" });
+            }
+
+            var result = await _basketService.UpdateToBasket(userIdStr.Value, bakeId, quantity);
+            if (result == null)
+            {
+                return Json(new { success = false, message = "Failed to add item to basket" });
+            }
+
+            return View("Index", result);
+        }
+
+        public async Task<IActionResult> DeleteFromBasket(int bakeId)
+        {
             var userIdStr = HttpContext.Session.GetInt32("UserId");
             if (!userIdStr.HasValue)
             {
@@ -61,7 +77,7 @@ namespace FinalYearProject.Controllers
                 return Json(new { success = false, message = "Failed to delete item from basket" });
             }
 
-            return Json(new { success = true, message = "Item deleted from basket", basket = result });
+            return View("Index", result);
         }
     }
 }

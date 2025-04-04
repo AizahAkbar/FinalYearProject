@@ -24,7 +24,6 @@
                         <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
                     </h3>
                     <p class="bake-price">£@item.Price.ToString("F2")</p>
-                    <p class="bake-category">@Html.DisplayFor(modelItem => item.Category)</p>
                     <p class="bake-description">@Html.DisplayFor(modelItem => item.Description)</p>
                 </div>
             </div>

@@ -15,15 +15,18 @@
             @foreach (var bake in Model.Bakes)
             {
                 <div class="basket-item">
-                    <div class="item-details">
+                    <form class="item-details" asp-controller="Basket" asp-action="UpdateToBasket" method="post">
+                        <input type="hidden" name="bakeId" id="bakeId" value="@bake.Id" />
                         <h3 class="item-name">@bake.Name</h3>
                         <p class="item-category">@bake.Category</p>
                         <p class="item-description">@bake.Description</p>
-                    </div>
+                        <input type="number" name="quantity" class="quantity-input" value="@bake.Quantity" min="1" max="10" />
+                        <button type="submit" class="btn add-to-cart">Update</button>
+                    </form>
                     <div class="item-price">
-                        £@bake.Price.ToString("F2")
+                        £@bake.TotalPrice.ToString("F2")
                     </div>
-                    <button asp-controller="Basket" asp-action="DeleteFromBasket" class="btn btn-secondary delete-button" data-bake-id="@bake.Id">Delete</button>
+                    <a asp-controller="Basket" asp-action="DeleteFromBasket" asp-route-bakeId="@bake.Id" class="btn btn-secondary delete-button" data-bake-id="@bake.Id">Delete</a>
                 </div>
             }
         </div>
@@ -31,7 +34,7 @@
         <div class="basket-summary">
             <div class="total-amount">
                 <span>Total:</span>
-                <span>£@Model.Bakes.Sum(b => b.Price).ToString("F2")</span>
+                <span>£@Model.Bakes.Sum(b => b.TotalPrice).ToString("F2")</span>
             </div>
             <button class="checkout-button">Proceed to Checkout</button>
         </div>

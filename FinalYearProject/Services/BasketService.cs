@@ -41,7 +41,7 @@ namespace FinalYearProject.Services
 
             var bakes = JsonSerializer.Deserialize<List<BakeFrontEnd>>(basket.Bakes);
             var bakeToRemove = bakes.FirstOrDefault(b => b.Id == bakeId);
-            
+
             if (bakeToRemove != null)
             {
                 bakes.Remove(bakeToRemove);
@@ -64,7 +64,7 @@ namespace FinalYearProject.Services
             _userRepository = userRepository;
         }
 
-        public async Task<BasketFrontEnd> AddToBasket(int userId, int bakeId)
+        public async Task<BakeFrontEnd> AddToBasket(int userId, int bakeId, int quantity)
         {
             // Verify user exists
             var user = await _userRepository.GetUserById(userId);
@@ -94,7 +94,8 @@ namespace FinalYearProject.Services
                             Id = bake.Id,
                             Name = bake.Name,
                             Description = bake.Description,
-                            Price = bake.Price
+                            Price = bake.Price,
+                            Quantity = quantity
                         }
                     })
                 };
@@ -105,24 +106,71 @@ namespace FinalYearProject.Services
                 var bakes = JsonSerializer.Deserialize<List<BakeFrontEnd>>(basket.Bakes) ?? new List<BakeFrontEnd>();
                 var existingBake = bakes.FirstOrDefault(b => b.Id == bakeId);
 
-                
+                if (existingBake != null)
+                {
+                    existingBake.Quantity += quantity;
+                }
+                else
+                {
                     bakes.Add(new BakeFrontEnd
                     {
                         Id = bake.Id,
                         Name = bake.Name,
                         Description = bake.Description,
-                        Price = bake.Price
+                        Price = bake.Price,
+                        Quantity = quantity
                     });
+                }
 
                 basket.Bakes = JsonSerializer.Serialize(bakes);
                 await _basketRepository.UpdateBasket(basket);
             }
 
+            return new BakeFrontEnd
+            {
+                Category = bake.Category,
+                Description = bake.Description,
+                Id = bake.Id,
+                Name = bake.Name,
+                Price = bake.Price
+            };
+        }
+
+        public async Task<BasketFrontEnd> UpdateToBasket(int userId, int bakeId, int quantity)
+        {
+            // Verify user exists
+            var user = await _userRepository.GetUserById(userId);
+            if (user == null)
+            {
+                return null;
+            }
+
+            // Get the bake to add
+            var bake = _bakeRepository.GetBakeById(bakeId);
+            if (bake == null)
+            {
+                return null;
+            }
+
+            // Get or create user's basket
+            var basket = await _basketRepository.GetBasketByUserId(userId);
+
+            var bakes = JsonSerializer.Deserialize<List<BakeFrontEnd>>(basket.Bakes) ?? new List<BakeFrontEnd>();
+            var existingBake = bakes.FirstOrDefault(b => b.Id == bakeId);
+
+            if (existingBake != null)
+            {
+                existingBake.Quantity = quantity;
+            }
+
+            basket.Bakes = JsonSerializer.Serialize(bakes);
+            await _basketRepository.UpdateBasket(basket);
+
             return new BasketFrontEnd
             {
                 Id = basket.Id,
                 UserId = basket.UserId,
-                Bakes = JsonSerializer.Deserialize<IEnumerable<BakeFrontEnd>>(basket.Bakes)
+                Bakes = bakes
             };
         }
     }
