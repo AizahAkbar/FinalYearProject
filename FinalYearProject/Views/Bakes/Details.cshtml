@@ -5,13 +5,14 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
+    <script src="~/js/basket.js" asp-append-version="true"></script>
 </head>
 
 @* <h1>Details</h1> *@
 
 <div class="product-container">
     <div class="product-image">
-        <img src="/images/placeholder-bake.svg" alt="@Model.Name" />
+        <img src="@("/images/" + Model.Name).jpg" alt="@Model.Name" />
     </div>
     <div class="product-details">
         <h1 class="product-title">@Model.Name</h1>
@@ -22,10 +23,13 @@
             @Model.Description
         </div>
         <div class="product-actions">
-            <input type="number" class="quantity-input" value="1" min="1" max="10" />
-            <button class="btn add-to-cart">
-                Add to Basket
-            </button>
+            <form class="basket-form" asp-controller="Basket" asp-action="AddToBasket" method="post">
+                <input type="hidden" name="bakeId" id="bakeId" value="@Model.Id" />
+                <input type="number" name="quantity" class="quantity-input" value="@Model.Quantity" min="1" max="10" />
+                <button type="submit" class="btn add-to-cart">
+                    Add to Basket
+                </button>
+            </form>
         </div>
         <div style="margin-top: 2rem;">
             <a asp-action="Index" class="btn btn-primary">Back to List</a>
@@ -35,7 +39,7 @@
 
 
 
-    @* <hr />
+@* <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
@@ -63,4 +67,3 @@
         </dd>
     </dl> *@
 </div>
-

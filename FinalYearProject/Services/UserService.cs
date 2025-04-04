@@ -30,6 +30,7 @@ namespace FinalYearProject.Services
             }
             var userFrontEnd = new UserFrontEnd
             {
+                Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,

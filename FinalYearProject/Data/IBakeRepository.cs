@@ -10,5 +10,7 @@ namespace FinalYearProject.Data
         IEnumerable<Bake> GetAllBakes();
 
         Bake GetBakeById(int id);
+
+        IEnumerable<Bake> GetBakesByCategory(string category);
     }
 }

@@ -37,18 +37,25 @@ namespace FinalYearProject.Services
         {
             // Retrieve all bakes from the repository
             var bakes = _bakeRepository.GetAllBakes();
+            return MapBakesToFrontEnd(bakes);
+        }
 
-            // Map the Bake objects to BakeFrontEnd objects
-            var bakeFrontEnds = bakes.Select(bake => new BakeFrontEnd
+        public IEnumerable<BakeFrontEnd> GetBakesByCategory(string category)
+        {
+            var bakes = _bakeRepository.GetBakesByCategory(category);
+            return MapBakesToFrontEnd(bakes);
+        }
+
+        private IEnumerable<BakeFrontEnd> MapBakesToFrontEnd(IEnumerable<Bake> bakes)
+        {
+            return bakes.Select(bake => new BakeFrontEnd
             {
                 Id = bake.Id,
                 Name = bake.Name,
                 Price = bake.Price,
-                //Category = bake.Category,
+                Category = bake.Category,
                 Description = bake.Description
             });
-
-            return bakeFrontEnds;
         }
 
         public BakeFrontEnd GetBakeById(int id)
@@ -59,7 +66,7 @@ namespace FinalYearProject.Services
                 Id = bake.Id,
                 Name = bake.Name,
                 Price = bake.Price,
-                //Category = bake.Category,
+                Category = bake.Category,
                 Description = bake.Description
             };
             return bakeFrontEnd;

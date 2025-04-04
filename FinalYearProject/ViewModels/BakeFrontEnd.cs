@@ -1,4 +1,5 @@
-﻿namespace FinalYearProject.ViewModels
+﻿
+namespace FinalYearProject.ViewModels
 {
     public class BakeFrontEnd
     {
@@ -7,8 +8,12 @@
 
         public double Price { get; set; }
 
+        public double TotalPrice => Price * Quantity;
+
         public string Category { get; set; }
 
         public string Description { get; set; }
+
+        public int Quantity { get; set; } = 1;
     }
 }

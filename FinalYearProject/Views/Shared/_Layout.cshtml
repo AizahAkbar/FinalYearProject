@@ -39,9 +39,20 @@
                 </div>
 
                 <div class="account-button">
-                    <a asp-controller="User" asp-action="Login" class="btn btn-outline-secondary">
-                        <i class="fas fa-user"></i>
-                    </a>
+                    @if (Context.Session.GetInt32("UserId") != null)
+                    {
+                        <span class="btn btn-outline-secondary">
+                            <i class="fas fa-user"></i>
+                            Welcome @Context.Session.GetString("UserName")
+                        </span>
+                    }
+                    else
+                    {
+                        <a asp-controller="User" asp-action="Login" class="btn btn-outline-secondary">
+                            <i class="fas fa-user"></i>
+                            Log in
+                        </a>
+                    }
                 </div>
 
                 <div class="basket-button">
@@ -61,22 +72,22 @@
             <div class="navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav navbar-nav-bottom">
                     <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-area="" asp-controller="Search" asp-action="Index">Cakes</a>
+                        <a class="nav-link nav-link-bottom" asp-route-category="Cakes" asp-controller="Search" asp-action="Index">Cakes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-area="" asp-controller="Search" asp-action="Index">Cupcakes</a>
+                        <a class="nav-link nav-link-bottom" asp-route-category="Cupcakes" asp-controller="Search" asp-action="Index">Cupcakes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-area="" asp-controller="Search" asp-action="Index">Brownies</a>
+                        <a class="nav-link nav-link-bottom" asp-route-category="Brownies" asp-controller="Search" asp-action="Index">Brownies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-area="" asp-controller="Search" asp-action="Index">Cheesecakes</a>
+                        <a class="nav-link nav-link-bottom" asp-route-category="Cheesecakes" asp-controller="Search" asp-action="Index">Cheesecakes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-area="" asp-controller="Search" asp-action="Index">Birthdays</a>
+                        <a class="nav-link nav-link-bottom" asp-route-category="Cookies" asp-controller="Search" asp-action="Index">Cookies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-area="" asp-controller="Search" asp-action="Index">Easter</a>
+                        <a class="nav-link nav-link-bottom" asp-route-category="Pies" asp-controller="Search" asp-action="Index">Pies</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link-bottom dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

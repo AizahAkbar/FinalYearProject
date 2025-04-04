@@ -1,9 +1,12 @@
-﻿using FinalYearProject.Models;
+﻿using FinalYearProject.ViewModels;
 
 namespace FinalYearProject.Services
 {
     public interface IBasketService
     {
-        //void UpdateBasket(Basket basket, Bake bake);
+        Task<BakeFrontEnd> AddToBasket(int userId, int bakeId, int quantity);
+        Task<BasketFrontEnd> GetBasketByUserId(int userId);
+        Task<BasketFrontEnd> DeleteFromBasket(int userId, int bakeId);
+        Task<BasketFrontEnd> UpdateToBasket(int userId, int bakeId, int quantity);
     }
 }

@@ -31,6 +31,11 @@ namespace FinalYearProject.Data
             return _context.Bake.Find(id);
         }
 
+        public IEnumerable<Bake> GetBakesByCategory(string category)
+        {
+            return _context.Bake.Where(b => b.Category.ToLower() == category.ToLower()).ToList();
+        }
+
         //public string GetCategoryById(int id)
         //{
         //    return _context.BakeCategory.Find(id);
