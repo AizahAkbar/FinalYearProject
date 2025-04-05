@@ -1,20 +1,15 @@
-using Azure.AI.OpenAI;
-using FinalYearProject.Models;
-using FinalYearProject.Data;
-using Microsoft.Extensions.Configuration;
-using OpenAI;
 using Microsoft.Extensions.AI;
-using FinalYearProject.Services;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using OpenAI;
+using System.Text.Json;
 
 namespace FinalYearProject.Services
 {
-    public class ChatService : IChatService 
+    public class ChatService : IChatService
     {
         private readonly IChatClient _openAIClient;
         private readonly string _deploymentName;
         private List<Microsoft.Extensions.AI.ChatMessage> chatHistory;
+
 
         public ChatService(IConfiguration configuration)
         {
@@ -25,15 +20,18 @@ namespace FinalYearProject.Services
 
             chatHistory = new List<Microsoft.Extensions.AI.ChatMessage>
             {
-                new Microsoft.Extensions.AI.ChatMessage(ChatRole.System, "You are a helpful bakery assistant who helps customers with questions about our bakery products, orders, and services.")
+                new(ChatRole.System, "You are a helpful bakery assistant who helps customers with questions about our bakery products, orders, and services."),
+                new(ChatRole.System, "The products that we have are: " + JsonSerializer.Serialize(BakesCache.GetBakes()))
             };
         }
 
         public async Task<Models.ChatMessage> SendMessageAsync(string userId, string message)
         {
-            chatHistory.Add(new Microsoft.Extensions.AI.ChatMessage(ChatRole.User, message));
+            chatHistory.Add(new ChatMessage(ChatRole.User, message));
 
             var response = await _openAIClient.GetResponseAsync(chatHistory);
+
+            chatHistory.Add(new ChatMessage(ChatRole.Assistant, response.Messages.Last().Text));
 
             var chatMessage = new Models.ChatMessage
             {
@@ -46,9 +44,20 @@ namespace FinalYearProject.Services
             return chatMessage;
         }
 
-        public async Task<IEnumerable<Microsoft.Extensions.AI.ChatMessage>> GetChatHistoryAsync(string userId)
+        public async Task<IEnumerable<Models.ChatMessage>> GetChatHistoryAsync(string userId)
         {
-            return chatHistory;
+            return chatHistory
+                .Where(x => x.Role != ChatRole.System)
+                .Select(x =>
+                {
+                    return new Models.ChatMessage
+                    {
+                        UserId = userId,
+                        Role = x.Role.ToString().ToLower(),
+                        Content = x.Text,
+                        Timestamp = DateTime.UtcNow
+                    };
+                });
         }
     }
 }

@@ -1,0 +1,19 @@
+﻿<head>
+    <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
+</head>
+
+<div class="chat-widget">
+    <div class="chat-widget-header" id="chatToggle">
+        <span>Chat with Us</span>
+        <button class="minimize-button">−</button>
+    </div>
+    <div class="chat-widget-container" id="chatContainer">
+        <div class="chat-messages" id="chatMessages">
+            <!-- Chat messages will be dynamically inserted here -->
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="messageInput" class="chat-input" placeholder="Type your message here..." />
+            <button id="sendButton" class="chat-send-button">Send</button>
+        </div>
+    </div>
+</div>
