@@ -35,10 +35,12 @@ namespace FinalYearProject.Services
         // Returns
         public IEnumerable<BakeFrontEnd> GetAllBakes()
         {
-            // Retrieve all bakes from the repository
             var bakes = _bakeRepository.GetAllBakes();
-            return MapBakesToFrontEnd(bakes);
+            var bakeFrontEnds = MapBakesToFrontEnd(bakes);
+            BakesCache.UpdateBakes(bakeFrontEnds);
+            return bakeFrontEnds;
         }
+
 
         public IEnumerable<BakeFrontEnd> GetBakesByCategory(string category)
         {
