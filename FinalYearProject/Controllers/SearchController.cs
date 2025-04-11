@@ -12,11 +12,15 @@ namespace FinalYearProject.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Index(string category = null)
+        public async Task<IActionResult> Index(string category = null, string query = null)
         {
             if (!string.IsNullOrEmpty(category))
             {
                 return View(_service.GetBakesByCategory(category));
+            }
+            if (!string.IsNullOrEmpty(query))
+            {
+                return View(_service.SearchBakes(query));
             }
             return View(_service.GetAllBakes());
         }

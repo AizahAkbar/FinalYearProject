@@ -48,6 +48,19 @@ namespace FinalYearProject.Services
             return MapBakesToFrontEnd(bakes);
         }
 
+        public IEnumerable<BakeFrontEnd> SearchBakes(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+                return GetAllBakes();
+
+            var allBakes = _bakeRepository.GetAllBakes();
+            var searchResults = allBakes.Where(b =>
+                b.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                b.Description.Contains(query, StringComparison.OrdinalIgnoreCase));
+
+            return MapBakesToFrontEnd(searchResults);
+        }
+
         private IEnumerable<BakeFrontEnd> MapBakesToFrontEnd(IEnumerable<Bake> bakes)
         {
             return bakes.Select(bake => new BakeFrontEnd

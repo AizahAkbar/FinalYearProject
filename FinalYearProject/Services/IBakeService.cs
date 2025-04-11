@@ -8,5 +8,6 @@ namespace FinalYearProject.Services
         IEnumerable<BakeFrontEnd> GetAllBakes();
         BakeFrontEnd GetBakeById(int id);
         IEnumerable<BakeFrontEnd> GetBakesByCategory(string category);
+        IEnumerable<BakeFrontEnd> SearchBakes(string query);
     }
 }
