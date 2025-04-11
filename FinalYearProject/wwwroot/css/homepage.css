@@ -39,18 +39,26 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s;
+  text-align: center;
+  text-decoration: none;
+}
+.bake-card .bake-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 .bake-card:hover {
   transform: translateY(-5px);
 }
 .bake-card-content {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .bake-name {
   color: #5c4434;
   font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0;
+  text-decoration: none;
 }
 .bake-name a {
   text-decoration: none;
@@ -60,19 +68,7 @@
 .bake-price {
   color: #8b6b4a;
   font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.bake-category {
-  color: #6b5544;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.bake-description {
-  color: #666;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  margin: 0;
 }
 
 .about-section {

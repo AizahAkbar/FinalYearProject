@@ -90,18 +90,15 @@
                         <a class="nav-link nav-link-bottom" asp-route-category="Pies" asp-controller="Search" asp-action="Index">Pies</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-bottom dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link nav-link-bottom dropdown-toggle" href="#" id="giftsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Gifts
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Gifts for Him</a>
-                            <a class="dropdown-item" href="#">Gifts for Her</a>
-                            <a class="dropdown-item" href="#">Gifts for Parents</a>
-                            <a class="dropdown-item" href="#">Gifts for Grandparents</a>
-                            <a class="dropdown-item" href="#">Gifts for Teachers</a>
-                            <a class="dropdown-item" href="#">Thank you gifts</a>
-                            <a class="dropdown-item" href="#">Wedding gifts</a>
-                        </div>
+                        <ul class="dropdown-menu" aria-labelledby="giftsDropdown">
+                            <li><a class="dropdown-item" asp-route-category="GiftsForHer" asp-controller="Search" asp-action="Index">Gifts for Her</a></li>
+                            <li><a class="dropdown-item" asp-route-category="GiftsForHim" asp-controller="Search" asp-action="Index">Gifts for Him</a></li>
+                            <li><a class="dropdown-item" asp-route-category="BirthdayGifts" asp-controller="Search" asp-action="Index">Birthday Gifts</a></li>
+                            <li><a class="dropdown-item" asp-route-category="SpecialOccasions" asp-controller="Search" asp-action="Index">Special Occasions</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
