@@ -67,6 +67,7 @@ body {
         flex-direction: row;
         justify-content: center;
         width: 100%;
+        position: relative;
     }
 
     .nav-link-bottom {
@@ -77,6 +78,27 @@ body {
         transition: color 0.3s ease;
         
         &:hover {
+            color: $accent-color;
+        }
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        background: $secondary-color;
+        border: 1px solid $accent-color;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    .dropdown-item {
+        color: $text-color;
+        font-family: $font-accent;
+        padding: 0.5rem 1rem;
+
+        &:hover {
+            background-color: $primary-color;
             color: $accent-color;
         }
     }

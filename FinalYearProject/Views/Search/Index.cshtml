@@ -16,14 +16,14 @@
     <div class="bakes-grid">
         @foreach (var item in Model)
         {
-            <div class="bake-card">
+            <a asp-controller="Bakes" asp-action="Details" asp-route-id="@item.Id" class="bake-card">
+                <img src="~/images/@(item.Name).jpg" alt="@item.Name" class="bake-image" />
                 <div class="bake-card-content">
                     <h3 class="bake-name">
-                        <a asp-controller="Bakes" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                        @Html.DisplayFor(modelItem => item.Name)
                     </h3>
                     <p class="bake-price">£@item.Price.ToString("F2")</p>
-                    <p class="bake-description">@Html.DisplayFor(modelItem => item.Description)</p>
                 </div>
-            </div>
+            </a>
         }
     </div>
