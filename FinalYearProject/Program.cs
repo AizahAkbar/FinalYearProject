@@ -41,6 +41,8 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddSingleton<IChatService, ChatService>();
 builder.Services.AddTransient<IBasketRepository, BasketRepository>();
 builder.Services.AddTransient<IBasketService, BasketService>();
+builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
+builder.Services.AddTransient<IPaymentService, PaymentService>();
 
 var app = builder.Build();
 

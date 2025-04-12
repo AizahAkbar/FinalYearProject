@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,5 +18,7 @@ namespace FinalYearProject.Data
         public DbSet<FinalYearProject.Models.Review> Review { get; set; } = default!;
         public DbSet<FinalYearProject.Models.Basket> Basket { get; set; } = default!;
         public DbSet<FinalYearProject.Models.User> User { get; set; } = default!;
+        public DbSet<FinalYearProject.Models.DeliveryInformation> DeliveryInformation { get; set; } = default!;
+        public DbSet<FinalYearProject.Models.Payment> Payment { get; set; } = default!;
     }
 }
