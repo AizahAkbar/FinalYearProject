@@ -12,7 +12,7 @@ namespace FinalYearProject.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Index(string category = null, string query = null)
+        public async Task<IActionResult> Index(string category = null, string query = null, string sortBy = null)
         {
             if (!string.IsNullOrEmpty(category))
             {
@@ -20,9 +20,9 @@ namespace FinalYearProject.Controllers
             }
             if (!string.IsNullOrEmpty(query))
             {
-                return View(_service.SearchBakes(query));
+                return View(_service.SearchBakes(query, sortBy));
             }
-            return View(_service.GetAllBakes());
+            return View(_service.GetAllBakes(sortBy));
         }
     }
 }

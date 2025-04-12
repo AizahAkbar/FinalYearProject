@@ -11,7 +11,10 @@
 <div class="search-container">
     <div class="search-header">
         <h1>Search Products</h1>
-        @* <a asp-action="Create" class="create-new-btn">Create New</a> *@
+        <div class="sort-options">
+            <a href="?sortBy=price" class="sort-link @(Context.Request.Query["sortBy"] == "price" ? "active" : "")">Sort by Price</a>
+            <a href="?sortBy=name" class="sort-link @(Context.Request.Query["sortBy"] == "name" ? "active" : "")">Sort Alphabetically</a>
+        </div>
     </div>
     <div class="bakes-grid">
         @foreach (var item in Model)
