@@ -43,29 +43,37 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+
 });
 
-function handleAddToBasket() {
-    const bakeId = document.getElementById('bakeId').value;
+document.addEventListener('DOMContentLoaded', function () {
+    const buttybutton = document.querySelector('.add-to-cart');
+    if (buttybutton) {
+        buttybutton.addEventListener('click', function () {
+            const bakeId = document.getElementById('bakeId').value;
 
-    fetch(`/Basket/AddToBasket?bakeId=${bakeId}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showNotification(data.message);
-        } else {
-            showNotification(data.message, 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showNotification('Failed to add to basket', true);
-    });
+            fetch(`/Basket/AddToBasket?bakeId=${bakeId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification(data.message);
+                    } else {
+                        showNotification(data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Failed to add to basket', true);
+                });
+
+        });
+    }
 }
 
 function showNotification(message, isError = false) {

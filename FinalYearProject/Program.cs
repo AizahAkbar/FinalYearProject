@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.AI;
 using OpenAI;
 using OpenAI.Chat;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FypContext>(options =>
@@ -41,6 +42,8 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddSingleton<IChatService, ChatService>();
 builder.Services.AddTransient<IBasketRepository, BasketRepository>();
 builder.Services.AddTransient<IBasketService, BasketService>();
+builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
+builder.Services.AddTransient<IPaymentService, PaymentService>();
 
 var app = builder.Build();
 
