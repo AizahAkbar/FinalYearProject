@@ -5,10 +5,10 @@
 
 <div class="container mt-4">
     <h2>Delivery Information</h2>
-    
+
     <div class="row">
         <div class="col-md-8">
-            <form method="post" asp-action="BillingInformation" id="deliveryForm">
+            <form method="post" asp-action="ProcessDeliveryInformation" id="deliveryForm">
                 <div class="card mb-4">
                     <div class="card-header">
                         <h5 class="mb-0">Personal Information</h5>
@@ -16,20 +16,20 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label asp-for="DeliveryInformation.FirstName" class="form-label">First Name</label>
-                                <input asp-for="DeliveryInformation.FirstName" class="form-control" required>
-                                <span asp-validation-for="DeliveryInformation.FirstName" class="text-danger"></span>
+                                <label asp-for="FirstName" class="form-label">First Name</label>
+                                <input asp-for="FirstName" class="form-control" required>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label asp-for="DeliveryInformation.LastName" class="form-label">Last Name</label>
-                                <input asp-for="DeliveryInformation.LastName" class="form-control" required>
-                                <span asp-validation-for="DeliveryInformation.LastName" class="text-danger"></span>
+                                <label asp-for="LastName" class="form-label">Last Name</label>
+                                <input asp-for="LastName" class="form-control" required>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="DeliveryInformation.PhoneNumber" class="form-label">Phone Number</label>
-                            <input asp-for="DeliveryInformation.PhoneNumber" class="form-control" required>
-                            <span asp-validation-for="DeliveryInformation.PhoneNumber" class="text-danger"></span>
+                            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                            <input asp-for="PhoneNumber" class="form-control" required>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -40,14 +40,14 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label asp-for="DeliveryInformation.Country" class="form-label">Country</label>
-                            <select asp-for="DeliveryInformation.Country" class="form-select" required>
+                            <label asp-for="Country" class="form-label">Country</label>
+                            <select asp-for="Country" class="form-select" required>
                                 <option value="">Select a country</option>
                                 <option value="UK">United Kingdom</option>
                                 <option value="US">United States</option>
                                 <option value="CA">Canada</option>
                             </select>
-                            <span asp-validation-for="DeliveryInformation.Country" class="text-danger"></span>
+                            <span asp-validation-for="Country" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
@@ -60,10 +60,10 @@
 
                         <div class="mb-3">
                             <label class="form-label">Manual Address Entry</label>
-                            <input asp-for="DeliveryInformation.StreetAddress" class="form-control mb-2" placeholder="Address Line 1" required>
+                            <input asp-for="StreetAddress" class="form-control mb-2" placeholder="Address Line 1" required>
                             <input class="form-control mb-2" placeholder="Address Line 2">
-                            <input asp-for="DeliveryInformation.City" class="form-control mb-2" placeholder="City" required>
-                            <input asp-for="DeliveryInformation.PostCode" class="form-control" placeholder="Postcode" required>
+                            <input asp-for="City" class="form-control mb-2" placeholder="City" required>
+                            <input asp-for="PostCode" class="form-control" placeholder="Postcode" required>
                         </div>
                     </div>
                 </div>
@@ -74,21 +74,21 @@
                     </div>
                     <div class="card-body">
                         <div class="form-check mb-3">
-                            <input type="radio" class="form-check-input" name="deliveryOption" id="standard" value="standard" checked>
+                            <input type="radio" class="form-check-input" name="deliveryMethod" id="standard" value="standard" checked>
                             <label class="form-check-label" for="standard">
                                 <strong>Standard Delivery</strong> - £3.99<br>
                                 <small class="text-muted">3-5 working days</small>
                             </label>
                         </div>
                         <div class="form-check mb-3">
-                            <input type="radio" class="form-check-input" name="deliveryOption" id="express" value="express">
+                            <input type="radio" class="form-check-input" name="deliveryMethod" id="express" value="express">
                             <label class="form-check-label" for="express">
                                 <strong>Express Delivery</strong> - £6.99<br>
                                 <small class="text-muted">Next working day if ordered before 2pm</small>
                             </label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="deliveryOption" id="preferred" value="preferred">
+                            <input type="radio" class="form-check-input" name="deliveryMethod" id="preferred" value="preferred">
                             <label class="form-check-label" for="preferred">
                                 <strong>Preferred Day Delivery</strong> - £4.99<br>
                                 <small class="text-muted">Choose your delivery date</small>
@@ -100,6 +100,8 @@
                         </div>
                     </div>
                 </div>
+
+                <input type="hidden" name="basket" value="@Model.Basket" />
 
                 <button type="submit" class="btn btn-primary btn-lg w-100">Proceed to Billing</button>
             </form>
@@ -148,7 +150,7 @@
             radio.addEventListener('change', function() {
                 const preferredDateContainer = document.getElementById('preferredDateContainer');
                 const deliveryPrice = document.getElementById('deliveryPrice');
-                
+
                 if (this.value === 'preferred') {
                     preferredDateContainer.style.display = 'block';
                     deliveryPrice.textContent = '£4.99';
@@ -165,7 +167,7 @@
             const subtotal = parseFloat(document.getElementById('subtotal').textContent.replace('£', ''));
             const delivery = parseFloat(document.getElementById('deliveryPrice').textContent.replace('£', ''));
             const total = subtotal + delivery;
-            document.getElementById('total').textContent = `£${total.toFixed(2)}`;
+            document.getElementById('total').textContent = £${total.toFixed(2)};
         }
 
         // Function to lookup address (to be implemented)

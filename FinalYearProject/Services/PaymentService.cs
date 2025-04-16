@@ -1,6 +1,8 @@
 using FinalYearProject.Data;
 using FinalYearProject.Models;
 using FinalYearProject.ViewModels;
+using Stripe;
+using Stripe.Checkout;
 
 namespace FinalYearProject.Services
 {
@@ -53,5 +55,45 @@ namespace FinalYearProject.Services
                 }
             };
         }
+
+        public Session CreatePaymentIntent(long amount, int userId, string currency = "gbp")
+        {
+            Stripe.StripeConfiguration.ApiKey = "";
+
+            var basket = _basketService.GetBasketByUserId(userId).Result;
+
+            var successUrl = "https://localhost:7044/";
+            var cancelUrl = "https://localhost:7044/";
+
+            var option1 = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string>
+                {
+                    "card"
+                },
+                LineItems = basket.Bakes.Select(x => new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        Currency = currency,
+                        UnitAmount = (long)(x.Price * 100),
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = x.Name,
+                        },
+                    },
+                    Quantity = x.Quantity
+                }).ToList(),
+                Mode = "payment",
+                SuccessUrl = successUrl,
+                CancelUrl = cancelUrl
+            };
+
+            var service = new SessionService();
+            var paymentIntent = service.Create(option1);
+
+            return paymentIntent;
+        }
+
     }
 }
