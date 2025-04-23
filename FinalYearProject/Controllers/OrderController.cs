@@ -188,5 +188,19 @@ namespace FinalYearProject.Controllers
                 return BadRequest(new { error = ex.Message });
             }
         }
+        public async Task<IActionResult> Confirmation()
+        {
+            var paymentModel = new PaymentViewModel
+            {
+                Basket = new BasketFrontEnd
+                {
+                    Bakes = new List<BakeFrontEnd>
+                    {
+                        new BakeFrontEnd()
+                    }
+                }
+            };
+            return View(paymentModel);
+        }
     }
 }

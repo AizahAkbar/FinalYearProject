@@ -19,47 +19,56 @@
         </div>
         <nav class="navbar navbar-top navbar-expand-lg">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand" asp-area="" asp-controller="Bakes" asp-action="Index">BakesForAll</a>
+                @* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" asp-area="" asp-controller="Bakes" asp-action="Index">BakesForAll</a>
+                </button> *@
                 
-                <!-- Flex container for logo and search bar -->
-                <div class="d-flex align-items-center ms-auto">
+                @* <div class="collapse navbar-collapse" id="navbarContent"> *@
                     <!-- Search Bar with Icon -->
-                    <form class="d-flex" action="/search" method="GET">
+                    <form class="d-flex mx-lg-auto my-2 my-lg-0" action="/search" method="GET">
                         <div class="input-group">
                             <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="query">
-                            <button class="btn btn-outline-secondary" type="submit">
-                                <i class="fas fa-search"></i> <!-- Font Awesome search icon -->
+                            <button class="btn btn-outline-secondary search-icon" type="submit">
+                                <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </form>
-                </div>
 
-                <div class="account-button">
-                    @if (Context.Session.GetInt32("UserId") != null)
-                    {
-                        <span class="btn btn-outline-secondary">
-                            <i class="fas fa-user"></i>
-                            Welcome @Context.Session.GetString("UserName")
-                        </span>
-                    }
-                    else
-                    {
-                        <a asp-controller="User" asp-action="Login" class="btn btn-outline-secondary">
-                            <i class="fas fa-user"></i>
-                            Log in
-                        </a>
-                    }
-                </div>
+                    <div class="ms-lg-2 d-flex align-items-center">
+                        <div class="account-button me-2">
+                            @if (Context.Session.GetInt32("UserId") != null)
+                            {
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-user"></i>
+                                        <span class="d-none d-sm-inline">Welcome @Context.Session.GetString("UserName")</span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                        <li><a class="dropdown-item" asp-controller="User" asp-action="Index">View Account</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else
+                            {
+                                <a asp-controller="User" asp-action="Login" class="btn btn-outline-secondary">
+                                    <i class="fas fa-user"></i>
+                                    <span class="d-none d-sm-inline">Log in</span>
+                                </a>
+                            }
+                        </div>
 
-                <div class="basket-button">
-                    <a asp-controller="Basket" asp-action="Index" class="btn btn-outline-secondary">
-                        <i class="fas fa-shopping-basket"></i>
-                    </a>
-                </div>
+                        <div class="basket-button">
+                            <a asp-controller="Basket" asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="fas fa-shopping-basket"></i>
+                            </a>
+                        </div>
+                    </div>
+                @* </div> *@
+            </div>
             </div>
         </nav>
 
@@ -68,30 +77,35 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         </head>
 
-        <nav class="navbar navbar-bottom">
-            <div class="navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav navbar-nav-bottom">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-route-category="Cakes" asp-controller="Search" asp-action="Index">Cakes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-route-category="Cupcakes" asp-controller="Search" asp-action="Index">Cupcakes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-route-category="Brownies" asp-controller="Search" asp-action="Index">Brownies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-route-category="Cheesecakes" asp-controller="Search" asp-action="Index">Cheesecakes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-route-category="Cookies" asp-controller="Search" asp-action="Index">Cookies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-route-category="Pastries" asp-controller="Search" asp-action="Index">Pastries</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-bottom" asp-route-category="Pies" asp-controller="Search" asp-action="Index">Pies</a>
-                    </li>
+        <nav class="navbar navbar-bottom navbar-expand-lg">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavBottom" aria-controls="navbarNavBottom"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavBottom">
+                    <ul class="navbar-nav navbar-nav-bottom">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-bottom" asp-route-category="Cakes" asp-controller="Search" asp-action="Index">Cakes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-bottom" asp-route-category="Cupcakes" asp-controller="Search" asp-action="Index">Cupcakes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-bottom" asp-route-category="Brownies" asp-controller="Search" asp-action="Index">Brownies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-bottom" asp-route-category="Cheesecakes" asp-controller="Search" asp-action="Index">Cheesecakes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-bottom" asp-route-category="Cookies" asp-controller="Search" asp-action="Index">Cookies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-bottom" asp-route-category="Pastries" asp-controller="Search" asp-action="Index">Pastries</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-bottom" asp-route-category="Pies" asp-controller="Search" asp-action="Index">Pies</a>
+                        </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link-bottom dropdown-toggle" href="#" id="giftsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Gifts
@@ -128,6 +142,7 @@
 
     <!-- ... existing scripts ... -->
     <script src="~/js/chat.js"></script>
+    <script src="~/js/search.js"></script>
 
 </body>
 </html>
