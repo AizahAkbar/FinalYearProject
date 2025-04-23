@@ -62,7 +62,7 @@ namespace FinalYearProject.Services
 
             var basket = _basketService.GetBasketByUserId(userId).Result;
 
-            var successUrl = "https://localhost:7044/";
+            var successUrl = "https://localhost:7044/Order/Confirmation";
             var cancelUrl = "https://localhost:7044/";
 
             var option1 = new SessionCreateOptions

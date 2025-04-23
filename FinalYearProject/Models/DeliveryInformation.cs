@@ -49,10 +49,5 @@ namespace FinalYearProject.Models
         [Display(Name = "Preferred Delivery Date")]
         [DataType(DataType.Date)]
         public DateTime? PreferredDeliveryDate { get; set; }
-
-        public int OrderId { get; set; }
-
-        [ForeignKey("OrderId")]
-        public virtual Order Order { get; set; }
     }
 }
