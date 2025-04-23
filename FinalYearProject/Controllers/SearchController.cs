@@ -6,6 +6,16 @@ namespace FinalYearProject.Controllers
 {
     public class SearchController : Controller
     {
+        [HttpGet]
+        public IActionResult LiveSearch(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+                return Json(new BakeFrontEnd[0]);
+
+            var results = _service.SearchBakes(query);
+            return Json(results);
+        }
+
 
         private readonly IBakeService _service;
         public SearchController(IBakeService service)
@@ -16,7 +26,7 @@ namespace FinalYearProject.Controllers
         {
             if (!string.IsNullOrEmpty(category))
             {
-                return View(_service.GetBakesByCategory(category));
+                return View(_service.GetBakesByCategory(category, sortBy));
             }
             if (!string.IsNullOrEmpty(query))
             {

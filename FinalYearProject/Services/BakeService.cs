@@ -56,10 +56,11 @@ namespace FinalYearProject.Services
         }
 
 
-        public IEnumerable<BakeFrontEnd> GetBakesByCategory(string category)
+        public IEnumerable<BakeFrontEnd> GetBakesByCategory(string category, string sortBy = null)
         {
             var bakes = _bakeRepository.GetBakesByCategory(category);
-            return MapBakesToFrontEnd(bakes);
+            var mappedBakes = MapBakesToFrontEnd(bakes);
+            return SortBakes(mappedBakes, sortBy);
         }
 
         public IEnumerable<BakeFrontEnd> SearchBakes(string query, string sortBy = null)

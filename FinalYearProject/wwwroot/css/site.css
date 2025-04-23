@@ -44,6 +44,55 @@ body {
   opacity: 0.9;
 }
 
+.search-results {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 300px;
+  background: white;
+  border: 1px solid #8B4513;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.search-result-item {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+.search-result-item:hover {
+  background-color: #F5E7DB;
+}
+.search-result-item .search-result-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+}
+.search-result-item .search-result-info {
+  flex: 1;
+}
+.search-result-item .search-result-info .search-result-name {
+  font-family: "Chewy", serif;
+  color: #8B4513;
+  margin: 0;
+  font-size: 1rem;
+}
+.search-result-item .search-result-info .search-result-price {
+  color: #333;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 .navbar-nav-bottom {
   flex-direction: row;
   justify-content: center;
@@ -97,12 +146,16 @@ body {
 
 .form-control {
   border-radius: 4px;
-  border: 1px solid #ddd;
+  border: 1px solid #8B4513;
   padding: 0.5rem;
 }
 .form-control:focus {
   border-color: #8B4513;
   box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+}
+
+button.btn.btn-outline-secondary.search-icon {
+  border-radius: 0px 4px 4px 0px !important;
 }
 
 .container {
@@ -145,4 +198,4 @@ body {
   }
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAUQ;AAGR;EACI;EACA;EACA;EACA;;;AAGJ;EACI;IACI;;;AAIR;EACI;EACA,aAvBW;EAwBX,YA3Bc;EA4Bd,OA1BS;EA2BT;;;AAIJ;EACI,YAnCY;EAoCZ;EACA;;;AAGJ;EACI;EACA;;AAEA;EACI,YA5CU;;AA+Cd;EACI,YAjDQ;;AAoDZ;EACI,aAhDM;EAiDN;EACA;;AAEA;EACI;;;AAMR;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA,OAtEK;EAuEL,aArEM;EAsEN;EACA;;AAEA;EACI,OA7EG;;AAiFX;EACI;EACA;EACA,YArFU;EAsFV;EACA;EACA;EACA;;AAGJ;EACI,OA3FK;EA4FL,aA1FM;EA2FN;;AAEA;EACI,kBAnGI;EAoGJ,OAlGG;;;AAwGf;EACI;EACA;EACA;EACA,aAxGU;;AA0GV;EACI,cA/GO;EAgHP,OAhHO;EAiHP;;AAEA;EACI,kBApHG;EAqHH;;;AAKZ;EACI;EACA;EACA;;AAEA;EACI,cAhIO;EAiIP;;;AAKR;EACI;EACA;EACA;;;AAIJ;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;EACI;;;AAGJ;EACI;;;AAIJ;EACI;IACI;;EAGJ;IACI;IACA%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAUQ;AAGR;EACI;EACA;EACA;EACA;;;AAGJ;EACI;IACI;;;AAIR;EACI;EACA,aAvBW;EAwBX,YA3Bc;EA4Bd,OA1BS;EA2BT;;;AAIJ;EACI,YAnCY;EAoCZ;EACA;;;AAGJ;EACI;EACA;;AAEA;EACI,YA5CU;;AA+Cd;EACI,YAjDQ;;AAoDZ;EACI,aAhDM;EAiDN;EACA;;AAEA;EACI;;;AAIZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA,OAhFS;EAiFT;;AAEA;EACI,kBAtFU;;AAyFd;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;;AAEA;EACI,aAjGE;EAkGF,OArGG;EAsGH;EACA;;AAGJ;EACI,OA1GC;EA2GD;EACA;;;AAMR;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA,OA3HK;EA4HL,aA1HM;EA2HN;EACA;;AAEA;EACI,OAlIG;;AAsIX;EACI;EACA;EACA,YA1IU;EA2IV;EACA;EACA;EACA;;AAGJ;EACI,OAhJK;EAiJL,aA/IM;EAgJN;;AAEA;EACI,kBAxJI;EAyJJ,OAvJG;;;AA6Jf;EACI;EACA;EACA;EACA,aA7JU;;AA+JV;EACI,cApKO;EAqKP,OArKO;EAsKP;;AAEA;EACI,kBAzKG;EA0KH;;;AAKZ;EACI;EACA;EACA;;AAEA;EACI,cArLO;EAsLP;;;AAIR;EACI;;;AAGJ;EACI;EACA;EACA;;;AAIJ;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;EACI;;;AAGJ;EACI;;;AAIJ;EACI;IACI;;EAGJ;IACI;IACA%22%7D */
