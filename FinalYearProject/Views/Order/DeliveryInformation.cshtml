@@ -1,4 +1,4 @@
-@model FinalYearProject.ViewModels.DeliveryInformationViewModel
+﻿@model FinalYearProject.ViewModels.DeliveryInformationViewModel
 @{
     ViewData["Title"] = "Delivery Information";
 }
@@ -146,7 +146,7 @@
 @section Scripts {
     <script>
         // Show/hide preferred date input based on delivery option selection
-        document.querySelectorAll('input[name="deliveryOption"]').forEach(radio => {
+        document.querySelectorAll('input[name="deliveryMethod"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 const preferredDateContainer = document.getElementById('preferredDateContainer');
                 const deliveryPrice = document.getElementById('deliveryPrice');
@@ -167,7 +167,7 @@
             const subtotal = parseFloat(document.getElementById('subtotal').textContent.replace('£', ''));
             const delivery = parseFloat(document.getElementById('deliveryPrice').textContent.replace('£', ''));
             const total = subtotal + delivery;
-            document.getElementById('total').textContent = £${total.toFixed(2)};
+            document.getElementById('total').textContent = `£${total.toFixed(2)}`;
         }
 
         // Function to lookup address (to be implemented)

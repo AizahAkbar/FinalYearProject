@@ -44,6 +44,8 @@ builder.Services.AddTransient<IBasketRepository, BasketRepository>();
 builder.Services.AddTransient<IBasketService, BasketService>();
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 
 var app = builder.Build();
 

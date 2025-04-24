@@ -1,4 +1,5 @@
 ﻿using FinalYearProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinalYearProject.Data
 {
@@ -15,6 +16,16 @@ namespace FinalYearProject.Data
             _context.Add(order);
             await _context.SaveChangesAsync();
         }
-    }
 
+        public async Task<Order> GetOrder()
+        {
+            return _context.Order.FirstOrDefault();
+        }
+
+        public async Task<Order> GetOrderByUserId(int userId)
+        {
+            return await _context.Order
+                .LastOrDefaultAsync(x => x.UserId == userId);
+        }
+    }
 }

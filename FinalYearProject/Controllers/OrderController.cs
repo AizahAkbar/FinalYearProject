@@ -4,6 +4,9 @@ using FinalYearProject.Services;
 using FinalYearProject.ViewModels;
 using System.Threading.Tasks;
 using System;
+using AspNetCoreGeneratedDocument;
+using Microsoft.VisualBasic;
+using Stripe;
 
 namespace FinalYearProject.Controllers
 {
@@ -11,11 +14,13 @@ namespace FinalYearProject.Controllers
     {
         private readonly IBasketService _basketService;
         private readonly IPaymentService _paymentService;
+        private readonly IOrderService _orderService;
 
-        public OrderController(IBasketService basketService, IPaymentService paymentService)
+        public OrderController(IBasketService basketService, IPaymentService paymentService, IOrderService orderService)
         {
             _basketService = basketService;
             _paymentService = paymentService;
+            _orderService = orderService;
         }
 
         public async Task<IActionResult> DeliveryInformation()
@@ -61,19 +66,7 @@ namespace FinalYearProject.Controllers
                 return View("DeliveryInformation", model);
             }
 
-            // Get delivery method and preferred date from form
-            var deliveryOption = Request.Form["deliveryMethod"].ToString();
-            var preferredDate = Request.Form["preferredDate"].ToString();
-
-            // Update delivery information
-            model.DeliveryMethod = deliveryOption;
-            if (!string.IsNullOrEmpty(preferredDate))
-            {
-                model.PreferredDeliveryDate = DateTime.Parse(preferredDate);
-            }
-
-            // Store delivery information in TempData
-            //TempData["DeliveryInformation"] = model;
+            _orderService.AddOrder(model);
 
             return RedirectToAction("PaymentView");
         }
@@ -190,16 +183,14 @@ namespace FinalYearProject.Controllers
         }
         public async Task<IActionResult> Confirmation()
         {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var order = await _orderService.GetOrderByUserId(userId.Value);
             var paymentModel = new PaymentViewModel
             {
-                Basket = new BasketFrontEnd
-                {
-                    Bakes = new List<BakeFrontEnd>
-                    {
-                        new BakeFrontEnd()
-                    }
-                }
+                Basket = await _basketService.GetBasketByUserId(userId.Value),
+                DeliveryInformation = order.DeliveryInformation
             };
+
             return View(paymentModel);
         }
     }

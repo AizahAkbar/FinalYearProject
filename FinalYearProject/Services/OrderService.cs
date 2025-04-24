@@ -4,7 +4,7 @@ using FinalYearProject.ViewModels;
 
 namespace FinalYearProject.Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         public readonly IOrderRepository _orderRepository;
 
@@ -15,7 +15,7 @@ namespace FinalYearProject.Services
 
         public void AddOrder(DeliveryInformationViewModel deliveryInformationViewModel)
         {
-            var deliveryInformation= new DeliveryInformation
+            var deliveryInformation = new DeliveryInformation
             {
                 FirstName = deliveryInformationViewModel.FirstName,
                 LastName = deliveryInformationViewModel.LastName,
@@ -32,6 +32,24 @@ namespace FinalYearProject.Services
             };
 
             _orderRepository.AddOrder(order);
+        }
+        public async Task<Order> GetOrder()
+        {
+            var order = await _orderRepository.GetOrder();
+            if (order == null)
+            {
+                throw new Exception("Order not found");
+            }
+            return order;
+        }
+        public async Task<Order> GetOrderByUserId(int userId)
+        {
+            var order = await _orderRepository.GetOrderByUserId(userId);
+            if (order == null)
+            {
+                throw new Exception("Order not found");
+            }
+            return order;
         }
     }
 }
