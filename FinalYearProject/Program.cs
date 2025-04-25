@@ -34,17 +34,17 @@ builder.Services.AddSession(options =>
 // Dependency injecting interface and class
 // Singleton - one object to inject 
 // Transient - every call will be a new object (creates service class every time it needs it)
-builder.Services.AddTransient<IBakeRepository, BakeRepository>();
+builder.Services.AddScoped<IBakeRepository, BakeRepository>();
 builder.Services.AddTransient<IBakeService, BakeService>();
 
-builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddSingleton<IChatService, ChatService>();
-builder.Services.AddTransient<IBasketRepository, BasketRepository>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddTransient<IBasketService, BasketService>();
-builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
-builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 
 var app = builder.Build();

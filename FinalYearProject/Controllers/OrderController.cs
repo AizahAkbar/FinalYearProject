@@ -66,7 +66,15 @@ namespace FinalYearProject.Controllers
                 return View("DeliveryInformation", model);
             }
 
-            _orderService.AddOrder(model);
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (!userId.HasValue)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            await _orderService.AddDeliveryInformation(model);
+
+            await _orderService.AddOrder(model, userId.Value);
 
             return RedirectToAction("PaymentView");
         }
@@ -79,13 +87,9 @@ namespace FinalYearProject.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            //var deliveryInfo = TempData.Peek("DeliveryInformation") as DeliveryInformation;
-            //if (deliveryInfo == null)
-            //{
-            //    return RedirectToAction("DeliveryInformation");
-            //}
+            var order = await _orderService.GetOrderByUserId(userId.Value);
 
-            var viewModel = await _paymentService.PreparePaymentViewModel(userId.Value, new DeliveryInformation());
+            var viewModel = await _paymentService.PreparePaymentViewModel(userId.Value, order.DeliveryInformation);
             return View("Payment", viewModel);
         }
 
@@ -188,7 +192,8 @@ namespace FinalYearProject.Controllers
             var paymentModel = new PaymentViewModel
             {
                 Basket = await _basketService.GetBasketByUserId(userId.Value),
-                DeliveryInformation = order.DeliveryInformation
+                DeliveryInformation = order.DeliveryInformation,
+                TotalAmount = order.TotalAmount,
             };
 
             return View(paymentModel);

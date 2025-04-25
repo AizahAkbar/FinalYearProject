@@ -5,7 +5,9 @@ namespace FinalYearProject.Services
 {
     public interface IOrderService
     {
-        void AddOrder(DeliveryInformationViewModel deliveryInformationViewModel);
+        Task AddDeliveryInformation(DeliveryInformationViewModel deliveryInformationViewModel);
+        Task AddOrder(DeliveryInformationViewModel deliveryInformationViewModel, int userId);
+        Task<DeliveryInformation> GetDeliveryInformation(string firstname);
         Task<Order> GetOrder();
         Task<Order> GetOrderByUserId(int userId);
     }
