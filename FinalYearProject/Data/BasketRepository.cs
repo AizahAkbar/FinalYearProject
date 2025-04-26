@@ -31,5 +31,16 @@ namespace FinalYearProject.Data
             await _context.SaveChangesAsync();
             return basket;
         }
+
+        public async Task EmptyBasket(int userId)
+        {
+            var basket = await GetBasketByUserId(userId);
+            if (basket != null)
+            {
+                basket.Bakes = "[]"; // or set to an empty list
+                _context.Basket.Update(basket);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

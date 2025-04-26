@@ -42,7 +42,6 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddSingleton<IChatService, ChatService>();
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddTransient<IBasketService, BasketService>();
-builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderService, OrderService>();

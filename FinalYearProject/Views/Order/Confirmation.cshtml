@@ -10,11 +10,11 @@
                         <i class="fas fa-check-circle fa-2x mb-3"></i>
                         <p>Thank you for your order. Your order has been successfully placed.</p>
                     </div>
-                    
+
                     <div class="order-details mt-4">
                         <h4>Order Summary</h4>
-                        <p class="text-muted">Order Number: #@Model.Payment.OrderId</p>
-                        
+                        <p class="text-muted">Order Number: #@Model.OrderId</p>
+
                         <div class="table-responsive mt-4">
                             <table class="table">
                                 <thead>
@@ -64,7 +64,9 @@
     .order-details {
         text-align: left;
     }
+
     .fa-check-circle {
         color: #28a745;
+
     }
 </style>

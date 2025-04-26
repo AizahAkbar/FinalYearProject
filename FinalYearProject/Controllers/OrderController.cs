@@ -93,77 +93,6 @@ namespace FinalYearProject.Controllers
             return View("Payment", viewModel);
         }
 
-        public async Task<IActionResult> BillingInformation()
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue)
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            var deliveryInfo = TempData.Peek("DeliveryInformation") as DeliveryInformation;
-            if (deliveryInfo == null)
-            {
-                return RedirectToAction("DeliveryInformation");
-            }
-
-            var basket = await _basketService.GetBasketByUserId(userId.Value);
-            if (basket == null || basket.Bakes == null || !basket.Bakes.Any())
-            {
-                return RedirectToAction("Index", "Basket");
-            }
-
-            var viewModel = new BillingInformationViewModel
-            {
-                DeliveryInformation = deliveryInfo,
-                Basket = basket,
-                BillingInformation = new BillingInformation()
-            };
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> BillingInformation(BillingInformationViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            // Store billing information in TempData
-            TempData["BillingInformation"] = model.BillingInformation;
-
-            return RedirectToAction("Payment");
-        }
-
-        public async Task<IActionResult> ProcessPayment(PaymentViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("Payment", model);
-            }
-
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue)
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            try
-            {
-                var payment = await _paymentService.ProcessPayment(model.Payment);
-                // Clear the basket after successful payment
-                // Redirect to order confirmation page
-                return RedirectToAction("Confirmation", new { orderId = payment.OrderId });
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", "An error occurred while processing your payment. Please try again.");
-                return View("Payment", model);
-            }
-        }
-
         public async Task<IActionResult> CreatePaymentIntent(string amount)
         {
             try
@@ -193,10 +122,24 @@ namespace FinalYearProject.Controllers
             {
                 Basket = await _basketService.GetBasketByUserId(userId.Value),
                 DeliveryInformation = order.DeliveryInformation,
-                TotalAmount = order.TotalAmount,
+                DeliveryCost = GetDeliveryCost(order.DeliveryInformation.DeliveryMethod),
+                SubTotal = order.TotalAmount,
+                TotalAmount = order.TotalAmount + GetDeliveryCost(order.DeliveryInformation.DeliveryMethod),
+                OrderId = order.Id,
             };
+
+            await _basketService.EmptyBasket(userId.Value);
 
             return View(paymentModel);
         }
+
+        private decimal GetDeliveryCost(string deliveryMethod)
+        {
+            if (Enum.TryParse<DeliveryMethodEnum>(deliveryMethod, true, out var method))
+            {
+                return (int)method / 100m; // Convert from pence to pounds
+            }
+            return 3.99m; // Default to standard delivery if method not recognized
+        }
     }
 }

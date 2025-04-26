@@ -8,5 +8,6 @@ namespace FinalYearProject.Services
         Task<BasketFrontEnd> GetBasketByUserId(int userId);
         Task<BasketFrontEnd> DeleteFromBasket(int userId, int bakeId);
         Task<BasketFrontEnd> UpdateToBasket(int userId, int bakeId, int quantity);
+        Task EmptyBasket(int userId);
     }
 }

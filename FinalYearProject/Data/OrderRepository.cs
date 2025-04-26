@@ -20,7 +20,25 @@ namespace FinalYearProject.Data
 
         public async Task AddDeliveryInformation(DeliveryInformation deliveryInformation)
         {
-            _context.DeliveryInformation.Add(deliveryInformation);
+            var existingInformation = await GetDeliveryInformation(deliveryInformation.FirstName);
+
+            if (existingInformation != null)
+            {
+                // Copy new values to existing entity
+                existingInformation.LastName = deliveryInformation.LastName;
+                existingInformation.PhoneNumber = deliveryInformation.PhoneNumber;
+                existingInformation.Country = deliveryInformation.Country;
+                existingInformation.PostCode = deliveryInformation.PostCode;
+                existingInformation.StreetAddress = deliveryInformation.StreetAddress;
+                existingInformation.DeliveryMethod = deliveryInformation.DeliveryMethod;
+                existingInformation.PreferredDeliveryDate = deliveryInformation.PreferredDeliveryDate;
+
+                _context.DeliveryInformation.Update(existingInformation);
+            }
+            else
+            {
+                _context.DeliveryInformation.Add(deliveryInformation);
+            }
             await _context.SaveChangesAsync();
         }
 
@@ -34,7 +52,7 @@ namespace FinalYearProject.Data
             return await _context.Order
                 .Include(x => x.User)
                 .Include(x => x.DeliveryInformation)
-                .OrderByDescending(x => x.OrderDate)
+                .OrderBy(x => x.OrderDate)
                 .LastOrDefaultAsync(x => x.UserId == userId);
         }
 

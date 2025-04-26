@@ -71,15 +71,6 @@ namespace FinalYearProject.Services
             return deliveryInformation;
         }
 
-        public async Task<Order> GetOrder()
-        {
-            var order = await _orderRepository.GetOrder();
-            if (order == null)
-            {
-                throw new Exception("Order not found");
-            }
-            return order;
-        }
         public async Task<Order> GetOrderByUserId(int userId)
         {
             var order = await _orderRepository.GetOrderByUserId(userId);

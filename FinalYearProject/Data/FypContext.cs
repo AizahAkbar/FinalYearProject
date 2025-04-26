@@ -9,7 +9,7 @@ namespace FinalYearProject.Data
 {
     public class FypContext : DbContext
     {
-        public FypContext (DbContextOptions<FypContext> options)
+        public FypContext(DbContextOptions<FypContext> options)
             : base(options)
         {
         }
@@ -20,6 +20,5 @@ namespace FinalYearProject.Data
         public DbSet<FinalYearProject.Models.User> User { get; set; } = default!;
         public DbSet<FinalYearProject.Models.Order> Order { get; set; } = default!;
         public DbSet<FinalYearProject.Models.DeliveryInformation> DeliveryInformation { get; set; } = default!;
-        public DbSet<FinalYearProject.Models.Payment> Payment { get; set; } = default!;
     }
 }
