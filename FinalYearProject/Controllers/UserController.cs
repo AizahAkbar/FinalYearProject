@@ -61,12 +61,11 @@ namespace FinalYearProject.Controllers
             return RedirectToAction("Index", "Bakes");
         }
 
-        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync("Cookies");
             HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Bakes");
         }
 
         [HttpGet]

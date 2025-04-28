@@ -33,32 +33,48 @@ namespace FinalYearProject.Services
         // Gets list of bakes from repository method
         // Maps to a list of type BakeFrontEnd
         // Returns
-        public IEnumerable<BakeFrontEnd> GetAllBakes()
+        public IEnumerable<BakeFrontEnd> GetAllBakes(string sortBy = null)
         {
             var bakes = _bakeRepository.GetAllBakes();
             var bakeFrontEnds = MapBakesToFrontEnd(bakes);
-            BakesCache.UpdateBakes(bakeFrontEnds);
-            return bakeFrontEnds;
+            var sortedBakes = SortBakes(bakeFrontEnds, sortBy);
+            BakesCache.UpdateBakes(sortedBakes);
+            return sortedBakes;
+        }
+
+        private IEnumerable<BakeFrontEnd> SortBakes(IEnumerable<BakeFrontEnd> bakes, string sortBy)
+        {
+            if (string.IsNullOrEmpty(sortBy))
+                return bakes;
+
+            return sortBy.ToLower() switch
+            {
+                "price" => bakes.OrderBy(b => b.Price),
+                "name" => bakes.OrderBy(b => b.Name),
+                _ => bakes
+            };
         }
 
 
-        public IEnumerable<BakeFrontEnd> GetBakesByCategory(string category)
+        public IEnumerable<BakeFrontEnd> GetBakesByCategory(string category, string sortBy = null)
         {
             var bakes = _bakeRepository.GetBakesByCategory(category);
-            return MapBakesToFrontEnd(bakes);
+            var mappedBakes = MapBakesToFrontEnd(bakes);
+            return SortBakes(mappedBakes, sortBy);
         }
 
-        public IEnumerable<BakeFrontEnd> SearchBakes(string query)
+        public IEnumerable<BakeFrontEnd> SearchBakes(string query, string sortBy = null)
         {
             if (string.IsNullOrEmpty(query))
-                return GetAllBakes();
+                return GetAllBakes(sortBy);
 
             var allBakes = _bakeRepository.GetAllBakes();
             var searchResults = allBakes.Where(b =>
                 b.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                 b.Description.Contains(query, StringComparison.OrdinalIgnoreCase));
 
-            return MapBakesToFrontEnd(searchResults);
+            var mappedResults = MapBakesToFrontEnd(searchResults);
+            return SortBakes(mappedResults, sortBy);
         }
 
         private IEnumerable<BakeFrontEnd> MapBakesToFrontEnd(IEnumerable<Bake> bakes)

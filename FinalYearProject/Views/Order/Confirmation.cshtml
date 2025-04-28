@@ -1,0 +1,72 @@
+@model FinalYearProject.ViewModels.PaymentViewModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4">Order Confirmed!</h2>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle fa-2x mb-3"></i>
+                        <p>Thank you for your order. Your order has been successfully placed.</p>
+                    </div>
+
+                    <div class="order-details mt-4">
+                        <h4>Order Summary</h4>
+                        <p class="text-muted">Order Number: #@Model.OrderId</p>
+
+                        <div class="table-responsive mt-4">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Basket.Bakes)
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>@item.Quantity</td>
+                                            <td>£@item.Price</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2" class="text-end"><strong>Total:</strong></td>
+                                        <td><strong>£@Model.TotalAmount</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="delivery-info mt-4">
+                            <h4>Delivery Information</h4>
+                            <p>Delivery Method: @Model.DeliveryInformation.DeliveryMethod</p>
+                            <p>Delivery Date: @Model.DeliveryInformation.PreferredDeliveryDate</p>
+                            <p>Address: @Model.DeliveryInformation.StreetAddress</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="@Url.Action("Index", "Bakes")" class="btn btn-primary">Continue Shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .order-details {
+        text-align: left;
+    }
+
+    .fa-check-circle {
+        color: #28a745;
+
+    }
+</style>

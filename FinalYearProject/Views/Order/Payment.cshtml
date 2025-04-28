@@ -1,7 +1,57 @@
-﻿@{
-    ViewData["Title"] = "Payment";
-}
+﻿@model FinalYearProject.ViewModels.PaymentViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Payment Page</h1>
+<div class="container mt-4">
+    <h2>Payment Information</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <a id="submitPay" class="btn btn-primary mt-3" asp-controller="Order" asp-action="CreatePaymentIntent" asp-route-amount="@Model.TotalAmount" method="post">
+                        <div class="spinner d-none" id="spinner"></div>
+                        <span id="button-text">Pay Now</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keep the existing order summary section -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order Summary</h5>
+                    @foreach (var item in Model.Basket.Bakes)
+                    {
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>@item.Name x @item.Quantity</span>
+                            <span>£@(item.Price * item.Quantity)</span>
+                        </div>
+                    }
+                    <hr />
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal:</span>
+                        <span>£@Model.SubTotal.ToString("F2")</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Delivery (@Model.DeliveryInformation.DeliveryMethod):</span>
+                        <span>£@Model.DeliveryCost.ToString("F2")</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <strong>Total Amount:</strong>
+                        <strong>£@Model.TotalAmount.ToString("F2")</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Delivery Information</h5>
+                    <p class="mb-1">Method: @Model.DeliveryInformation.DeliveryMethod</p>
+                    @* should be address whatever *@
+                    <p class="mb-1">Address: @Model.DeliveryInformation.StreetAddress</p>
+                    <p class="mb-0">Preferred Date: @Model.DeliveryInformation.PreferredDeliveryDate?.ToString("dd/MM/yyyy")</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

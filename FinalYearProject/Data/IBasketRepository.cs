@@ -7,5 +7,6 @@ namespace FinalYearProject.Data
         Task<Basket> GetBasketByUserId(int userId);
         Task<Basket> CreateBasket(Basket basket);
         Task<Basket> UpdateBasket(Basket basket);
+        Task EmptyBasket(int userId);
     }
 }

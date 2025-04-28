@@ -173,5 +173,10 @@ namespace FinalYearProject.Services
                 Bakes = bakes
             };
         }
+
+        public async Task EmptyBasket(int userId)
+        {
+            await _basketRepository.EmptyBasket(userId);
+        }
     }
 }

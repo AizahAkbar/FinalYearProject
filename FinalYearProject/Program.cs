@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.AI;
 using OpenAI;
 using OpenAI.Chat;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FypContext>(options =>
@@ -33,14 +34,17 @@ builder.Services.AddSession(options =>
 // Dependency injecting interface and class
 // Singleton - one object to inject 
 // Transient - every call will be a new object (creates service class every time it needs it)
-builder.Services.AddTransient<IBakeRepository, BakeRepository>();
+builder.Services.AddScoped<IBakeRepository, BakeRepository>();
 builder.Services.AddTransient<IBakeService, BakeService>();
 
-builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddSingleton<IChatService, ChatService>();
-builder.Services.AddTransient<IBasketRepository, BasketRepository>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddTransient<IBasketService, BasketService>();
+builder.Services.AddTransient<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 
 var app = builder.Build();
 

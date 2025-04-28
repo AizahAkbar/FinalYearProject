@@ -7,5 +7,6 @@ namespace FinalYearProject.Services
         Task<UserFrontEnd> Login(string email, string password);
         string HashPassword(string password);
         Task<RegisterFrontEnd> Register(RegisterFrontEnd registerFrontEnd);
+        Task<UserFrontEnd> GetUserById(int userId);
     }
 }

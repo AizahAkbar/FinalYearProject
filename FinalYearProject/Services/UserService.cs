@@ -21,7 +21,8 @@ namespace FinalYearProject.Services
             }
 
             var user = await _userRepository.GetUserByEmail(email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password)){
+            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password))
+            {
                 return null;
             }
             if (user == null)
@@ -65,11 +66,28 @@ namespace FinalYearProject.Services
             };
 
             var createdUser = await _userRepository.Register(user);
-            
+
             registerFrontEnd.Id = createdUser.Id;
             registerFrontEnd.Role = createdUser.Role;
-            
+
             return registerFrontEnd;
+        }
+
+        public async Task<UserFrontEnd> GetUserById(int userId)
+        {
+            var user = await _userRepository.GetUserById(userId);
+            if (user == null)
+            {
+                return null;
+            }
+            return new UserFrontEnd
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Role = user.Role
+            };
         }
     }
 }
