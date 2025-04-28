@@ -28,8 +28,18 @@
                 if (!string.IsNullOrEmpty(Context.Request.Query["query"]))
                     queryParams["query"] = Context.Request.Query["query"];
             }
-            <a href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=price")" class="btn sort-link @(Context.Request.Query["sortBy"] == "price" ? "active" : "")">Sort by Price</a>
-            <a href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=name")" class="btn sort-link @(Context.Request.Query["sortBy"] == "name" ? "active" : "")">Sort Alphabetically</a>
+            <a href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=price_asc")"
+               class="btn sort-link @(Context.Request.Query["sortBy"] == "price_asc" ? "active" : "")">
+                Price (Low to High)
+            </a>
+            <a href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=price_desc")"
+               class="btn sort-link @(Context.Request.Query["sortBy"] == "price_desc" ? "active" : "")">
+                Price (High to Low)
+            </a>
+            <a href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=name")"
+               class="btn sort-link @(Context.Request.Query["sortBy"] == "name" ? "active" : "")">
+                Sort Alphabetically
+            </a>
         </div>
     </div>
     <div class="bakes-grid">

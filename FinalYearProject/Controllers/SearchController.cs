@@ -6,6 +6,13 @@ namespace FinalYearProject.Controllers
 {
     public class SearchController : Controller
     {
+        private readonly IBakeService _service;
+
+        public SearchController(IBakeService service)
+        {
+            _service = service;
+        }
+
         [HttpGet]
         public IActionResult LiveSearch(string query)
         {
@@ -16,12 +23,6 @@ namespace FinalYearProject.Controllers
             return Json(results);
         }
 
-
-        private readonly IBakeService _service;
-        public SearchController(IBakeService service)
-        {
-            _service = service;
-        }
         public async Task<IActionResult> Index(string category = null, string query = null, string sortBy = null)
         {
             if (!string.IsNullOrEmpty(category))

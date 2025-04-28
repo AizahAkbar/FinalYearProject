@@ -49,7 +49,8 @@ namespace FinalYearProject.Services
 
             return sortBy.ToLower() switch
             {
-                "price" => bakes.OrderBy(b => b.Price),
+                "price_asc" => bakes.OrderBy(b => b.Price),
+                "price_desc" => bakes.OrderByDescending(b => b.Price),
                 "name" => bakes.OrderBy(b => b.Name),
                 _ => bakes
             };
@@ -70,8 +71,7 @@ namespace FinalYearProject.Services
 
             var allBakes = _bakeRepository.GetAllBakes();
             var searchResults = allBakes.Where(b =>
-                b.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
-                b.Description.Contains(query, StringComparison.OrdinalIgnoreCase));
+                b.Name.Contains(query, StringComparison.OrdinalIgnoreCase));
 
             var mappedResults = MapBakesToFrontEnd(searchResults);
             return SortBakes(mappedResults, sortBy);

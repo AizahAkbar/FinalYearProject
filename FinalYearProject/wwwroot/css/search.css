@@ -10,6 +10,7 @@
   align-items: center;
   margin-bottom: 2rem;
 }
+
 .search-header h1 {
   color: #2c3e50;
   font-size: 2.5rem;
@@ -31,10 +32,12 @@
   font-family: "Poppins", sans-serif;
   text-decoration: none;
 }
+
 .sort-link:hover {
   background-color: #8B4513;
   color: white !important;
 }
+
 .sort-link.active {
   background-color: #8b4513;
   color: #fff;
@@ -56,9 +59,11 @@
   text-align: center;
   text-decoration: none;
 }
+
 .bake-card:hover {
   transform: translateY(-5px);
 }
+
 .bake-card .bake-image {
   width: 100%;
   height: 200px;
@@ -74,11 +79,13 @@
   font-size: 1.25rem;
   color: #5c4434;
 }
+
 .bake-name a {
   color: #5c4434;
   text-decoration: none;
   transition: color 0.3s;
 }
+
 .bake-name a:hover {
   color: #8B4513;
 }

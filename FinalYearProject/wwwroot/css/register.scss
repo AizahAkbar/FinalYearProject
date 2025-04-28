@@ -53,7 +53,7 @@
     font-weight: 500;
     transition: background-color 0.3s;
 
-    .btn-primary {
+    &.btn-primary {
         background-color: #8B4513;
         color: white;
         margin-right: 10px;
