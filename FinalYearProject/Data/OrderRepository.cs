@@ -42,11 +42,6 @@ namespace FinalYearProject.Data
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Order> GetOrder()
-        {
-            return _context.Order.FirstOrDefault();
-        }
-
         public async Task<Order> GetOrderByUserId(int userId)
         {
             return await _context.Order

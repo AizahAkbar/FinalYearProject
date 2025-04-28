@@ -26,13 +26,6 @@ namespace FinalYearProject.Controllers
             {
                 return BadRequest("Message cannot be empty");
             }
-
-            //var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            //if (string.IsNullOrEmpty(userId))
-            //{
-            //    return Unauthorized();
-            //}
-
             try
             {
                 var response = await _chatService.SendMessageAsync("1", message);

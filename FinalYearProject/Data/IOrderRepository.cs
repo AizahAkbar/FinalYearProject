@@ -8,7 +8,6 @@ namespace FinalYearProject.Data
         Task AddDeliveryInformation(DeliveryInformation deliveryInformation);
         Task AddOrder(Order order);
         Task<DeliveryInformation> GetDeliveryInformation(string id);
-        Task<Order> GetOrder();
         Task<Order> GetOrderByUserId(int userId);
     }
 }

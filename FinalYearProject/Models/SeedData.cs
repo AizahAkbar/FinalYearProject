@@ -140,24 +140,10 @@ public static class SeedData
                     },
                     new Bake
                     {
-                        Name = "Banana Bread",
-                        Category = "Breads",
-                        Description = "Moist bread made with ripe bananas and a hint of vanilla, perfect for breakfast",
-                        Price = 6.5
-                    },
-                    new Bake
-                    {
                         Name = "Peanut Butter Brownies",
                         Category = "Brownies",
                         Description = "Fudgy brownies swirled with creamy peanut butter and topped with chocolate chips",
                         Price = 8.0
-                    },
-                    new Bake
-                    {
-                        Name = "Lemon Bars",
-                        Category = "Bars",
-                        Description = "Buttery shortbread crust topped with tangy lemon curd and dusted with powdered sugar",
-                        Price = 5.5
                     },
                     new Bake
                     {
