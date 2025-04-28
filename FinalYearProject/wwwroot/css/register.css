@@ -50,12 +50,12 @@
   font-weight: 500;
   transition: background-color 0.3s;
 }
-.btn .btn-primary {
+.btn.btn-primary {
   background-color: #8B4513;
   color: white;
   margin-right: 10px;
 }
-.btn .btn-primary:hover {
+.btn.btn-primary:hover {
   background-color: #5a4434;
 }
 

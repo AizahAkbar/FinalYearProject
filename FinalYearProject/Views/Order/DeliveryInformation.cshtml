@@ -3,6 +3,11 @@
     ViewData["Title"] = "Delivery Information";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/deliveryInformation.css" asp-append-version="true" />
+</head>
+
+
 <div class="container mt-4">
     <h2>Delivery Information</h2>
 
@@ -54,8 +59,12 @@
                             <label class="form-label">Address Lookup</label>
                             <div class="input-group">
                                 <input type="text" id="postcode" class="form-control" placeholder="Enter your postcode">
-                                <button type="button" class="btn btn-secondary" onclick="lookupAddress()">Find Address</button>
+                                <button type="button" class="btn btn-secondary find-address-button" onclick="lookupAddress()">Find Address</button>
                             </div>
+                            <!-- Add this select element for address suggestions -->
+                            <select id="address-select" class="form-select mt-2" style="display: none;">
+                                <option value="">Select an address...</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -96,14 +105,14 @@
                         </div>
                         <div class="mt-3" id="preferredDateContainer" style="display: none;">
                             <label class="form-label">Select Preferred Date</label>
-                            <input type="date" class="form-control" id="preferredDate" name="preferredDate">
+                            <input type="date" class="form-control" id="preferredDeliveryDate" name="preferredDeliveryDate">
                         </div>
                     </div>
                 </div>
 
                 <input type="hidden" name="basket" value="@Model.Basket" />
 
-                <button type="submit" class="btn btn-primary btn-lg w-100">Proceed to Billing</button>
+                <button type="submit" class="btn btn-primary btn-lg w-100 billing-button">Proceed to Billing</button>
             </form>
         </div>
 
@@ -170,11 +179,80 @@
             document.getElementById('total').textContent = `£${total.toFixed(2)}`;
         }
 
-        // Function to lookup address (to be implemented)
-        function lookupAddress() {
-            const postcode = document.getElementById('postcode').value;
-            // Implement address lookup logic here
-            alert('Address lookup functionality to be implemented');
+        // Function to lookup address using getAddress API
+        async function lookupAddress() {
+            const postcode = document.getElementById('postcode').value.trim();
+            if (!postcode) {
+                alert('Please enter a postcode');
+                return;
+            }
+
+            const addressSelect = document.getElementById('address-select');
+            const apiKey = 'zkk1K85ls0SG4LzOG_zohQ45948';
+            const url = `https://api.getaddress.io/autocomplete/${encodeURIComponent(postcode)}?api-key=${apiKey}&all=true`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.suggestions && data.suggestions.length > 0) {
+                    // Clear existing options except the first one
+                    addressSelect.innerHTML = '<option value="">Select an address...</option>';
+
+                    // Add new options
+                    data.suggestions.forEach(suggestion => {
+                        const option = document.createElement('option');
+                        option.value = suggestion.id;
+                        option.textContent = suggestion.address;
+                        addressSelect.appendChild(option);
+                    });
+
+                    // Show the select element
+                    addressSelect.style.display = 'block';
+
+                    // Handle address selection
+                    addressSelect.onchange = async function() {
+                        if (this.value) {
+                            const selectedId = this.value;
+                            const detailUrl = `https://api.getaddress.io/get/${selectedId}?api-key=${apiKey}`;
+
+                            try {
+                                const detailResponse = await fetch(detailUrl);
+                                const addressDetail = await detailResponse.json();
+
+                                // Get references to input elements first
+                                const countrySelect = document.getElementById('Country');
+                                const streetAddressInput = document.getElementById('StreetAddress');
+                                const addressLine2Input = document.querySelector('input[placeholder="Address Line 2"]');
+                                const cityInput = document.getElementById('City');
+                                const postcodeInput = document.getElementById('PostCode');
+
+                                // Set the country to UK since the API is UK-specific
+                                if (countrySelect) {
+                                    countrySelect.value = 'UK';
+                                }
+
+                                // Only set values if elements exist
+                                if (streetAddressInput) streetAddressInput.value = addressDetail.formatted_address[0] || '';
+                                if (addressLine2Input) addressLine2Input.value = addressDetail.formatted_address[1] || '';
+                                if (cityInput) cityInput.value = addressDetail.town_or_city || '';
+                                if (postcodeInput) postcodeInput.value = addressDetail.postcode || '';
+
+                                } catch (error) {
+                                    console.error('Error fetching address details:', error);
+                                    alert('Error retrieving address details. Please try again or enter manually.');
+                                }
+                            }
+                    };
+                } else {
+                    addressSelect.style.display = 'none';
+                    alert('No addresses found for this postcode');
+                }
+            } catch (error) {
+                console.error('Error fetching address:', error);
+                addressSelect.style.display = 'none';
+                alert('Error looking up address. Please try again or enter manually.');
+            }
         }
 
         // Load order items and calculate total (to be implemented)

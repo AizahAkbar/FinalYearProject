@@ -24,7 +24,7 @@
                     {
                         <div class="d-flex justify-content-between mb-2">
                             <span>@item.Name x @item.Quantity</span>
-                            <span>£@(item.Price * item.Quantity)</span>
+                            <span>£@((item.Price * item.Quantity).ToString("F2"))</span>
                         </div>
                     }
                     <hr />
@@ -49,7 +49,10 @@
                     <p class="mb-1">Method: @Model.DeliveryInformation.DeliveryMethod</p>
                     @* should be address whatever *@
                     <p class="mb-1">Address: @Model.DeliveryInformation.StreetAddress</p>
-                    <p class="mb-0">Preferred Date: @Model.DeliveryInformation.PreferredDeliveryDate?.ToString("dd/MM/yyyy")</p>
+                    @if (Model.DeliveryInformation.PreferredDeliveryDate.HasValue)
+                    {
+                        <p class="mb-0">Preferred Date: @Model.DeliveryInformation.PreferredDeliveryDate?.ToString("dd/MM/yyyy")</p>
+                    }
                 </div>
             </div>
         </div>

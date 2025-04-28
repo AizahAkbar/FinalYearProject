@@ -1,6 +1,9 @@
 ﻿$(document).ready(function () {
     let isOpen = false;
 
+    // Initialize chat state
+    $('#chatContainer').hide();
+
     $('#chatToggle').click(function () {
         isOpen = !isOpen;
         $('#chatContainer').slideToggle();

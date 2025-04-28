@@ -16,6 +16,21 @@
     </div>
     <div class="product-details">
         <h1 class="product-title">@Model.Name</h1>
+        <!-- Add average rating display -->
+        <div class="average-rating">
+            @for (int i = 1; i <= 5; i++)
+            {
+                if (i <= Model.AverageRating)
+                {
+                    <i class="fas fa-star text-warning"></i>
+                }
+                else
+                {
+                    <i class="far fa-star text-warning"></i>
+                }
+            }
+            <span>(@Model.ReviewCount reviews)</span>
+        </div>
         <div class="product-price">
             £@Model.Price.ToString("F2")
         </div>
@@ -33,6 +48,7 @@
         </div>
         <div style="margin-top: 2rem;">
             <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            <a asp-controller="Review" asp-action="Create" asp-route-bakeId="@Model.Id" class="btn btn-secondary">Write a Review</a>
         </div>
     </div>
 </div>

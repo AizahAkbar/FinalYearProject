@@ -11,11 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Cookie&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="top-bar">
-            
         </div>
         <nav class="navbar navbar-top navbar-expand-lg">
             <div class="container-fluid">
@@ -24,49 +24,49 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> *@
-                
+
                 @* <div class="collapse navbar-collapse" id="navbarContent"> *@
-                    <!-- Search Bar with Icon -->
-                    <form class="d-flex mx-lg-auto my-2 my-lg-0" action="/search" method="GET">
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="query">
-                            <button class="btn btn-outline-secondary search-icon" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-
-                    <div class="ms-lg-2 d-flex align-items-center">
-                        <div class="account-button me-2">
-                            @if (Context.Session.GetInt32("UserId") != null)
-                            {
-                                <div class="dropdown">
-                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-user"></i>
-                                        <span class="d-none d-sm-inline">Welcome @Context.Session.GetString("UserName")</span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                        <li><a class="dropdown-item" asp-controller="User" asp-action="Index">View Account</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a></li>
-                                    </ul>
-                                </div>
-                            }
-                            else
-                            {
-                                <a asp-controller="User" asp-action="Login" class="btn btn-outline-secondary">
-                                    <i class="fas fa-user"></i>
-                                    <span class="d-none d-sm-inline">Log in</span>
-                                </a>
-                            }
-                        </div>
-
-                        <div class="basket-button">
-                            <a asp-controller="Basket" asp-action="Index" class="btn btn-outline-secondary">
-                                <i class="fas fa-shopping-basket"></i>
-                            </a>
-                        </div>
+                <!-- Search Bar with Icon -->
+                <form class="d-flex mx-lg-auto my-2 my-lg-0" action="/search" method="GET">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="query">
+                        <button class="btn btn-outline-secondary search-icon" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
+                </form>
+
+                <div class="ms-lg-2 d-flex align-items-center">
+                    <div class="account-button me-2">
+                        @if (Context.Session.GetInt32("UserId") != null)
+                        {
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user"></i>
+                                    <span class="d-none d-sm-inline">Welcome @Context.Session.GetString("UserName")</span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" asp-controller="User" asp-action="Index">View Account</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <a asp-controller="User" asp-action="Login" class="btn btn-outline-secondary">
+                                <i class="fas fa-user"></i>
+                                <span class="d-none d-sm-inline">Log in</span>
+                            </a>
+                        }
+                    </div>
+
+                    <div class="basket-button">
+                        <a asp-controller="Basket" asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="fas fa-shopping-basket"></i>
+                        </a>
+                    </div>
+                </div>
                 @* </div> *@
             </div>
             </div>
@@ -106,19 +106,19 @@
                         <li class="nav-item">
                             <a class="nav-link nav-link-bottom" asp-route-category="Pies" asp-controller="Search" asp-action="Index">Pies</a>
                         </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-bottom dropdown-toggle" href="#" id="giftsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gifts
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="giftsDropdown">
-                            <li><a class="dropdown-item" asp-route-category="GiftsForHer" asp-controller="Search" asp-action="Index">Gifts for Her</a></li>
-                            <li><a class="dropdown-item" asp-route-category="GiftsForHim" asp-controller="Search" asp-action="Index">Gifts for Him</a></li>
-                            <li><a class="dropdown-item" asp-route-category="BirthdayGifts" asp-controller="Search" asp-action="Index">Birthday Gifts</a></li>
-                            <li><a class="dropdown-item" asp-route-category="SpecialOccasions" asp-controller="Search" asp-action="Index">Special Occasions</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-bottom dropdown-toggle" href="#" id="giftsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gifts
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="giftsDropdown">
+                                <li><a class="dropdown-item" asp-route-category="GiftsForHer" asp-controller="Search" asp-action="Index">Gifts for Her</a></li>
+                                <li><a class="dropdown-item" asp-route-category="GiftsForHim" asp-controller="Search" asp-action="Index">Gifts for Him</a></li>
+                                <li><a class="dropdown-item" asp-route-category="BirthdayGifts" asp-controller="Search" asp-action="Index">Birthday Gifts</a></li>
+                                <li><a class="dropdown-item" asp-route-category="SpecialOccasions" asp-controller="Search" asp-action="Index">Special Occasions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
         </nav>
 
 
