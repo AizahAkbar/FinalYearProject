@@ -39,49 +39,55 @@ body {
     width: 100%;
 }
 
+.btn-outline-secondary:focus {
+    outline: 3px solid #8B4513;
+    outline-offset: -3px !important;
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
+}
+
 .navbar {
     padding: 1rem 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    
+
     &-top {
         background: $secondary-color;
-        
+
         .navbar-brand {
             font-family: $font-accent;
             font-size: 1.8rem;
             color: $accent-color !important;
             margin-right: 1rem;
-            
+
             &:hover {
                 opacity: 0.9;
             }
         }
-        
+
         .form-control {
             max-width: 300px;
         }
-        
+
         @media (max-width: 991px) {
             .navbar-collapse {
                 margin-top: 1rem;
             }
-            
+
             .form-control {
                 width: 100%;
                 max-width: none;
             }
         }
     }
-    
+
     &-bottom {
         background: $primary-color;
         padding: 0;
-        
+
         .navbar-toggler {
             margin: 0.5rem 1rem;
             border-color: $accent-color;
         }
-        
+
         @media (max-width: 991px) {
             .navbar-collapse {
                 padding: 1rem;
@@ -143,6 +149,12 @@ body {
     }
 }
 
+input[type="search"]:focus {
+    outline: 3px solid #8B4513;
+    outline-offset: -3px !important;
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
+}
+
 .navbar-nav {
     &-bottom {
         flex-direction: row;
@@ -186,11 +198,16 @@ body {
 }
 
 // Buttons and Forms
-.btn {
+.btn[type="submit"] {
+    font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s ease;
     font-family: $font-button;
+
+    &.search-icon {
+        border: 1px solid #8B4513 !important;
+    }
 
     &-outline-secondary {
         border-color: $accent-color;
@@ -202,6 +219,10 @@ body {
             color: white;
         }
     }
+}
+
+a.btn.btn-outline-secondary.login {
+    border: 1px solid;
 }
 
 .form-control {
@@ -217,6 +238,12 @@ body {
 
 button.btn.btn-outline-secondary.search-icon {
     border-radius: 0px 4px 4px 0px !important;
+
+    &:focus {
+        outline: 3px solid #8B4513;
+        outline-offset: -3px !important;
+        box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
+    }
 }
 // Container and Layout
 .container {

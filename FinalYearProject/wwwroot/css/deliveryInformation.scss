@@ -5,17 +5,59 @@
     background-color: #8B4513;
     border-color: #8B4513;
 }
+
+.form-control:focus {
+    outline: 3px solid #8B4513;
+    outline-offset: -3px !important;
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
+}
+
+.form-select {
+    border: 1px solid #8B4513;
+
+    &:focus {
+        outline: 3px solid #8B4513 !important;
+        outline-offset: -3px !important;
+        box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
+    }
+}
+
 .billing-button {
     background-color: #8B4513;
     border: 1px solid transparent;
+
+    &:hover {
+        background-color: #5e2f0d;
+    }
+
+    &:focus {
+        background-color: #5e2f0d;
+        outline: 3px solid black;
+        outline-offset: -3px !important;
+        box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5) !important;
+    }
 }
+
 .find-address-button {
     background-color: #8B4513;
     border: 1px solid transparent;
+
+    &:hover {
+        background-color: #5e2f0d;
+    }
+
+    &:focus {
+        background-color: #5e2f0d;
+        outline: 3px solid black;
+        outline-offset: -3px !important;
+        box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5) !important;
+    }
 }
+
 .card {
     border-color: #8B4513;
 }
+
 .card-header {
     background-color: #e9cbb2;
 }

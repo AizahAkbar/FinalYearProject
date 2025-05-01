@@ -27,26 +27,36 @@
                     queryParams["category"] = Context.Request.Query["category"];
                 if (!string.IsNullOrEmpty(Context.Request.Query["query"]))
                     queryParams["query"] = Context.Request.Query["query"];
+                
+                var currentSort = Context.Request.Query["sortBy"];
+                var currentSortText = currentSort.ToString() switch
+                {
+                    "price_asc" => "Price (Low to High)",
+                    "price_desc" => "Price (High to Low)",
+                    "name" => "Sort Alphabetically",
+                    _ => "Sort By"
+                };
             }
-            <a href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=price_asc")"
-               class="btn sort-link @(Context.Request.Query["sortBy"] == "price_asc" ? "active" : "")">
-                Price (Low to High)
-            </a>
-            <a href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=price_desc")"
-               class="btn sort-link @(Context.Request.Query["sortBy"] == "price_desc" ? "active" : "")">
-                Price (High to Low)
-            </a>
-            <a href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=name")"
-               class="btn sort-link @(Context.Request.Query["sortBy"] == "name" ? "active" : "")">
-                Sort Alphabetically
-            </a>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle sort-dropdown" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    @currentSortText
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                    <li><a class="dropdown-item @(currentSort == "price_asc" ? "active" : "")" 
+                          href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=price_asc")">Price (Low to High)</a></li>
+                    <li><a class="dropdown-item @(currentSort == "price_desc" ? "active" : "")" 
+                          href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=price_desc")">Price (High to Low)</a></li>
+                    <li><a class="dropdown-item @(currentSort == "name" ? "active" : "")" 
+                          href="@($"?{string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"))}&sortBy=name")">Sort Alphabetically</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="bakes-grid">
         @foreach (var item in Model)
         {
             <a asp-controller="Bakes" asp-action="Details" asp-route-id="@item.Id" class="bake-card">
-                <img src="~/images/@(item.Name).jpg" alt="@item.Name" class="bake-image" />
+                <img src="~/images/@(item.Name).jpg" alt="@item.AltText" class="bake-image" />
                 <div class="bake-card-content">
                     <h3 class="bake-name">
                         @Html.DisplayFor(modelItem => item.Name)
@@ -56,3 +66,4 @@
             </a>
         }
     </div>
+</div>

@@ -16,10 +16,10 @@
 <section class="featured-section">
     <h2>Featured Treats</h2>
     <div class="bakes-grid">
-        @foreach (var item in Model.Take(3))
+        @foreach (var item in Model.Where(b => b.Name == "Strawberry Shortcake" || b.Name == "Snickerdoodle Cookie" || b.Name == "Chocolate Chip Cookie"))
         {
             <a asp-action="Details" asp-route-id="@item.Id" class="bake-card">
-                <img src="~/images/@(item.Name).jpg" alt="@item.Name" class="bake-image" />
+                <img src="~/images/@(item.Name).jpg" alt="@item.AltText" class="bake-image" />
                 <div class="bake-card-content">
                     <h3 class="bake-name">
                         @Html.DisplayFor(modelItem => item.Name)

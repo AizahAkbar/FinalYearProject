@@ -76,6 +76,11 @@
 .product-container .product-details .product-actions .add-to-cart:hover {
   background: #5e2f0d;
 }
+.product-container .product-details .product-actions .add-to-cart:focus {
+  outline: 3px solid black;
+  outline-offset: -3px !important;
+  box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5) !important;
+}
 
 .btn {
   padding: 10px 20px;
@@ -89,10 +94,46 @@
   margin-bottom: 0;
 }
 
+a.btn.btn-outline-secondary.login {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid;
+}
+
+a.btn.btn-outline-secondary.basket {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid;
+}
+
+button#userDropdown {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid;
+}
+
 .btn-primary {
   background-color: #8B4513;
   color: white;
   margin-right: 10px;
+}
+.btn-primary:hover {
+  background-color: #5e2f0d !important;
+}
+.btn-primary:focus {
+  background-color: #5e2f0d;
+  outline: 3px solid black;
+  outline-offset: -3px !important;
+  box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5) !important;
 }
 
 .btn-primary:hover {

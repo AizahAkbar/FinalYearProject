@@ -16,6 +16,7 @@
             {
                 <div class="basket-item">
                     <form class="item-details" asp-controller="Basket" asp-action="UpdateToBasket" method="post">
+                        <img src="~/images/@(bake.Name).jpg" alt="@bake.AltText" class="item-image" />
                         <input type="hidden" name="bakeId" id="bakeId" value="@bake.Id" />
                         <h3 class="item-name">@bake.Name</h3>
                         <p class="item-category">@bake.Category</p>

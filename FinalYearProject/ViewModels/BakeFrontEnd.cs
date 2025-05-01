@@ -17,5 +17,6 @@ namespace FinalYearProject.ViewModels
         public int Quantity { get; set; } = 1;
         public double AverageRating { get; set; }
         public int ReviewCount { get; set; }
+        public string AltText { get; set; }
     }
 }

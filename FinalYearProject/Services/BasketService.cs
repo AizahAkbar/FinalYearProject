@@ -95,7 +95,8 @@ namespace FinalYearProject.Services
                             Name = bake.Name,
                             Description = bake.Description,
                             Price = bake.Price,
-                            Quantity = quantity
+                            Quantity = quantity,
+                            AltText = bake.AltText
                         }
                     })
                 };
@@ -118,7 +119,8 @@ namespace FinalYearProject.Services
                         Name = bake.Name,
                         Description = bake.Description,
                         Price = bake.Price,
-                        Quantity = quantity
+                        Quantity = quantity,
+                        AltText = bake.AltText
                     });
                 }
 
@@ -132,7 +134,8 @@ namespace FinalYearProject.Services
                 Description = bake.Description,
                 Id = bake.Id,
                 Name = bake.Name,
-                Price = bake.Price
+                Price = bake.Price,
+                AltText = bake.AltText
             };
         }
 

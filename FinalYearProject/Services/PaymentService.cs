@@ -76,7 +76,7 @@ namespace FinalYearProject.Services
                 PriceData = new SessionLineItemPriceDataOptions
                 {
                     Currency = currency,
-                    UnitAmount = (long)(GetDeliveryCost(order.DeliveryInformation.DeliveryMethod) * 100), // Convert to cents
+                    UnitAmount = (long)(GetDeliveryCost(order.DeliveryInformation.DeliveryMethod) * 100), // Convert to pence
                     ProductData = new SessionLineItemPriceDataProductDataOptions
                     {
                         Name = $"Delivery ({order.DeliveryInformation.DeliveryMethod})",
