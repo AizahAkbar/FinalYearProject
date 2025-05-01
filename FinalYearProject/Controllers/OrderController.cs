@@ -98,7 +98,7 @@ namespace FinalYearProject.Controllers
             try
             {
                 decimal decimalAmount = decimal.Parse(amount);
-                long amountInCents = (long)(decimalAmount * 100);
+                long amountInPence = (long)(decimalAmount * 100);
 
                 var userId = HttpContext.Session.GetInt32("UserId");
                 if (!userId.HasValue)
@@ -106,7 +106,7 @@ namespace FinalYearProject.Controllers
                     return RedirectToAction("Login", "User");
                 }
 
-                var paymentIntent = _paymentService.CreatePaymentIntent(amountInCents, userId.Value, "gbp");
+                var paymentIntent = _paymentService.CreatePaymentIntent(amountInPence, userId.Value, "gbp");
                 return Redirect(paymentIntent.Url);
             }
             catch (Exception ex)

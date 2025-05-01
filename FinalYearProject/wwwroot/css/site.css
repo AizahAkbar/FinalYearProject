@@ -25,6 +25,12 @@ body {
   width: 100%;
 }
 
+.btn-outline-secondary:focus {
+  outline: 3px solid #8B4513;
+  outline-offset: -3px !important;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
+}
+
 .navbar {
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -116,6 +122,12 @@ body {
   margin: 0;
 }
 
+input[type=search]:focus {
+  outline: 3px solid #8B4513;
+  outline-offset: -3px !important;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
+}
+
 .navbar-nav-bottom {
   flex-direction: row;
   justify-content: center;
@@ -152,10 +164,14 @@ body {
 }
 
 .btn {
+  font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: all 0.3s ease;
   font-family: "Poppins", sans-serif;
+}
+.btn.search-icon {
+  border: 1px solid #8B4513 !important;
 }
 .btn-outline-secondary {
   border-color: #8B4513;
@@ -179,6 +195,11 @@ body {
 
 button.btn.btn-outline-secondary.search-icon {
   border-radius: 0px 4px 4px 0px !important;
+}
+button.btn.btn-outline-secondary.search-icon:focus {
+  outline: 3px solid #8B4513;
+  outline-offset: -3px !important;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
 }
 
 .container {
@@ -221,4 +242,4 @@ button.btn.btn-outline-secondary.search-icon {
   }
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAUQ;AAGR;EACI;EACA;EACA;EACA;;;AAGJ;EACI;IACI;;;AAIR;EACI;EACA,aAvBW;EAwBX,YA3Bc;EA4Bd,OA1BS;EA2BT;;;AAIJ;EACI,YAnCY;EAoCZ;EACA;;;AAGJ;EACI;EACA;;AAEA;EACI,YA5CU;;AA8CV;EACI,aA3CE;EA4CF;EACA;EACA;;AAEA;EACI;;AAIR;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;IACA;;;AAKZ;EACI,YA3EQ;EA4ER;;AAEA;EACI;EACA,cA9EG;;AAiFP;EACI;IACI;;;;AAKhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA,OA5GS;EA6GT;;AAEA;EACI,kBAlHU;;AAqHd;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;;AAEA;EACI,aA7HE;EA8HF,OAjIG;EAkIH;EACA;;AAGJ;EACI,OAtIC;EAuID;EACA;;;AAMR;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA,OAvJK;EAwJL,aAtJM;EAuJN;EACA;;AAEA;EACI,OA9JG;;AAkKX;EACI;EACA;EACA,YAtKU;EAuKV;EACA;EACA;EACA;;AAGJ;EACI,OA5KK;EA6KL,aA3KM;EA4KN;;AAEA;EACI,kBApLI;EAqLJ,OAnLG;;;AAyLf;EACI;EACA;EACA;EACA,aAzLU;;AA2LV;EACI,cAhMO;EAiMP,OAjMO;EAkMP;;AAEA;EACI,kBArMG;EAsMH;;;AAKZ;EACI;EACA;EACA;;AAEA;EACI,cAjNO;EAkNP;;;AAIR;EACI;;;AAGJ;EACI;EACA;EACA;;;AAIJ;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;EACI;;;AAGJ;EACI;;;AAIJ;EACI;IACI;;EAGJ;IACI;IACA%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Code/FinalYearProjectSolution/FinalYearProject/wwwroot/css/site.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAUQ;AAGR;EACI;EACA;EACA;EACA;;;AAGJ;EACI;IACI;;;AAIR;EACI;EACA,aAvBW;EAwBX,YA3Bc;EA4Bd,OA1BS;EA2BT;;;AAIJ;EACI,YAnCY;EAoCZ;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;;AAEA;EACI,YAlDU;;AAoDV;EACI,aAjDE;EAkDF;EACA;EACA;;AAEA;EACI;;AAIR;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;IACA;;;AAKZ;EACI,YAjFQ;EAkFR;;AAEA;EACI;EACA,cApFG;;AAuFP;EACI;IACI;;;;AAKhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA,OAlHS;EAmHT;;AAEA;EACI,kBAxHU;;AA2Hd;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;;AAEA;EACI,aAnIE;EAoIF,OAvIG;EAwIH;EACA;;AAGJ;EACI,OA5IC;EA6ID;EACA;;;AAKZ;EACI;EACA;EACA;;;AAIA;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA,OAnKK;EAoKL,aAlKM;EAmKN;EACA;;AAEA;EACI,OA1KG;;AA8KX;EACI;EACA;EACA,YAlLU;EAmLV;EACA;EACA;EACA;;AAGJ;EACI,OAxLK;EAyLL,aAvLM;EAwLN;;AAEA;EACI,kBAhMI;EAiMJ,OA/LG;;;AAqMf;EACI;EACA;EACA;EACA;EACA,aAtMU;;AAwMV;EACI;;AAGJ;EACI,cAjNO;EAkNP,OAlNO;EAmNP;;AAEA;EACI,kBAtNG;EAuNH;;;AAKZ;EACI;EACA;EACA;;AAEA;EACI,cAlOO;EAmOP;;;AAIR;EACI;;AAEA;EACI;EACA;EACA;;;AAIR;EACI;EACA;EACA;;;AAIJ;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;EACI;;;AAGJ;EACI;;;AAIJ;EACI;IACI;;EAGJ;IACI;IACA%22%7D */

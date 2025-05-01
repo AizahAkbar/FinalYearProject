@@ -12,7 +12,7 @@
 }
 
 .search-header h1 {
-  color: #2c3e50;
+  color: #5c4434;
   font-size: 2.5rem;
   margin: 0;
 }
@@ -31,6 +31,38 @@
   transition: all 0.3s ease;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
+}
+.sort-link:focus {
+  background-color: #8B4513;
+  color: white !important;
+  outline: 3px solid black;
+  outline-offset: -3px !important;
+  box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5) !important;
+}
+
+#sortDropdown {
+  border-color: #8B4513;
+  color: #8B4513;
+  margin: 0px 5px;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+#sortDropdown:focus {
+  background-color: #8B4513;
+  color: white !important;
+  outline: 3px solid black;
+  outline-offset: -3px !important;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3) !important;
+}
+
+.dropdown-item:hover {
+  background-color: #F5E7DB;
+}
+.dropdown-item:focus {
+  background-color: #F5E7DB;
 }
 
 .sort-link:hover {
@@ -58,6 +90,11 @@
   transition: transform 0.2s;
   text-align: center;
   text-decoration: none;
+}
+.bake-card:focus {
+  outline: 3px solid #5c4434;
+  outline-offset: -3px !important;
+  box-shadow: 0 0 0 3px rgba(92, 68, 52, 0.3) !important;
 }
 
 .bake-card:hover {

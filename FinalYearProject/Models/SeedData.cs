@@ -21,232 +21,238 @@ public static class SeedData
                 context.Bake.AddRange(
                     new Bake
                     {
-                        Name = "Cosmic Brownies",
+                        Name = "Cosmic Brownie",
                         Category = "Brownies",
-                        Description = "Fudgy, gooey brownie centre topped with a layer of chocolate ganache and rainbow chocolate sprinkles",
-                        Price = 7.5
+                        Description = "A fudgy, gooey brownie topped with chocolate ganache and colorful sugar-coated chocolate pieces",
+                        Price = 7.5,
+                        AltText = "A cosmic brownie topped with colorful sugar-coated chocolate pieces on a white surface."
                     },
                     new Bake
                     {
-                        Name = "Chocolate Chip Cookies",
+                        Name = "Chocolate Chip Cookie",
                         Category = "Cookies",
-                        Description = "Crispy golden cookies loaded with rich chocolate chips, perfect for any occasion",
-                        Price = 4.0
+                        Description = "A crispy golden cookie loaded with rich chocolate chips, perfect for any occasion",
+                        Price = 4.0,
+                        AltText = "A freshly baked chocolate chip cookie with golden brown edges and gooey chocolate chips."
                     },
                     new Bake
                     {
                         Name = "Lemon Cheesecake",
                         Category = "Cheesecakes",
-                        Description = "Creamy cheesecake with a tangy lemon flavor on a buttery graham cracker crust",
-                        Price = 9.0
+                        Description = "A creamy cheesecake with a tangy lemon flavor on a buttery graham cracker crust",
+                        Price = 9.0,
+                        AltText = "A slice of lemon cheesecake with graham cracker crust, lemon glaze, and whipped cream."
                     },
                     new Bake
                     {
                         Name = "Apple Pie",
                         Category = "Pies",
-                        Description = "Homemade pie filled with spiced apples and wrapped in a flaky, buttery crust",
-                        Price = 6.0
+                        Description = "A homemade pie filled with spiced apples and wrapped in a flaky, buttery crust",
+                        Price = 6.0,
+                        AltText = "A slice of apple pie with a golden flaky crust and spiced apple filling."
                     },
                     new Bake
                     {
                         Name = "Red Velvet Cake",
                         Category = "Cakes",
-                        Description = "Classic red velvet cake with smooth cream cheese frosting and a rich, velvety texture",
-                        Price = 12.0
+                        Description = "A classic red velvet cake with smooth cream cheese frosting and a rich, velvety texture",
+                        Price = 12.0,
+                        AltText = "A slice of red velvet cake with crimson layers and creamy white frosting."
                     },
                     new Bake
                     {
-                        Name = "Blueberry Muffins",
+                        Name = "Blueberry Muffin",
                         Category = "Muffins",
-                        Description = "Fluffy muffins bursting with fresh blueberries and topped with a sweet streusel crumble",
-                        Price = 3.5
+                        Description = "A fluffy muffin bursting with fresh blueberries and topped with a sweet streusel crumble",
+                        Price = 3.5,
+                        AltText = "A blueberry muffin with a golden top and visible fresh blueberries."
                     },
                     new Bake
                     {
-                        Name = "Cinnamon Rolls",
+                        Name = "Cinnamon Roll",
                         Category = "Pastries",
-                        Description = "Soft, swirled pastries filled with cinnamon-sugar and topped with vanilla glaze",
-                        Price = 5.0
+                        Description = "A soft, swirled pastry filled with cinnamon-sugar and topped with vanilla glaze",
+                        Price = 5.0,
+                        AltText = "A cinnamon roll topped with cream cheese icing on a white plate."
                     },
                     new Bake
                     {
                         Name = "Strawberry Shortcake",
                         Category = "Cakes",
-                        Description = "Light vanilla sponge layered with fresh strawberries and whipped cream",
-                        Price = 10.0
+                        Description = "A light vanilla sponge layered with fresh strawberries and whipped cream",
+                        Price = 10.0,
+                        AltText = "A slice of vanilla sponge cake with whipped cream and fresh strawberries."
                     },
                     new Bake
                     {
-                        Name = "Double Chocolate Brownies",
+                        Name = "Double Chocolate Brownie",
                         Category = "Brownies",
-                        Description = "Rich dark chocolate brownies with chunks of premium chocolate throughout",
-                        Price = 8.0
+                        Description = "A rich dark chocolate brownie with chunks of premium chocolate throughout",
+                        Price = 8.0,
+                        AltText = "A double chocolate brownie with a crackly top and melted chocolate chunks."
                     },
                     new Bake
                     {
-                        Name = "Oatmeal Raisin Cookies",
+                        Name = "Oatmeal Raisin Cookie",
                         Category = "Cookies",
-                        Description = "Chewy oatmeal cookies packed with plump raisins and a hint of cinnamon",
-                        Price = 4.0
+                        Description = "A chewy oatmeal cookie packed with plump raisins and a hint of cinnamon",
+                        Price = 4.0,
+                        AltText = "A golden-brown oatmeal raisin cookie with visible raisins."
                     },
                     new Bake
                     {
                         Name = "Carrot Cake",
                         Category = "Cakes",
-                        Description = "Moist spiced cake with fresh carrots, topped with cream cheese frosting and chopped walnuts",
-                        Price = 11.0
+                        Description = "A moist spiced cake with fresh carrots, topped with cream cheese frosting and chopped walnuts",
+                        Price = 11.0,
+                        AltText = "A slice of carrot cake with cream cheese frosting and chopped nuts."
                     },
                     new Bake
                     {
                         Name = "Tiramisu",
                         Category = "Cakes",
-                        Description = "Italian dessert with coffee-soaked ladyfingers layered with mascarpone cream and dusted with cocoa",
-                        Price = 13.0
+                        Description = "An Italian dessert with coffee-soaked ladyfinger layers and mascarpone cream dusted with cocoa",
+                        Price = 13.0,
+                        AltText = "A slice of tiramisu with cocoa-dusted mascarpone cream."
                     },
                     new Bake
                     {
                         Name = "Raspberry Danish",
                         Category = "Pastries",
-                        Description = "Flaky pastry filled with sweet raspberry preserves and drizzled with vanilla glaze",
-                        Price = 4.5
+                        Description = "A flaky pastry filled with sweet raspberry preserves and drizzled with vanilla glaze",
+                        Price = 4.5,
+                        AltText = "A raspberry Danish pastry topped with almonds and glaze."
                     },
                     new Bake
                     {
-                        Name = "Chocolate Eclairs",
+                        Name = "Chocolate Eclair",
                         Category = "Pastries",
-                        Description = "Light choux pastry filled with vanilla cream and topped with dark chocolate ganache",
-                        Price = 5.5
+                        Description = "A light choux pastry filled with vanilla cream and topped with dark chocolate ganache",
+                        Price = 5.5,
+                        AltText = "A chocolate éclair filled with cream and topped with ganache."
                     },
                     new Bake
                     {
                         Name = "Pecan Pie",
                         Category = "Pies",
-                        Description = "Rich and gooey filling loaded with toasted pecans in a buttery crust",
-                        Price = 8.5
+                        Description = "A rich slice with gooey pecan filling in a buttery crust",
+                        Price = 8.5,
+                        AltText = "A slice of pecan pie topped with whipped cream."
                     },
                     new Bake
                     {
                         Name = "Cherry Cheesecake",
                         Category = "Cheesecakes",
-                        Description = "Smooth vanilla cheesecake topped with sweet cherry compote",
-                        Price = 9.5
+                        Description = "A smooth vanilla cheesecake slice topped with sweet cherry compote",
+                        Price = 9.5,
+                        AltText = "A slice of cherry cheesecake with a golden crust and cherry topping."
                     },
                     new Bake
                     {
-                        Name = "Snickerdoodle Cookies",
+                        Name = "Snickerdoodle Cookie",
                         Category = "Cookies",
-                        Description = "Soft and chewy cookies rolled in cinnamon sugar with a perfect crackly top",
-                        Price = 4.0
+                        Description = "A soft and chewy cookie rolled in cinnamon sugar with a perfect crackly top",
+                        Price = 4.0,
+                        AltText = "A golden-brown snickerdoodle cookie dusted with cinnamon sugar."
                     },
                     new Bake
                     {
-                        Name = "Peanut Butter Brownies",
+                        Name = "Peanut Butter Brownie",
                         Category = "Brownies",
-                        Description = "Fudgy brownies swirled with creamy peanut butter and topped with chocolate chips",
-                        Price = 8.0
+                        Description = "A fudgy brownie swirled with creamy peanut butter and topped with chocolate chips",
+                        Price = 8.0,
+                        AltText = "A peanut butter brownie with swirls and chocolate chips."
                     },
                     new Bake
                     {
-                        Name = "Chocolate Croissants",
+                        Name = "Chocolate Croissant",
                         Category = "Pastries",
-                        Description = "Flaky butter croissants filled with rich dark chocolate",
-                        Price = 4.5
+                        Description = "A flaky butter croissant filled with rich dark chocolate",
+                        Price = 4.5,
+                        AltText = "A golden chocolate croissant dusted with powdered sugar."
                     },
                     new Bake
                     {
                         Name = "Black Forest Cake",
                         Category = "Cakes",
-                        Description = "Chocolate layers filled with cherry compote and whipped cream, decorated with chocolate shavings",
-                        Price = 14.0
+                        Description = "A chocolate cake slice filled with cherry compote and whipped cream, topped with chocolate shavings",
+                        Price = 14.0,
+                        AltText = "A slice of Black Forest cake with cherry filling and whipped cream."
                     },
                     new Bake
                     {
                         Name = "Almond Biscotti",
                         Category = "Cookies",
-                        Description = "Twice-baked Italian cookies with toasted almonds, perfect for dipping in coffee",
-                        Price = 4.5
+                        Description = "A twice-baked Italian cookie with toasted almonds, perfect for dipping in coffee",
+                        Price = 4.5,
+                        AltText = "A single almond biscotti with visible almond pieces."
                     },
                     new Bake
                     {
                         Name = "Blueberry Pie",
                         Category = "Pies",
-                        Description = "Fresh blueberries baked in a flaky crust with a lattice top",
-                        Price = 7.5
+                        Description = "A slice of fresh blueberry pie with a flaky crust and lattice top",
+                        Price = 7.5,
+                        AltText = "A slice of blueberry pie with a lattice crust and juicy filling."
                     },
                     new Bake
                     {
                         Name = "Maple Pecan Danish",
                         Category = "Pastries",
-                        Description = "Buttery pastry filled with maple-sweetened pecans and finished with a maple glaze",
-                        Price = 5.0
+                        Description = "A buttery pastry filled with maple-sweetened pecans and finished with a maple glaze",
+                        Price = 5.0,
+                        AltText = "A maple pecan Danish with drizzled icing on top."
                     },
                     new Bake
                     {
                         Name = "Oreo Cheesecake",
                         Category = "Cheesecakes",
-                        Description = "Creamy cheesecake loaded with Oreo pieces on a chocolate cookie crust",
-                        Price = 10.0
+                        Description = "A creamy cheesecake loaded with Oreo pieces on a chocolate cookie crust",
+                        Price = 10.0,
+                        AltText = "A slice of Oreo cheesecake topped with whipped cream and an Oreo."
                     },
                     new Bake
                     {
-                        Name = "Cranberry Orange Scones",
-                        Category = "Pastries",
-                        Description = "Buttery scones with dried cranberries and orange zest, drizzled with orange glaze",
-                        Price = 4.5
-                    },
-                    new Bake
-                    {
-                        Name = "Salted Caramel Cupcakes",
+                        Name = "Salted Caramel Cupcake",
                         Category = "Cupcakes",
-                        Description = "Moist vanilla cupcakes filled with salted caramel and topped with caramel buttercream",
-                        Price = 4.5
+                        Description = "A moist vanilla cupcake filled with salted caramel and topped with caramel buttercream",
+                        Price = 4.5,
+                        AltText = "A salted caramel cupcake with caramel buttercream and drizzle."
                     },
                     new Bake
                     {
                         Name = "Nutella Swirl Pound Cake",
                         Category = "Cakes",
-                        Description = "Classic pound cake marbled with rich Nutella spread",
-                        Price = 9.0
+                        Description = "A classic pound cake slice marbled with rich Nutella spread",
+                        Price = 9.0,
+                        AltText = "A slice of pound cake marbled with rich Nutella, served on a beige plate with a fork."
+                    },
+                    new Bake
+                    {
+                        Name = "Pumpkin Spice Muffin",
+                        Category = "Muffins",
+                        Description = "A moist muffin spiced with pumpkin pie spices and topped with a crumbly streusel",
+                        Price = 3.5,
+                        AltText = "A pumpkin spice muffin with a golden-brown top, shown with a bite taken out."
+                    },
+                    new Bake
+                    {
+                        Name = "Lemon Raspberry Cupcake",
+                        Category = "Cupcakes",
+                        Description = "A zesty lemon cupcake with raspberry filling and a swirl of lemon buttercream frosting",
+                        Price = 4.5,
+                        AltText = "A lemon raspberry cupcake topped with swirled lemon buttercream, a fresh raspberry, and a lemon slice."
+                    },
+                    new Bake
+                    {
+                        Name = "Strawberry Shortcake Cupcake",
+                        Category = "Cupcakes",
+                        Description = "A light vanilla cupcake filled with strawberry compote and topped with whipped cream frosting",
+                        Price = 4.25,
+                        AltText = "A strawberry shortcake cupcake with whipped cream frosting, strawberry pieces, and a mint leaf on top."
                     }
                 );
             }
-            //if (!context.Review.Any())
-            //{
-            //    context.Review.AddRange(
-            //        new Review
-            //        {
-            //            BakeId = 1,
-            //            User = "Aizah Akbar",
-            //            Description = "I took one bite and was in heaven! The texture is so fudgy and rich. Definitely will be buying again. ",
-            //            Rating = 5,
-            //            CreatedDate = DateTime.Now
-            //        },
-            //        new Review
-            //        {
-            //            BakeId = 1,
-            //            User = "Wajeeha Ikram",
-            //            Description = "My family loved these, the only thing I would take off one star for is they arrived a bit squished. Other than that they were perfect!  ",
-            //            Rating = 4,
-            //            CreatedDate = DateTime.Now
-            //        },
-            //        new Review
-            //        {
-            //            BakeId = 2,
-            //            User = "Sara Adam",
-            //            Description = "These are the best cookies I've ever had! Warm them up in the microwave for 15 seconds and they're even better",
-            //            Rating = 4,
-            //            CreatedDate = DateTime.Now
-            //        },
-            //        new Review
-            //        {
-            //            BakeId = 3,
-            //            User = "Qynaath Kokab",
-            //            Description = "The ratio of cheesecake to biscuit was perfect, I've had too many cheesecakes with too much biscuit. Loved this!",
-            //            Rating = 5,
-            //            CreatedDate = DateTime.Now
-            //        }
-            //    );
-            //}
             if (!context.User.Any())
             {
                 context.User.AddRange(

@@ -24,7 +24,8 @@ namespace FinalYearProject.Services
                 Name = bakefrontend.Name,
                 Price = bakefrontend.Price,
                 //Category = bakefrontend.Category,
-                Description = bakefrontend.Description
+                Description = bakefrontend.Description,
+                AltText = bakefrontend.AltText
             };
 
             _bakeRepository.AddBake(bake);
@@ -85,7 +86,8 @@ namespace FinalYearProject.Services
                 Name = bake.Name,
                 Price = bake.Price,
                 Category = bake.Category,
-                Description = bake.Description
+                Description = bake.Description,
+                AltText = bake.AltText
             });
         }
 
@@ -98,7 +100,8 @@ namespace FinalYearProject.Services
                 Name = bake.Name,
                 Price = bake.Price,
                 Category = bake.Category,
-                Description = bake.Description
+                Description = bake.Description,
+                AltText = bake.AltText
             };
             return bakeFrontEnd;
         }
