@@ -51,8 +51,6 @@
                                     <span class="d-none d-sm-inline">Welcome @Context.Session.GetString("UserName")</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                    <li><a class="dropdown-item" asp-controller="User" asp-action="Index">View Account</a></li>
-                                    <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a></li>
                                 </ul>
                             </div>
@@ -67,8 +65,9 @@
                     </div>
 
                     <div class="basket-button">
-                        <a asp-controller="Basket" asp-action="Index" class="btn btn-outline-secondary basket">
+                        <a asp-controller="Basket" asp-action="Index" class="btn btn-outline-secondary basket" aria-label="Shopping basket">
                             <i class="fas fa-shopping-basket"></i>
+                            <span class="visually-hidden">Shopping basket</span>
                         </a>
                     </div>
                 </div>
@@ -91,7 +90,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavBottom">
                     <ul class="navbar-nav navbar-nav-bottom">
                         <li class="nav-item">
-                            <a class="nav-link nav-link-bottom" asp-route-category="Cakes" asp-controller="Search" asp-action="Index">Cakes</a>
+                            <a class="nav-link nav-link-bottom" asp-route-category="Cakes" asp-controller="Search" asp-action="Index" tabindex="0">Cakes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-link-bottom" asp-route-category="Cupcakes" asp-controller="Search" asp-action="Index">Cupcakes</a>
@@ -111,7 +110,7 @@
                         <li class="nav-item">
                             <a class="nav-link nav-link-bottom" asp-route-category="Pies" asp-controller="Search" asp-action="Index">Pies</a>
                         </li>
-                        <li class="nav-item dropdown">
+ @*                        <li class="nav-item dropdown">
                             <a class="nav-link nav-link-bottom dropdown-toggle" href="#" id="giftsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gifts
                             </a>
@@ -121,7 +120,7 @@
                                 <li><a class="dropdown-item" asp-route-category="BirthdayGifts" asp-controller="Search" asp-action="Index">Birthday Gifts</a></li>
                                 <li><a class="dropdown-item" asp-route-category="SpecialOccasions" asp-controller="Search" asp-action="Index">Special Occasions</a></li>
                             </ul>
-                        </li>
+                        </li> *@
                     </ul>
                 </div>
         </nav>
@@ -134,9 +133,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - BakesForAll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer">
+        <div class="container py-1">
+            <span class="small">&copy; 2025 - BakesForAll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -145,7 +144,6 @@
     @await RenderSectionAsync("Scripts", required: false)
     <partial name="_ChatWidget" />
 
-    <!-- ... existing scripts ... -->
     <script src="~/js/chat.js"></script>
     <script src="~/js/search.js"></script>
 

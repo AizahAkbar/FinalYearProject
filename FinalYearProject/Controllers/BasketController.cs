@@ -42,7 +42,7 @@ namespace FinalYearProject.Controllers
                 return Json(new { success = false, message = "Failed to add item to basket" });
             }
 
-            return View("Views/Bakes/Details.cshtml", result);
+            return RedirectToAction("Details", "Bakes", new { id = bakeId });
         }
 
         [HttpPost]

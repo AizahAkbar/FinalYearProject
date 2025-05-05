@@ -49,22 +49,47 @@
     gap: 10px;
 }
 
+// Add a quantity container to group label and input
+.quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.quantity-label {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 500;
+    color: #333;
+    min-width: 70px;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
 .item-name {
     font-size: 1.4rem;
     margin: 0;
     color: #333;
+    font-family: 'Chewy', serif;
 }
 
 .update-cart {
     padding: 6px 12px;
-    background: #e9cbb2;
-    color: #4a3728;
+    background: #8B4513; // Changed from #e9cbb2 for better contrast
+    color: white; // Changed from #4a3728 for better contrast
     border: none;
     border-radius: 4px;
     cursor: pointer;
 
     &:hover {
-        background: #d4b498;
+        background: #5e2f0d; // Darker brown on hover
     }
 }
 
@@ -77,13 +102,17 @@
 }
 
 .delete-button {
-    color: #dc3545;
+    background-color: #8B0000; // Added background color
+    color: white; // Changed to white for better contrast
     text-decoration: none;
     font-size: 0.9rem;
+    padding: 6px 12px; // Added padding to make it more button-like
+    border-radius: 4px; // Added border radius
     
     &:hover {
-        color: #c82333;
-        text-decoration: underline;
+        background-color: #5c0000; // Darker red on hover
+        color: white; // Keep text white on hover
+        text-decoration: none; // Remove underline on hover
     }
 }
 
@@ -105,7 +134,7 @@
 .checkout-button {
     width: 100%;
     padding: 15px;
-    background-color: #8B4513;
+    background-color: #5e2f0d; /* Darker brown for better contrast */
     color: white;
     border: 1px solid transparent;
     border-radius: 4px;
@@ -115,14 +144,14 @@
     font-family: 'Poppins', sans-serif;
 
     &:hover {
-        background-color: #5e2f0d !important;
+        background-color: #3e1f08 !important; /* Even darker on hover */
     }
 
     &:focus {
-        background-color: #5e2f0d;
-        outline: 3px solid black;
-        outline-offset: -3px !important;
-        box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5) !important;
+        background-color: #3e1f08;
+        outline: 3px solid #000;
+        outline-offset: 2px !important;
+        box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.5) !important;
     }
 }
 
@@ -150,12 +179,32 @@
     &:hover {
         background-color: #d4b498;
         color: #4a3728;
-    }
-    transition: background-color 0.3s;
-
-    &:hover {
-        background-color: #0056b3;
         text-decoration: none;
-        color: white;
+    }
+}
+
+.quantity-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.add-to-cart {
+    background-color: #8B4513; // Match site theme
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #5e2f0d;
+    }
+    
+    &:focus {
+        outline: 3px solid #000;
+        outline-offset: 2px !important;
+        box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.5) !important;
     }
 }

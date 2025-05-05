@@ -167,7 +167,7 @@ input[type="search"]:focus {
         padding: 0.5rem 1rem;
         color: $text-color;
         font-family: $font-accent;
-        font-size: 1.25rem;
+        font-size: 1rem;  // Changed from 1.25rem to 1rem to make it smaller
         transition: color 0.3s ease;
         
         &:hover {
@@ -175,14 +175,23 @@ input[type="search"]:focus {
         }
     }
 
-    .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        background: $secondary-color;
+    .dropdown-menu-brown {
+        background-color: $secondary-color;
         border: 1px solid $accent-color;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        .dropdown-item {
+            color: $accent-color;
+            
+            &:hover, &:focus {
+                background-color: $primary-color;
+                color: $accent-color;
+            }
+        }
+
+        .dropdown-divider {
+            border-top-color: $accent-color;
+        }
     }
 
     .dropdown-item {
@@ -198,18 +207,20 @@ input[type="search"]:focus {
 }
 
 // Buttons and Forms
-.btn[type="submit"] {
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    font-family: $font-button;
+.btn {
+    &[type="submit"] {
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        font-family: $font-button;
 
-    &.search-icon {
-        border: 1px solid #8B4513 !important;
+        &.search-icon {
+            border: 1px solid #8B4513 !important;
+        }
     }
 
-    &-outline-secondary {
+    &.btn-outline-secondary {
         border-color: $accent-color;
         color: $accent-color;
         margin: 0px 5px;
@@ -253,22 +264,53 @@ button.btn.btn-outline-secondary.search-icon {
 }
 
 // Footer
-/*.footer {
+.footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     background-color: $primary-color;
-    padding: 1rem 0;
+    padding: 0.25rem 0;  // Reduced from 0.5rem to 0.25rem
+    line-height: 1.2;    // Added line-height property to make it more compact
     
     a {
-        color: $accent-color;
+        color: #33261c;
         text-decoration: none;
-        
+        font-weight: 500;
+        font-size: 0.8rem;  // Reduced from 0.9rem to 0.8rem
+
         &:hover {
             text-decoration: underline;
+            color: #1a130e;
         }
     }
-}*/
+
+    p, .text-muted, .small {
+        color: #33261c !important;
+        margin-bottom: 0.1rem;  // Reduced from 0.25rem to 0.1rem
+        font-size: 0.8rem;  // Reduced from 0.9rem to 0.8rem
+    }
+}
+
+// Basket button styling
+.basket-button {
+    .btn.basket {
+        border: 1px solid $accent-color;
+        padding: 0.5rem 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:focus {
+            outline: 3px solid #000;
+            outline-offset: 2px !important;
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.5) !important;
+        }
+    }
+    
+    i.fas.fa-shopping-basket {
+        font-size: 1rem;
+    }
+}
 
 // Utility Classes
 .shadow-sm {

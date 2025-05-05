@@ -7,16 +7,15 @@
     <link rel="stylesheet" href="~/css/deliveryInformation.css" asp-append-version="true" />
 </head>
 
-
 <div class="container mt-4">
-    <h2>Delivery Information</h2>
+    <h1>Delivery Information</h1>
 
     <div class="row">
         <div class="col-md-8">
             <form method="post" asp-action="ProcessDeliveryInformation" id="deliveryForm">
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h5 class="mb-0">Personal Information</h5>
+                        <h2 class="mb-0">Personal Information</h2>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -41,7 +40,7 @@
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h5 class="mb-0">Delivery Address</h5>
+                        <h2 class="mb-0">Delivery Address</h2>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
@@ -49,62 +48,73 @@
                             <select asp-for="Country" class="form-select" required>
                                 <option value="">Select a country</option>
                                 <option value="UK">United Kingdom</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
                             </select>
                             <span asp-validation-for="Country" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Address Lookup</label>
+                        <fieldset class="mb-3">
+                            <legend class="form-label">Address Lookup</legend>
                             <div class="input-group">
+                                <label for="postcode" class="visually-hidden">Postcode</label>
                                 <input type="text" id="postcode" class="form-control" placeholder="Enter your postcode">
                                 <button type="button" class="btn btn-secondary find-address-button" onclick="lookupAddress()">Find Address</button>
                             </div>
-                            <!-- Add this select element for address suggestions -->
-                            <select id="address-select" class="form-select mt-2" style="display: none;">
-                                <option value="">Select an address...</option>
-                            </select>
-                        </div>
+                            <div id="address-select-container">
+                                <label for="address-select" class="visually-hidden">Select an address</label>
+                                <select id="address-select" class="form-select mt-2" style="display: none;">
+                                    <option value="">Select an address...</option>
+                                </select>
+                            </div>
+                        </fieldset>
 
-                        <div class="mb-3">
-                            <label class="form-label">Manual Address Entry</label>
-                            <input asp-for="StreetAddress" class="form-control mb-2" placeholder="Address Line 1" required>
-                            <input class="form-control mb-2" placeholder="Address Line 2">
-                            <input asp-for="City" class="form-control mb-2" placeholder="City" required>
-                            <input asp-for="PostCode" class="form-control" placeholder="Postcode" required>
-                        </div>
+                        <fieldset class="mb-3">
+                            <legend class="form-label">Manual Address Entry</legend>
+                            <label for="StreetAddress" class="visually-hidden">Address Line 1</label>
+                            <input asp-for="StreetAddress" id="StreetAddress" class="form-control mb-2" placeholder="Address Line 1" required>
+                            
+                            <label for="addressLine2" class="visually-hidden">Address Line 2</label>
+                            <input id="addressLine2" class="form-control mb-2" placeholder="Address Line 2">
+                            
+                            <label for="City" class="visually-hidden">City</label>
+                            <input asp-for="City" id="City" class="form-control mb-2" placeholder="City" required>
+                            
+                            <label for="PostCode" class="visually-hidden">Postcode</label>
+                            <input asp-for="PostCode" id="PostCode" class="form-control" placeholder="Postcode" required>
+                        </fieldset>
                     </div>
                 </div>
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h5 class="mb-0">Delivery Options</h5>
+                        <h2 class="mb-0">Delivery Options</h2>
                     </div>
                     <div class="card-body">
-                        <div class="form-check mb-3">
-                            <input type="radio" class="form-check-input" name="deliveryMethod" id="standard" value="standard" checked>
-                            <label class="form-check-label" for="standard">
-                                <strong>Standard Delivery</strong> - £3.99<br>
-                                <small class="text-muted">3-5 working days</small>
-                            </label>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input type="radio" class="form-check-input" name="deliveryMethod" id="express" value="express">
-                            <label class="form-check-label" for="express">
-                                <strong>Express Delivery</strong> - £6.99<br>
-                                <small class="text-muted">Next working day if ordered before 2pm</small>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="deliveryMethod" id="preferred" value="preferred">
-                            <label class="form-check-label" for="preferred">
-                                <strong>Preferred Day Delivery</strong> - £4.99<br>
-                                <small class="text-muted">Choose your delivery date</small>
-                            </label>
-                        </div>
+                        <fieldset>
+                            <legend class="visually-hidden">Delivery Method Selection</legend>
+                            <div class="form-check mb-3">
+                                <input type="radio" class="form-check-input" name="deliveryMethod" id="standard" value="Standard" checked>
+                                <label class="form-check-label" for="standard">
+                                    <strong>Standard Delivery</strong> - £3.99<br>
+                                    <small class="text-muted">3-5 working days</small>
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="radio" class="form-check-input" name="deliveryMethod" id="express" value="Express">
+                                <label class="form-check-label" for="express">
+                                    <strong>Express Delivery</strong> - £6.99<br>
+                                    <small class="text-muted">Next working day if ordered before 2pm</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="deliveryMethod" id="preferred" value="Preferred">
+                                <label class="form-check-label" for="preferred">
+                                    <strong>Preferred Day Delivery</strong> - £4.99<br>
+                                    <small class="text-muted">Choose your delivery date</small>
+                                </label>
+                            </div>
+                        </fieldset>
                         <div class="mt-3" id="preferredDateContainer" style="display: none;">
-                            <label class="form-label">Select Preferred Date</label>
+                            <label for="preferredDeliveryDate" class="form-label">Select Preferred Date</label>
                             <input type="date" class="form-control" id="preferredDeliveryDate" name="preferredDeliveryDate">
                         </div>
                     </div>
@@ -119,7 +129,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Order Summary</h5>
+                    <h2 class="mb-0">Order Summary</h2>
                 </div>
                 <div class="card-body">
                     <div id="orderItems">

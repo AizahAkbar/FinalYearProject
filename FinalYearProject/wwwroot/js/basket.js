@@ -48,44 +48,76 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const buttybutton = document.querySelector('.add-to-cart');
-    if (buttybutton) {
-        buttybutton.addEventListener('click', function () {
-            const bakeId = document.getElementById('bakeId').value;
+    const basketForm = document.querySelector('.basket-form');
+    if (basketForm) {
+        basketForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(basketForm);
 
-            fetch(`/Basket/AddToBasket?bakeId=${bakeId}`, {
+            fetch(basketForm.action, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Try to parse as JSON, but handle non-JSON responses
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json().then(data => {
+                        if (data.success) {
+                            showToastNotification('Item added to basket!');
+                        } else {
+                            throw new Error(data.message || 'Failed to add item to basket');
+                        }
+                    });
+                } else {
+                    // If not JSON, assume success if response is OK
+                    showToastNotification('Item added to basket!');
+                    return;
                 }
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showNotification(data.message);
-                    } else {
-                        showNotification(data.message, 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showNotification('Failed to add to basket', true);
-                });
-
+            .catch(error => {
+                console.error('Error:', error);
+                showToastNotification(error.message || 'Failed to add to basket', true);
+            });
         });
     }
-}
+});
 
-function showNotification(message, isError = false) {
-    const notification = document.createElement('div');
-    notification.className = `notification ${isError ? 'error' : 'success'}`;
-    notification.textContent = message;
-    document.body.appendChild(notification);
+document.querySelector('.btn.btn-primary').addEventListener('click', function (event) {
+    event.preventDefault();
+    window.history.back();
+});
 
+function showToastNotification(message, isError = false) {
+    // Remove any existing toasts first
+    const existingToasts = document.querySelectorAll('.toast-notification');
+    existingToasts.forEach(toast => toast.remove());
+    
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    if (isError) {
+        toast.style.backgroundColor = '#dc3545';
+    }
+    
+    // Position at top middle
+    toast.style.bottom = 'auto';
+    toast.style.right = 'auto';
+    toast.style.top = '20px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    // Force reflow to trigger transition
+    void toast.offsetWidth;
+    toast.classList.add('show');
+    
     setTimeout(() => {
-        notification.classList.add('fade-out');
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 2000);
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
 }

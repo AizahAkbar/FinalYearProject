@@ -12,13 +12,13 @@
 
     loadChatHistory();
 
-    $('#messageInput').keypress(function (e) {
+    $('#widgetMessageInput').keypress(function (e) {
         if (e.which == 13) {
             sendMessage();
         }
     });
 
-    $('#sendButton').click(function () {
+    $('#widgetSendButton').click(function () {
         sendMessage();
     });
 
@@ -34,7 +34,7 @@
     }
 
     function sendMessage() {
-        var messageInput = $('#messageInput');
+        var messageInput = $('#widgetMessageInput');
         var message = messageInput.val().trim();
 
         if (message) {
@@ -69,12 +69,12 @@
                 <div class="message-content">${message.content}</div>
             </div>
         `;
-        $('#chatMessages').append(messageHtml);
+        $('#widgetChatMessages').append(messageHtml);
         scrollToBottom();
     }
 
     function scrollToBottom() {
-        var chatMessages = $('#chatMessages');
+        var chatMessages = $('#widgetChatMessages');
         chatMessages.scrollTop(chatMessages[0].scrollHeight);
     }
 });

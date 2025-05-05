@@ -57,3 +57,30 @@
 .card-header {
   background-color: #e9cbb2;
 }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+legend.form-label {
+  float: none;
+  width: auto;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}

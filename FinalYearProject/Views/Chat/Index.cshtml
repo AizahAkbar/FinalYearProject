@@ -3,20 +3,30 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/chat.css" />
+    <!-- Add marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <div class="chat-container">
     <div class="chat-messages" id="chatMessages">
         <!-- Chat messages will be dynamically inserted here -->
     </div>
     <div class="chat-input-container">
-        <input type="text" id="messageInput" class="chat-input" placeholder="Type your message here..." />
+        <label for="messageInput" class="visually-hidden">Type your message</label>
+        <input type="text" id="messageInput" class="chat-input" placeholder="Type your message here..." aria-label="Type your message" />
         <button id="sendButton" class="chat-send-button">Send</button>
     </div>
 </div>
 
 @section Scripts {
     <script>
+        // Ensure jQuery is loaded before executing this code
         $(document).ready(function () {
+            // Configure marked.js to not render asterisks
+            marked.setOptions({
+                gfm: true,
+                breaks: true
+            });
+
             loadChatHistory();
 
             $('#messageInput').keypress(function (e) {
@@ -57,8 +67,9 @@
                             appendMessage(response);
                             scrollToBottom();
                         },
-                        error: function () {
-                            alert('Error sending message');
+                        error: function (xhr, status, error) {
+                            console.error("Error details:", xhr.responseText);
+                            alert('Error sending message: ' + error);
                         }
                     });
 
@@ -67,9 +78,28 @@
             }
 
             function appendMessage(message) {
+                // Format the content
+                var content = message.content
+                    .trim()
+                    // Convert numbered list items while preserving line breaks
+                    .replace(/(\d+\.)\s+(.*?)(?=(?:\n|$))/g, function(match, number, text) {
+                        return `<li>${text.trim()}</li>\n`;
+                    });
+
+                // Add ol tags if we have list items
+                if (content.includes('<li>')) {
+                    var parts = content.split(/(?=<li>)/);
+                    var intro = parts[0].trim();
+                    var list = '<ol>' + parts.slice(1).join('').trim() + '</ol>';
+                    content = intro + '\n' + list;
+                }
+
+                // Replace newlines with <br> tags
+                content = content.replace(/\n/g, '<br>');
+
                 var messageHtml = `
                     <div class="message ${message.role}">
-                        <div class="message-content">${message.content}</div>
+                        <div class="message-content">${content}</div>
                     </div>
                 `;
                 $('#chatMessages').append(messageHtml);

@@ -20,8 +20,8 @@ namespace FinalYearProject.Services
 
             chatHistory = new List<Microsoft.Extensions.AI.ChatMessage>
             {
-                new(ChatRole.System, "You are a helpful bakery assistant who helps customers with questions about our bakery products, orders, and services."),
-                new(ChatRole.System, "The products that we have are: " + JsonSerializer.Serialize(BakesCache.GetBakes()))
+                new(ChatRole.System, "You are a helpful bakery assistant who helps customers with questions about our bakery products, orders, and services. Always display prices in British pounds using the � symbol (e.g. �2.50) and have to 2 decimal places. Format your responses using HTML markup for proper display in the web interface. Dont try to include images in your response."),
+                new(ChatRole.System, "The products that we have are: " + JsonSerializer.Serialize(BakesCache.GetBakes()) + ". Present product information using HTML tags like <ul>, <li>, <strong>, etc.")
             };
         }
 
@@ -30,14 +30,17 @@ namespace FinalYearProject.Services
             chatHistory.Add(new ChatMessage(ChatRole.User, message));
 
             var response = await _openAIClient.GetResponseAsync(chatHistory);
+            var formattedResponse = response.Messages.Last().Text
+                .Replace("**", "")
+                .Trim(); // Trim any leading/trailing whitespace
 
-            chatHistory.Add(new ChatMessage(ChatRole.Assistant, response.Messages.Last().Text));
+            chatHistory.Add(new ChatMessage(ChatRole.Assistant, formattedResponse));
 
             var chatMessage = new Models.ChatMessage
             {
                 UserId = userId,
                 Role = "assistant",
-                Content = response.Text,
+                Content = formattedResponse,
                 Timestamp = DateTime.UtcNow
             };
 

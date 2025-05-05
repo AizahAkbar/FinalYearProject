@@ -96,8 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         resultItem.setAttribute('id', `search-result-${index}`);
                         resultItem.setAttribute('tabindex', '-1');
                         resultItem.setAttribute('aria-selected', 'false');
+
                         resultItem.innerHTML = `
-                            <img src="/images/${bake.name}.jpg" alt="${bake.alttext}" class="search-result-image">
+                            <img src="/images/${bake.name}.jpg" alt="${bake.altText}" class="search-result-image">
                             <div class="search-result-info">
                                 <div class="search-result-name">${bake.name}</div>
                                 <div class="search-result-price">£${bake.price.toFixed(2)}</div>

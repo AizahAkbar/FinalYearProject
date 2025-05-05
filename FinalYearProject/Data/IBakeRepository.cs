@@ -1,5 +1,4 @@
 ﻿using FinalYearProject.Models;
-// look at srs message for rest
 namespace FinalYearProject.Data
 {
     public interface IBakeRepository

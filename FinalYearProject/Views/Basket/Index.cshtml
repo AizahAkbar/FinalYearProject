@@ -21,13 +21,16 @@
                         <h3 class="item-name">@bake.Name</h3>
                         <p class="item-category">@bake.Category</p>
                         <p class="item-description">@bake.Description</p>
-                        <input type="number" name="quantity" class="quantity-input" value="@bake.Quantity" min="1" max="10" />
+                        <div class="quantity-container">
+                            <label for="quantity-@bake.Id" class="quantity-label">Quantity:</label>
+                            <input type="number" id="quantity-@bake.Id" name="quantity" class="quantity-input" value="@bake.Quantity" min="1" max="10" />
+                        </div>
                         <button type="submit" class="btn add-to-cart">Update</button>
                     </form>
                     <div class="item-price">
                         £@bake.TotalPrice.ToString("F2")
                     </div>
-                    <a asp-controller="Basket" asp-action="DeleteFromBasket" asp-route-bakeId="@bake.Id" class="btn btn-secondary delete-button" data-bake-id="@bake.Id">Delete</a>
+                    <a asp-controller="Basket" asp-action="DeleteFromBasket" asp-route-bakeId="@bake.Id" class="btn delete-button" data-bake-id="@bake.Id">Delete</a>
                 </div>
             }
         </div>
