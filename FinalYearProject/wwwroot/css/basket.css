@@ -192,6 +192,7 @@
 }
 .add-to-cart:hover {
   background-color: #5e2f0d;
+  color: white;
 }
 .add-to-cart:focus {
   outline: 3px solid #000;

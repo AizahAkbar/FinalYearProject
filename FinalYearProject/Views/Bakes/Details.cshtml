@@ -47,7 +47,14 @@
         </div>
         <div style="margin-top: 2rem;">
             <button class="btn btn-primary" onclick="window.history.back()">Back to List</button>
-            <a asp-controller="Review" asp-action="Create" asp-route-bakeId="@Model.Id" class="btn btn-secondary">Write a Review</a>
+            @if (Context.Session.GetInt32("UserId") != null)
+            {
+                <a asp-controller="Review" asp-action="Create" asp-route-bakeId="@Model.Id" class="btn btn-secondary">Write a Review</a>
+            }
+            else
+            {
+                <a asp-controller="User" asp-action="Login" asp-route-returnUrl="@Url.Action("Details", "Bakes", new { id = Model.Id })" class="btn btn-secondary">Write a Review</a>
+            }
         </div>
     </div>
 </div>

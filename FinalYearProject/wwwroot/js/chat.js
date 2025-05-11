@@ -8,6 +8,17 @@
         isOpen = !isOpen;
         $('#chatContainer').slideToggle();
         $('.minimize-button').text(isOpen ? '−' : '+');
+        
+        // Update ARIA attributes
+        $('.minimize-button').attr('aria-expanded', isOpen);
+        $('#chatContainer').attr('aria-hidden', !isOpen);
+        
+        if (isOpen) {
+            $('#chatAnnouncer').text('Chat opened');
+        } else {
+            
+            $('#chatAnnouncer').text('Chat closed');
+        }
     });
 
     loadChatHistory();
@@ -37,6 +48,11 @@
                     }
                 });
                 scrollToBottom();
+                
+                //// Update message count for screen readers
+                //if (messages.length > 0) {
+                //    $('#widgetChatMessages').attr('aria-label', 'Chat messages, ' + messages.length + ' messages');
+                //}
             })
             .catch(error => {
                 console.error('Error loading chat history:', error);
@@ -82,13 +98,19 @@
     }
 
     function appendMessage(message) {
+        // Create message element with proper ARIA attributes
         var messageHtml = `
-            <div class="message ${message.role}">
+            <div class="message ${message.role}" role="article" aria-label="${message.role} message">
                 <div class="message-content">${message.content}</div>
             </div>
         `;
         $('#widgetChatMessages').append(messageHtml);
         scrollToBottom();
+        
+        //$('#chatAnnouncer').text(`New message from ${message.role}: ${message.content.replace(/<[^>]*>/g, '')}`);
+        
+        //const messageCount = $('#widgetChatMessages .message').length;
+        //$('#widgetChatMessages').attr('aria-label', 'Chat messages, ' + messageCount + ' messages');
     }
 
     function scrollToBottom() {

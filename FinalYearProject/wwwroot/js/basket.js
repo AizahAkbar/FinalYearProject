@@ -64,7 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         const redirectUrl = response.url;
 
                         if (redirectUrl.includes('/User/Login')) {
-                            window.location.href = redirectUrl;
+                            // Add the current URL as the return URL
+                            const returnUrl = encodeURIComponent(window.location.href);
+                            window.location.href = redirectUrl + (redirectUrl.includes('?') ? '&' : '?') + 'returnUrl=' + returnUrl;
                             return null;
                         } else {
                             showToastNotification('Item added to basket!');
@@ -97,7 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         showToastNotification('Item added to basket!');
                     } else {
                         if (data.message && data.message.includes('not logged in')) {
-                            window.location.href = '/User/Login';
+                            const returnUrl = encodeURIComponent(window.location.href);
+                            window.location.href = '/User/Login?returnUrl=' + returnUrl;
                         } else {
                             throw new Error(data.message || 'Failed to add item to basket');
                         }

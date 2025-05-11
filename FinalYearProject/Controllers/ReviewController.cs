@@ -29,7 +29,9 @@ namespace FinalYearProject.Controllers
             var userIdStr = HttpContext.Session.GetInt32("UserId");
             if (!userIdStr.HasValue)
             {
-                return RedirectToAction("Login", "User");
+                // Get the current URL to return to after login
+                var returnUrl = Url.Action("Details", "Bakes", new { id = bakeId });
+                return RedirectToAction("Login", "User", new { returnUrl });
             }
 
             var model = new ReviewViewModel { BakeId = bakeId };
@@ -42,7 +44,9 @@ namespace FinalYearProject.Controllers
             var userIdStr = HttpContext.Session.GetInt32("UserId");
             if (!userIdStr.HasValue)
             {
-                return RedirectToAction("Login", "User");
+                // Get the current URL to return to after login
+                var returnUrl = Url.Action("Details", "Bakes", new { id = model.BakeId });
+                return RedirectToAction("Login", "User", new { returnUrl });
             }
 
             model.UserId = userIdStr.Value.ToString();

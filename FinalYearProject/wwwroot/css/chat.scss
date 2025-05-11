@@ -105,9 +105,15 @@
     text-align: left;
     display: inline-block;
     transition: box-shadow 0.3s;
+    position: relative; /* Added for positioning the sr-only content */
 
     &:hover {
         box-shadow: 0 2px 5px rgba(92, 68, 52, 0.2);
+    }
+    
+    /* Add these attributes for screen reader announcement */
+    &[aria-live="assertive"] {
+        position: relative;
     }
 }
 
@@ -129,8 +135,7 @@
     clear: both;
 }
 
-// Add visually-hidden class for accessibility
-.visually-hidden {
+.sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -139,4 +144,19 @@
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
+}
+
+/* Add this new class for live regions */
+.chat-live-region {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
 }

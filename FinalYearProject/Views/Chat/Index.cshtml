@@ -6,9 +6,9 @@
     <!-- Add marked.js for markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<div class="chat-container">
-    <div class="chat-messages" id="chatMessages">
-        <!-- Chat messages will be dynamically inserted here -->
+<div class="chat-container" role="main" aria-label="Chat with bakery assistant">
+    <div id="chatAnnouncer" class="chat-live-region" aria-live="assertive" aria-relevant="additions" aria-atomic="true"></div>
+    <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-atomic="false">
     </div>
     <div class="chat-input-container">
         <label for="messageInput" class="visually-hidden">Type your message</label>
@@ -45,6 +45,11 @@
                         appendMessage(message);
                     });
                     scrollToBottom();
+                    
+                    // Update message count for screen readers
+                    if (messages.length > 0) {
+                        $('#chatMessages').attr('aria-label', 'Chat messages, ' + messages.length + ' messages');
+                    }
                 });
             }
 
@@ -98,12 +103,26 @@
                 content = content.replace(/\n/g, '<br>');
 
                 var messageHtml = `
-                    <div class="message ${message.role}">
+                    <div class="message ${message.role}" role="article" aria-label="${message.role} message">
                         <div class="message-content">${content}</div>
                     </div>
                 `;
                 $('#chatMessages').append(messageHtml);
                 scrollToBottom();
+                
+                // Improved announcement for screen readers - force DOM update and use setTimeout
+                var announcementText = `New message from ${message.role}: ${message.content.replace(/<[^>]*>/g, '')}`;
+                var announcer = $('#chatAnnouncer');
+                announcer.empty(); // Clear previous content
+                
+                // Use setTimeout to ensure DOM updates before adding new content
+                setTimeout(function() {
+                    announcer.text(announcementText);
+                }, 50);
+                
+                // Update message count for screen readers
+                const messageCount = $('#chatMessages .message').length;
+                $('#chatMessages').attr('aria-label', 'Chat messages, ' + messageCount + ' messages');
             }
 
             function scrollToBottom() {

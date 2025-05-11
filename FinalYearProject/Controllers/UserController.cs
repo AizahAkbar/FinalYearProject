@@ -16,24 +16,29 @@ namespace FinalYearProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl ?? Url.Content("~/");
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginFrontEnd loginFrontEnd)
+        public async Task<IActionResult> Login(LoginFrontEnd loginFrontEnd, string returnUrl = null)
         {
+            returnUrl = returnUrl ?? Url.Content("~/");
+
             if (!ModelState.IsValid)
             {
+                ViewData["ReturnUrl"] = returnUrl;
                 return View(loginFrontEnd);
             }
 
             var user = await _userService.Login(loginFrontEnd.Email, loginFrontEnd.Password);
-            
+
             if (user == null)
             {
                 ModelState.AddModelError("", "Invalid email or password");
+                ViewData["ReturnUrl"] = returnUrl;
                 return View(loginFrontEnd);
             }
 
@@ -58,7 +63,7 @@ namespace FinalYearProject.Controllers
             HttpContext.Session.SetString("UserRole", user.Role);
             HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
 
-            return RedirectToAction("Index", "Bakes");
+            return LocalRedirect(returnUrl);
         }
 
         public async Task<IActionResult> Logout()
@@ -83,7 +88,7 @@ namespace FinalYearProject.Controllers
             }
 
             var user = await _userService.Register(registerFrontEnd);
-            
+
             if (user == null)
             {
                 ModelState.AddModelError("", "Email already exists");

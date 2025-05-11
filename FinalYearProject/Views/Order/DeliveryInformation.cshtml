@@ -56,7 +56,10 @@
                             <legend class="form-label">Address Lookup</legend>
                             <div class="input-group">
                                 <label for="postcode" class="visually-hidden">Postcode</label>
-                                <input type="text" id="postcode" class="form-control" placeholder="Enter your postcode">
+                                <input type="text" id="postcode" class="form-control" placeholder="Enter your postcode" aria-describedby="postcode-instructions">
+                                <div id="postcode-instructions" class="sr-only">
+                                    Enter your postcode, then tab to the Find Address button. Select it then tab to the select address dropdown. A list of addresses will show for your postcode. Use the up and down arrow keys to find your address.
+                                </div>
                                 <button type="button" class="btn btn-secondary find-address-button" onclick="lookupAddress()">Find Address</button>
                             </div>
                             <div id="address-select-container">

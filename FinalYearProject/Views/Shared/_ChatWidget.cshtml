@@ -2,18 +2,18 @@
     <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
 </head>
 
-<div class="chat-widget">
+<div class="chat-widget" role="complementary" aria-label="Chat with bakery assistant">
     <div class="chat-widget-header" id="chatToggle">
         <span>Chat with Us</span>
-        <button class="minimize-button" aria-label="Toggle chat">+</button>
+        <button class="minimize-button" aria-label="Toggle chat" aria-expanded="false" aria-controls="chatContainer">+</button>
     </div>
-    <div class="chat-widget-container" id="chatContainer">
-        <div class="chat-messages" id="widgetChatMessages">
-            <!-- Chat messages will be dynamically inserted here -->
+    <div id="chatAnnouncer" class="chat-live-region" aria-live="assertive" aria-relevant="additions" aria-atomic="true"></div>
+    <div class="chat-widget-container" id="chatContainer" aria-hidden="true">
+        <div class="chat-messages" id="widgetChatMessages" role="log" aria-live="polite" aria-atomic="false">
         </div>
         <div class="chat-input-container">
             <label for="widgetMessageInput" class="visually-hidden">Type your message</label>
-            <input type="text" id="widgetMessageInput" class="chat-input" placeholder="Type your message here..." aria-label="Type your message" />
+            <input type="text" id="widgetMessageInput" class="chat-input" placeholder="Type your message here..." aria-label="Type a message to the AI bakery assistant. Ask about products, orders or anything else!" />
             <button id="widgetSendButton" class="chat-send-button">Send</button>
         </div>
     </div>
