@@ -1,0 +1,65 @@
+@import 'site.scss';
+
+.accessibility-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    
+    #accessibility-title {
+        color: $accent-color;
+        font-family: $font-accent;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    section {
+        background: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+
+            strong {
+                color: $accent-color;
+            }
+        }
+
+        a {
+            color: $accent-color;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: darken($accent-color, 10%);
+            }
+
+            &:focus {
+                outline: 3px solid rgba($accent-color, 0.3);
+                outline-offset: 2px;
+            }
+        }
+
+        ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+
+            li {
+                margin-bottom: 0.8rem;
+                position: relative;
+                
+                &::before {
+                    content: '•';
+                    color: $accent-color;
+                    font-size: 1.2em;
+                    position: absolute;
+                    left: -1rem;
+                }
+            }
+        }
+    }
+}

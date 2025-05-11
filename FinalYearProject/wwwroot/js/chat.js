@@ -23,14 +23,24 @@
     });
 
     function loadChatHistory() {
-        $.get('/Chat/GetChatHistory', function (messages) {
-            messages.forEach(function (message) {
-                if (message.role === 'user' || message.role === 'assistant') {
-                    appendMessage(message);
+        fetch('/Chat/GetChatHistory')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load chat history');
                 }
+                return response.json();
+            })
+            .then(messages => {
+                messages.forEach(function (message) {
+                    if (message.role === 'user' || message.role === 'assistant') {
+                        appendMessage(message);
+                    }
+                });
+                scrollToBottom();
+            })
+            .catch(error => {
+                console.error('Error loading chat history:', error);
             });
-            scrollToBottom();
-        });
     }
 
     function sendMessage() {
@@ -43,21 +53,29 @@
                 content: message
             });
 
-            $.ajax({
-                url: '/Chat/SendMessage',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(message),
-                success: function (response) {
+            fetch('/Chat/SendMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(message)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(response => {
                     if (response.role === 'assistant') {
                         appendMessage(response);
                     }
                     scrollToBottom();
-                },
-                error: function () {
+                })
+                .catch(error => {
+                    console.error('Error sending message:', error);
                     alert('Error sending message');
-                }
-            });
+                });
 
             messageInput.val('');
         }
