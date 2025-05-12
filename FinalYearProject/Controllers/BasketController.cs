@@ -33,7 +33,8 @@ namespace FinalYearProject.Controllers
             var userIdStr = HttpContext.Session.GetInt32("UserId");
             if (!userIdStr.HasValue)
             {
-                return Json(new { success = false, message = "User not logged in" });
+                // Redirect to login page with return URL to the details page
+                return RedirectToAction("Login", "User", new { returnUrl = Url.Action("Details", "Bakes", new { id = bakeId }) });
             }
 
             var result = await _basketService.AddToBasket(userIdStr.Value, bakeId, quantity);

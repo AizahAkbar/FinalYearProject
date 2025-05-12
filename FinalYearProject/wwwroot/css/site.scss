@@ -63,8 +63,18 @@ body {
             }
         }
 
-        .form-control {
+        .input-group {
             max-width: 300px;
+            flex-wrap: nowrap;
+
+            .form-control {
+                width: 1%;
+                flex: 1 1 auto;
+            }
+
+            .btn {
+                flex: 0 0 auto;
+            }
         }
 
         @media (max-width: 991px) {
@@ -72,7 +82,7 @@ body {
                 margin-top: 1rem;
             }
 
-            .form-control {
+            .input-group {
                 width: 100%;
                 max-width: none;
             }
@@ -86,6 +96,15 @@ body {
         .navbar-toggler {
             margin: 0.5rem 1rem;
             border-color: $accent-color;
+            color: $accent-color;
+            font-size: 1.25rem;
+            padding: 0.5rem 0.75rem;
+            
+            &:focus {
+                outline: 3px solid $accent-color;
+                outline-offset: -3px;
+                box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3);
+            }
         }
 
         @media (max-width: 991px) {

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Update total amount
                         const totalAmount = data.basket.bakes.reduce((sum, bake) => sum + bake.price, 0);
                         document.querySelector('.total-amount span:last-child').textContent =
-                            `£${totalAmount.toFixed(2)}`;
+                            £${ totalAmount.toFixed(2) };
 
                         // Show empty basket message if no items left
                         if (data.basket.bakes.length === 0) {
@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         const redirectUrl = response.url;
 
                         if (redirectUrl.includes('/User/Login')) {
-                            // Add the current URL as the return URL
-                            const returnUrl = encodeURIComponent(window.location.href);
-                            window.location.href = redirectUrl + (redirectUrl.includes('?') ? '&' : '?') + 'returnUrl=' + returnUrl;
+                            // Just redirect to login with the current page URL (not the form action)
+                            const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
+                            window.location.href = '/User/Login?returnUrl=' + returnUrl;
                             return null;
                         } else {
                             showToastNotification('Item added to basket!');
@@ -99,7 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         showToastNotification('Item added to basket!');
                     } else {
                         if (data.message && data.message.includes('not logged in')) {
-                            const returnUrl = encodeURIComponent(window.location.href);
+                            // Just redirect to login with the current page URL (not the form action)
+                            const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
                             window.location.href = '/User/Login?returnUrl=' + returnUrl;
                         } else {
                             throw new Error(data.message || 'Failed to add item to basket');
